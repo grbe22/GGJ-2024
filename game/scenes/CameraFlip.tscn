@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://b02wijohukthu"]
+[gd_scene load_steps=33 format=3 uid="uid://b02wijohukthu"]
 
 [ext_resource type="Script" path="res://scripts/Node3D.cs" id="3_kdf04"]
 [ext_resource type="Texture2D" uid="uid://bj75jamcoytd3" path="res://assets/tests/arrowTests/arrow_test_base.png" id="4_wkbch"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://5i0f8kytmvgt" path="res://assets/WallTextures/barWall.png" id="6_7uqjn"]
 [ext_resource type="Texture2D" uid="uid://cawqdebyk1vcl" path="res://assets/WallTextures/Counter.png" id="6_cp28g"]
 [ext_resource type="Texture2D" uid="uid://dobogechwcvxv" path="res://assets/crimmas.png" id="9_04f3w"]
+[ext_resource type="PackedScene" uid="uid://bysned2a3rsh8" path="res://scenes/Projectile.tscn" id="10_0psra"]
 [ext_resource type="PackedScene" uid="uid://c7mp1uudpl8mh" path="res://scenes/customer.tscn" id="11_n44iu"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_2pryr"]
@@ -170,7 +171,7 @@ mesh = SubResource("BoxMesh_xwbbe")
 surface_material_override/0 = SubResource("StandardMaterial3D_afkda")
 
 [node name="CANNON" type="StaticBody3D" parent="Environment"]
-transform = Transform3D(1.96661, 0, -0.272941, 0, 3, 0, 0.363922, 0, 1.47496, -1.8, 0, 2.22701)
+transform = Transform3D(1.99772, 0, -0.0716529, 0, 3, 0, 0.0955382, 0, 1.49829, -1.8, 0, 2.22701)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/CANNON"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.5, 0, 0, 0)
@@ -201,7 +202,7 @@ omni_range = 28.566
 omni_attenuation = 0.01
 
 [node name="Customer" parent="." instance=ExtResource("11_n44iu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.56486, 7.44232, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.56486, 7.44232, -4.25934)
 
 [node name="Target" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 3.55271e-15, 0, 1, 0, -3.55271e-15, 0, 1, 18, 8, -80)
@@ -228,6 +229,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_olcw7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("BoxShape3D_j3xxy")
+
+[node name="Projectile" parent="." instance=ExtResource("10_0psra")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.35828, 2.9944, 0.816)
 
 [connection signal="pressed" from="CameraSystem/TextureButton" to="." method="switchView"]
 [connection signal="mouse_entered" from="Environment/BackCounter/CoffeeCup" to="." method="_on_coffee_cup_mouse_entered"]
