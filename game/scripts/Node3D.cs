@@ -7,11 +7,12 @@ public partial class Node3D : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		/*OrderScript test = new OrderScript();
+		switchView();
+		OrderScript test = new OrderScript();
 		for (int i = 0; i < 100; i++) {
 			int[] order = test.GenerateOrder();
 			GD.Print(test.PrintOrder(order));
-		} */
+		} 
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
