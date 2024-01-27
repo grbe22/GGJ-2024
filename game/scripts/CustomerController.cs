@@ -10,21 +10,38 @@ public partial class CustomerController : CharacterBody3D
 	private bool floppyPrevState = false;
 	private int numImpulses = 0;
 	private Vector3 launchDir;
-
+	private Control demandContainer;
+	private Label3D demand;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		SetFloppy(EnableFloppy);
 		SetTexturePerson("res://assets/ophie");
 		orders = new OrderHandler();
+		demandContainer = new Control();
+		AddChild(demandContainer);
+		demand = new Label3D();
+		demand.Scale = new Vector3(5,5,5);
+		demandContainer.AddChild(demand);
+		Vector3 pos = Position;
+		pos[1] += 4;
+		demand.Position = pos;
+		demand.Text = orders.GetOrder();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		if (demand != null) {
+			Vector3 pos = Position;
+			pos[1] += 4;
+			demand.Position = pos; 
+		}
 		if (EnableFloppy != floppyPrevState)
 		{
 			SetFloppy(EnableFloppy);
+			demandContainer.QueueFree();
+			demand.QueueFree();
 		}
 
 		floppyPrevState = EnableFloppy;

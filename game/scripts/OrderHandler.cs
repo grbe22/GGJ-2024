@@ -5,15 +5,19 @@ public partial class OrderHandler : Node
 {
 	private OrderScript orderScript;
 	private int[] order;
+	private string speech;
 	public OrderHandler()
 	{
 		orderScript = new OrderScript();
 		order = orderScript.GenerateOrder();
-		GD.Print(orderScript.PrintOrder(order));
+		speech = orderScript.PrintOrder(order);
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
+	public string GetOrder() {
+		return speech;
+	}
+	
+	public void CreateSpeech(string phrase, Vector3 position) {
+		return;
 	}
 }
