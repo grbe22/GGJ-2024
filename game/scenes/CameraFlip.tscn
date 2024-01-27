@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b02wijohukthu"]
+[gd_scene load_steps=23 format=3 uid="uid://b02wijohukthu"]
 
 [ext_resource type="Script" path="res://scripts/Node3D.cs" id="3_kdf04"]
 [ext_resource type="Texture2D" uid="uid://bj75jamcoytd3" path="res://assets/tests/arrowTests/arrow_test_base.png" id="4_wkbch"]
@@ -8,11 +8,16 @@
 [ext_resource type="Texture2D" uid="uid://dyk36jrwjsmbe" path="res://assets/tests/arrowTests/arrow_test_highlight.png" id="6_6xtfl"]
 [ext_resource type="Texture2D" uid="uid://cawqdebyk1vcl" path="res://assets/WallTextures/Counter.png" id="6_cp28g"]
 [ext_resource type="Texture2D" uid="uid://xd3mbk0t1t7g" path="res://assets/WallTextures/rightWall.png" id="6_t25sa"]
+[ext_resource type="Texture2D" uid="uid://dobogechwcvxv" path="res://assets/crimmas.png" id="9_04f3w"]
+[ext_resource type="Material" uid="uid://ug4pumdgpnxw" path="res://assets/materials/material_freddy.tres" id="10_j6ci8"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_2pryr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ouw2x"]
 albedo_texture = ExtResource("5_mvw2n")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_77gq7"]
+albedo_texture = ExtResource("6_t25sa")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p5usa"]
 albedo_texture = ExtResource("6_cp28g")
@@ -22,6 +27,22 @@ albedo_texture = ExtResource("6_t25sa")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o0dr6"]
 albedo_texture = ExtResource("5_gn63v")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qeagc"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xwbbe"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_afkda"]
+albedo_texture = ExtResource("9_04f3w")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_afi64"]
+size = Vector3(1.23438, 1.40918, 0.0537109)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qdkrq"]
+size = Vector2(5, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_v8sds"]
+size = Vector3(2, 3, 1.5)
 
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.958147, 0, 0)
@@ -34,7 +55,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 
 [node name="Camera2" type="Camera3D" parent="CameraSystem"]
-transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, 0, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 1, -1.5)
 
 [node name="TextureButton" type="TextureButton" parent="CameraSystem"]
 offset_left = 595.0
@@ -47,43 +68,70 @@ texture_hover = ExtResource("6_6xtfl")
 stretch_mode = 0
 
 [node name="customerBackWall" type="MeshInstance3D" parent="."]
-transform = Transform3D(-2.18557e-07, -2.813, -1.2296e-07, -4.37114e-07, 1.2296e-07, -2.813, 5, -1.2296e-07, -2.4592e-07, 2, 0, 0)
+transform = Transform3D(-4.37114e-07, -2.813, -1.44772e-07, 0, -1.2296e-07, 3.312, -10, 1.2296e-07, 6.32819e-15, 6, 0.5, 5)
 mesh = SubResource("PlaneMesh_2pryr")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_ouw2x")
 
 [node name="shopBackWall" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.2296e-07, 2.813, -4.37114e-07, 2.813, -1.2296e-07, 0, -1.07495e-14, -2.4592e-07, -5, -10, 0, 0)
+transform = Transform3D(1.44816e-07, 2.813, -1.50996e-06, 3.313, -1.2296e-07, -2.50737e-20, -2.18666e-14, -4.24751e-07, -10, -10, 0.5, 5)
 mesh = SubResource("PlaneMesh_2pryr")
 skeleton = NodePath("../..")
 
 [node name="leftWall" type="MeshInstance3D" parent="."]
-transform = Transform3D(5.37476e-15, 1.2296e-07, 6, 2.813, -1.2296e-07, -3.151e-21, 1.2296e-07, 2.813, -2.62268e-07, -4, 0, -5)
+transform = Transform3D(8, -1.2296e-07, 6.3301e-15, 0, -1.2296e-07, -3.313, 3.49691e-07, 2.813, -1.44816e-07, -2, 0.5, -5)
 mesh = SubResource("PlaneMesh_2pryr")
 skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_77gq7")
 
 [node name="Counter" type="MeshInstance3D" parent="."]
-transform = Transform3D(-2.18557e-07, 1.2296e-07, 1.5, -2.02074e-13, 2.813, -6.5567e-08, -5, -1.19062e-13, -6.55671e-08, -2, -1.5, 0)
+transform = Transform3D(-3.49691e-07, 1.2296e-07, 1.5, -3.23318e-13, 2.813, -6.5567e-08, -8, -1.19062e-13, -6.55671e-08, -2, -1.5, 3)
 mesh = SubResource("PlaneMesh_2pryr")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_p5usa")
 
 [node name="rightWall" type="MeshInstance3D" parent="."]
-transform = Transform3D(-6, 4.24751e-07, -1.85665e-14, 0, -1.2296e-07, -2.813, -9.05975e-07, -2.813, 1.2296e-07, -4, 0, 5)
+transform = Transform3D(-8, 4.24751e-07, -2.18666e-14, 0, -1.2296e-07, -3.313, -1.20797e-06, -2.813, 1.44816e-07, -2, 0.5, 15)
 mesh = SubResource("PlaneMesh_2pryr")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_0vv2s")
 
 [node name="Flour" type="MeshInstance3D" parent="."]
-transform = Transform3D(-2.18557e-07, 1.2296e-07, -6, 0, 2.813, 2.62268e-07, 5, 5.37476e-15, -2.62268e-07, -4, -2.813, 0)
+transform = Transform3D(-4.37114e-07, 1.2296e-07, -8, 0, 2.813, 3.49691e-07, 10, 5.37475e-15, -3.49691e-07, -2, -2.813, 5)
 mesh = SubResource("PlaneMesh_2pryr")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_o0dr6")
 
-[node name="Flour2" type="MeshInstance3D" parent="."]
-transform = Transform3D(2.18557e-07, 1.2296e-07, 6, 1.91069e-14, -2.813, 2.62268e-07, 5, 5.37476e-15, -2.62268e-07, -4, 2.813, 0)
-mesh = SubResource("PlaneMesh_2pryr")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_o0dr6")
+[node name="Cash Resister" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, -4)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cash Resister"]
+shape = SubResource("BoxShape3D_qeagc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Cash Resister"]
+mesh = SubResource("BoxMesh_xwbbe")
+surface_material_override/0 = SubResource("StandardMaterial3D_afkda")
+
+[node name="plane2" type="StaticBody3D" parent="."]
+transform = Transform3D(0.939693, 0, -0.34202, 0, 1, 0, 0.34202, 0, 0.939693, 4.2146, -1.46686, 1.212)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="plane2"]
+shape = SubResource("BoxShape3D_afi64")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="plane2"]
+transform = Transform3D(0.12797, -0.977596, 3.07648e-08, 6.74798e-17, -4.37114e-08, -0.719948, 0.594346, 0.210489, -6.62407e-09, -4.52607, 1.08955, -0.430219)
+mesh = SubResource("PlaneMesh_qdkrq")
+surface_material_override/0 = ExtResource("10_j6ci8")
+
+[node name="CANNON" type="StaticBody3D" parent="."]
+transform = Transform3D(0.983306, 0, -0.181961, 0, 1, 0, 0.181961, 0, 0.983306, -1.8, 0, 2.22701)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CANNON"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_qeagc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CANNON"]
+mesh = SubResource("BoxMesh_v8sds")
+surface_material_override/0 = SubResource("StandardMaterial3D_afkda")
 
 [connection signal="pressed" from="CameraSystem/TextureButton" to="." method="switchView"]
