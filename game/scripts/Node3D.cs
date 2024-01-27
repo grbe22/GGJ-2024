@@ -4,6 +4,7 @@ using System;
 public partial class Node3D : Node
 {
 	private bool cannonSelected = false;
+	private bool hoverCup = false;
 	private Camera3D currentCamera;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -23,11 +24,15 @@ public partial class Node3D : Node
 		// ITS SUPPOSED TO JUST NEED ISACTIONJUSTPRESSED
 		if (Input.IsActionJustPressed("click") && cannonSelected) {
 			// todo: build cannon fire function
-			GD.Print("Fire!");
+			SetFloppy(this);
 		}
 		if (Input.IsActionJustPressed("Switch Camera") && Input.IsActionPressed("Switch Camera"))
 		{
 			switchView();
+		}
+		if (Input.IsActionJustPressed("click") && hoverCup) {
+			// todo: spawn cup at mouse position
+			GD.Print("grab cup");
 		}
 	}
 	
@@ -47,6 +52,22 @@ public partial class Node3D : Node
 			currentCamera.Current = true;
 		}
 	}
+	
+	private void SetFloppy(Node node)
+	{
+		CustomerController controller = node as CustomerController;
+		if (controller != null)
+		{
+			controller.EnableFloppy = true;
+		}
+
+		// exit condition when there are no children
+		foreach (Node child in node.GetChildren())
+		{
+			SetFloppy(child);
+		}
+	}
+	
 	private void _on_cannon_mouse_entered()
 	{
 		cannonSelected = true;
@@ -57,10 +78,13 @@ public partial class Node3D : Node
 		cannonSelected = false;
 	// Replace with function body.
 	}
+	private void _on_coffee_cup_mouse_entered() 
+	{
+		hoverCup = true;
+	}
+	
+	private void _on_coffee_cup_mouse_exited() 
+	{
+		hoverCup = false;
+	}
 }
-
-
-
-
-
-
