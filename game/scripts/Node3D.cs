@@ -4,6 +4,7 @@ using System;
 public partial class Node3D : Node
 {
 	private bool cannonSelected = false;
+	private bool hoverCup = false;
 	private Camera3D currentCamera;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -28,6 +29,10 @@ public partial class Node3D : Node
 		if (Input.IsActionJustPressed("Switch Camera") && Input.IsActionPressed("Switch Camera"))
 		{
 			switchView();
+		}
+		if (Input.IsActionJustPressed("click") && hoverCup) {
+			// todo: spawn cup at mouse position
+			GD.Print("grab cup");
 		}
 	}
 	
@@ -73,10 +78,13 @@ public partial class Node3D : Node
 		cannonSelected = false;
 	// Replace with function body.
 	}
+	private void _on_coffee_cup_mouse_entered() 
+	{
+		hoverCup = true;
+	}
+	
+	private void _on_coffee_cup_mouse_exited() 
+	{
+		hoverCup = false;
+	}
 }
-
-
-
-
-
-
