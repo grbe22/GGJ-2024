@@ -134,4 +134,14 @@ shape = SubResource("BoxShape3D_qeagc")
 mesh = SubResource("BoxMesh_v8sds")
 surface_material_override/0 = SubResource("StandardMaterial3D_afkda")
 
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.18784, 2.13246, -3.95728)
+omni_range = 28.566
+omni_attenuation = 0.01
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.18784, 2.13246, 9.94261)
+omni_range = 28.566
+omni_attenuation = 0.01
+
 [connection signal="pressed" from="CameraSystem/TextureButton" to="." method="switchView"]
