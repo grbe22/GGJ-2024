@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b02wijohukthu"]
+[gd_scene load_steps=14 format=3 uid="uid://b02wijohukthu"]
 
 [ext_resource type="Script" path="res://scripts/Node3D.cs" id="3_kdf04"]
 [ext_resource type="Texture2D" uid="uid://bj75jamcoytd3" path="res://assets/tests/arrowTests/arrow_test_base.png" id="4_wkbch"]
@@ -6,12 +6,16 @@
 [ext_resource type="Texture2D" uid="uid://4xopxhkuiy4" path="res://assets/WallTextures/customerBackWall.png" id="5_mvw2n"]
 [ext_resource type="Texture2D" uid="uid://blhghanrq1iq1" path="res://assets/tests/arrowTests/arrow_test_click.png" id="5_yrllo"]
 [ext_resource type="Texture2D" uid="uid://dyk36jrwjsmbe" path="res://assets/tests/arrowTests/arrow_test_highlight.png" id="6_6xtfl"]
+[ext_resource type="Texture2D" uid="uid://cawqdebyk1vcl" path="res://assets/WallTextures/Counter.png" id="6_cp28g"]
 [ext_resource type="Texture2D" uid="uid://xd3mbk0t1t7g" path="res://assets/WallTextures/rightWall.png" id="6_t25sa"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_2pryr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ouw2x"]
 albedo_texture = ExtResource("5_mvw2n")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p5usa"]
+albedo_texture = ExtResource("6_cp28g")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0vv2s"]
 albedo_texture = ExtResource("6_t25sa")
@@ -58,6 +62,12 @@ transform = Transform3D(5.37476e-15, 1.2296e-07, 6, 2.813, -1.2296e-07, -3.151e-
 mesh = SubResource("PlaneMesh_2pryr")
 skeleton = NodePath("../..")
 
+[node name="Counter" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2.18557e-07, 1.2296e-07, 1.5, -2.02074e-13, 2.813, -6.5567e-08, -5, -1.19062e-13, -6.55671e-08, -2, -1.5, 0)
+mesh = SubResource("PlaneMesh_2pryr")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_p5usa")
+
 [node name="rightWall" type="MeshInstance3D" parent="."]
 transform = Transform3D(-6, 4.24751e-07, -1.85665e-14, 0, -1.2296e-07, -2.813, -9.05975e-07, -2.813, 1.2296e-07, -4, 0, 5)
 mesh = SubResource("PlaneMesh_2pryr")
@@ -75,13 +85,5 @@ transform = Transform3D(2.18557e-07, 1.2296e-07, 6, 1.91069e-14, -2.813, 2.62268
 mesh = SubResource("PlaneMesh_2pryr")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_o0dr6")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
-light_color = Color(1, 0, 1, 1)
-light_energy = 10.0
-light_size = 0.404
-omni_range = 6.0
-omni_attenuation = 0.0
 
 [connection signal="pressed" from="CameraSystem/TextureButton" to="." method="switchView"]
