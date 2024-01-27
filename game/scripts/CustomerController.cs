@@ -1,13 +1,9 @@
 using Godot;
 using System;
-using System.Diagnostics;
-using System.Transactions;
 
-public partial class MovementTesting : CharacterBody3D
+public partial class CustomerController : CharacterBody3D
 {
-	[Export]
 	public float Speed { get; set; } = 10f;
-
 	public bool EnableFloppy { get; set; } = false;
 
 	// Called when the node enters the scene tree for the first time.
