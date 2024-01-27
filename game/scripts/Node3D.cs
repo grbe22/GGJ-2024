@@ -1,10 +1,12 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class Node3D : Node
 {
 	private bool cannonSelected = false;
 	private bool hoverCup = false;
+	private bool hoverWork = false;
 	private Camera3D currentCamera;
 	private CustomerController currentCustomer;
 	private PackedScene projectile;
@@ -14,6 +16,8 @@ public partial class Node3D : Node
 
 	private PackedScene emptyCup;
 	Script scrpt = new CSharpScript();
+	private Node2D heldItem;
+	private List<Node2D> items = new List<Node2D>();
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -28,6 +32,10 @@ public partial class Node3D : Node
 		switchView();
 
 		currentCustomer = SpawnCustomer();
+
+		scrpt = GD.Load<Script>("res://scripts/MouseFollow.cs");
+
+		emptyCup = GD.Load<PackedScene>("res://scenes/EmptyCup.tscn");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -38,13 +46,17 @@ public partial class Node3D : Node
 		// cannon fire event
 		if (Input.IsActionJustPressed("click") && cannonSelected)
 		{
-			if (currentCustomer != null)
+			if (currentCustomer != null && !currentCustomer.EnableFloppy && heldItem != null)
 			{
 				// launch customer
 				Vector3 customerDir = new(0, 0.1f, -1);
 				currentCustomer.Launch(30, customerDir);
 				InstantiateProjectile();
 				currentCustomer = null;
+
+				items.Remove(heldItem);
+				heldItem.QueueFree();
+				heldItem = null;
 			}
 		}
 
@@ -55,15 +67,21 @@ public partial class Node3D : Node
 		}
 
 		// cup spawning event
-		if (Input.IsActionJustPressed("click") && hoverCup)
+		else if (Input.IsActionJustPressed("click") && hoverCup)
 		{
-			// todo: spawn cup at mouse position
+			// If the user is already holding an item, remove that item
+			if (heldItem != null) 
+			{
+				items.Remove(heldItem);
+				heldItem.QueueFree();
+			}
+			heldItem = emptyCup.Instantiate() as Node2D;
+			items.Add(heldItem);
+			
+			AddChild(heldItem);
 
-			Node cup = emptyCup.Instantiate();
-
-			//cup.position = GetViewport().GetMousePosition();
-			AddChild(cup);
 			GD.Print("grab cup");
+			hoverCup = false;
 		}
 
 		#endregion
@@ -116,6 +134,15 @@ public partial class Node3D : Node
 	{
 		hoverCup = false;
 	}
+	private void _on_work_area_mouse_entered()
+	{
+		hoverWork = true;
+	}
+	private void _on_work_area_mouse_exited()
+	{
+		hoverWork = false;
+	}
+
 
 	private void InstantiateProjectile()
 	{
