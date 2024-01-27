@@ -21,6 +21,6 @@
 - Sarah
   - UI/level design
 - Nikki 
-  - m
+  - Physics interactions (CANNON)
 - All
   - Coding (as needed)
