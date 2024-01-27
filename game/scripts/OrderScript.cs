@@ -31,8 +31,7 @@ public partial class OrderScript : Node
 	// none, milk, coffee, and milk coffee
 	// I'm going to randomize between 1 and Max, inclusively
 	private const int drinks = 6;
-	private static readonly string[] stringDrinks = { "None", "milk", "coffee", "milk coffee", "vegan milk", "vegan milk coffee" };
-	private static readonly DrinkType tmpType = (DrinkType)5;
+	private static readonly string[] stringDrinks = { "None", "milk", "coffee", "milk coffee", "\'vegan\' milk", "\'vegan\' milk coffee" };
 	// none, froth, sugar
 	private const int drinkAddons = 5;
 	private static readonly string[] stringAddons = { "None", "whipped cream", "mayo", "chocolate", "caramel" };
@@ -67,22 +66,22 @@ public partial class OrderScript : Node
 		// 40% of orders with a drink will have a topping
 		// 20% to just have a food
 		int order_qualities = gen.Next(1, 11);
-		int food = 0;
-		int drink = 0;
-		int addon = 0;
+		FoodType food = (FoodType)0;
+		DrinkType drink = (DrinkType)0;
+		AddonType addon = (AddonType)0;
 		if (order_qualities < 8) {
-			drink = gen.Next(1, drinks);
+			drink = (DrinkType)gen.Next(1, drinks);
 			if (gen.Next(1, 3) == 1) {
-				addon = gen.Next(1, drinkAddons);
+				addon = (AddonType)gen.Next(1, drinkAddons);
 			}
 		} 
 		if (order_qualities > 4) {
-			food = gen.Next(1, foods);
+			food = (FoodType)gen.Next(1, foods);
 		}
 		int[] order = new int[3];
-		order[0] = food;
-		order[1] = drink;
-		order[2] = addon;
+		order[0] = (int)food;
+		order[1] = (int)drink;
+		order[2] = (int)addon;
 		return order;
 	}
 }
