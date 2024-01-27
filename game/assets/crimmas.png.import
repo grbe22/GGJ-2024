@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dobogechwcvxv"
-path.s3tc="res://.godot/imported/crimmas.png-249f2cbd1440d6dc47f9d75e0bd71797.s3tc.ctex"
+path.s3tc="res://.godot/imported/crimmas.png-8a19417fe40058c7f81818eb0f741867.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://crimmas.png"
-dest_files=["res://.godot/imported/crimmas.png-249f2cbd1440d6dc47f9d75e0bd71797.s3tc.ctex"]
+source_file="res://assets/crimmas.png"
+dest_files=["res://.godot/imported/crimmas.png-8a19417fe40058c7f81818eb0f741867.s3tc.ctex"]
 
 [params]
 
