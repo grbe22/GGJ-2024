@@ -23,7 +23,7 @@ public partial class Node3D : Node
 		// ITS SUPPOSED TO JUST NEED ISACTIONJUSTPRESSED
 		if (Input.IsActionJustPressed("click") && cannonSelected) {
 			// todo: build cannon fire function
-			GD.Print("Fire!");
+			SetFloppy(this);
 		}
 		if (Input.IsActionJustPressed("Switch Camera") && Input.IsActionPressed("Switch Camera"))
 		{
@@ -47,6 +47,22 @@ public partial class Node3D : Node
 			currentCamera.Current = true;
 		}
 	}
+	
+	private void SetFloppy(Node node)
+	{
+		CustomerController controller = node as CustomerController;
+		if (controller != null)
+		{
+			controller.EnableFloppy = true;
+		}
+
+		// exit condition when there are no children
+		foreach (Node child in node.GetChildren())
+		{
+			SetFloppy(child);
+		}
+	}
+	
 	private void _on_cannon_mouse_entered()
 	{
 		cannonSelected = true;
