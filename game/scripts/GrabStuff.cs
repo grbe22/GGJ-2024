@@ -7,8 +7,12 @@ public partial class GrabStuff : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		 Node cups = GetNode("Environment/BackCounter/CoffeeCup");
+		Button cups = GetNode<Button>("CameraSystem/TextureButton/CupButton");
+		cups.Pressed += GetCup;
+	}
 	
+	private void GetCup()
+	{ 
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
