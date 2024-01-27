@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class CustomerLimbController : RigidBody3D
+public partial class LimbController : RigidBody3D
 {
 	/// <summary>
 	/// Locks y/x axis rotation

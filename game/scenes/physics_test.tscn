@@ -30,4 +30,5 @@ shape = SubResource("BoxShape3D_a6e6y")
 transform = Transform3D(1, 0, 0, 0, 0.965473, 0.260505, 0, -0.260505, 0.965473, 0, 22.962, 29.312)
 
 [node name="Customer" parent="." instance=ExtResource("1_7ch8a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21.0593, 0)
+transform = Transform3D(1, 0, 0, 0, 0.989328, 0.145703, 0, -0.145703, 0.989328, 0, 21.0593, 0)
+Speed = null

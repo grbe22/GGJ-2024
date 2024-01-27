@@ -1,15 +1,20 @@
 using Godot;
 using System;
+using System.Diagnostics;
+using System.Transactions;
 
 public partial class MovementTesting : CharacterBody3D
 {
 	[Export]
 	public float Speed { get; set; } = 10f;
 
+	public bool EnableFloppy { get; set; } = true;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		GD.Print("Movement testing controller ready");
+		SetFloppy(EnableFloppy);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -26,5 +31,35 @@ public partial class MovementTesting : CharacterBody3D
 		Position += vel;
 
 		base._PhysicsProcess(delta);
+	}
+
+	/// <summary>
+	/// Sets whether customer is floppy or not 
+	/// (unlock x/y rotation and make head fall)
+	/// </summary>
+	/// <param name="enabled">Desired floppy value</param>
+	public void SetFloppy(bool enabled)
+	{
+		SetFloppy(this, enabled);
+		GD.Print("Floppy value set to " + enabled);
+	}
+
+	/// <summary>
+	/// Recursive method sets value of the floppy parameter in children nodes
+	/// </summary>
+	/// <param name="node">Node to check children of</param>
+	private void SetFloppy(Node node, bool enabled)
+	{
+		LimbController controller = node as LimbController;
+		if (controller != null)
+		{
+			controller.Floppy = enabled;
+		}
+
+		// exit condition when there are no children
+		foreach (Node child in node.GetChildren())
+		{
+			SetFloppy(child, enabled);
+		}
 	}
 }
