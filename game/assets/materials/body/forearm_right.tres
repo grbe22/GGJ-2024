@@ -1,6 +1,6 @@
 [gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://d3nx2macadoy"]
 
-[ext_resource type="Texture2D" uid="uid://bc3doter7xjr5" path="res://assets/tests/forearm_right.png" id="1_jnmel"]
+[ext_resource type="Texture2D" uid="uid://dyu2fxntifk7u" path="res://assets/tests/forearm_right.png" id="1_jnmel"]
 
 [resource]
 transparency = 1
