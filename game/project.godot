@@ -11,7 +11,11 @@ config_version=5
 [application]
 
 config/name="GGJ-loser-team"
+<<<<<<< Updated upstream
 run/main_scene="res://scenes/CameraFlip.tscn"
+=======
+run/main_scene="res://scenes/LaunchScreen.tscn"
+>>>>>>> Stashed changes
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
