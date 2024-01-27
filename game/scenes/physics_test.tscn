@@ -1,64 +1,33 @@
-[gd_scene load_steps=7 format=3 uid="uid://dh735dk57sey2"]
+[gd_scene load_steps=4 format=3 uid="uid://dh735dk57sey2"]
 
-[ext_resource type="Material" uid="uid://ug4pumdgpnxw" path="res://assets/materials/material_freddy.tres" id="1_su7xs"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_dv81i"]
-size = Vector3(1.23438, 1.40918, 0.0537109)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_gn7ym"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_6s38v"]
+[ext_resource type="PackedScene" uid="uid://c7mp1uudpl8mh" path="res://scenes/customer.tscn" id="1_hdmq4"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_dhes7"]
+size = Vector2(40, 40)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a6e6y"]
-size = Vector3(2.23029, 0.0599146, 2.05716)
+size = Vector3(40, 0.01, 40)
 
 [node name="PhysicsTest" type="Node3D"]
 
 [node name="sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.366501, 0.930418, 0, -0.930418, -0.366501, 0, 6.2322, 8.07652)
 
-[node name="joint1" type="PinJoint3D" parent="."]
-transform = Transform3D(0.998041, -0.0624809, 0.00334721, 0.0623857, 0.997776, 0.0234702, -0.00480621, -0.0232154, 0.999719, 0, 6.64487, 0)
-node_a = NodePath("plane1")
-node_b = NodePath("plane2")
-exclude_nodes_from_collision = false
-
-[node name="plane1" type="RigidBody3D" parent="joint1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.736994, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="joint1/plane1"]
-shape = SubResource("BoxShape3D_dv81i")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="joint1/plane1"]
-transform = Transform3D(0.607967, 0, -2.0591e-09, -1.64437e-09, -4.47035e-08, -0.719948, 0, 1, -3.35276e-08, 0, 0, 0)
-mesh = SubResource("PlaneMesh_gn7ym")
-surface_material_override/0 = ExtResource("1_su7xs")
-
-[node name="plane2" type="RigidBody3D" parent="joint1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.736646, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="joint1/plane2"]
-shape = SubResource("BoxShape3D_dv81i")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="joint1/plane2"]
-transform = Transform3D(0.607967, 0, 0, 0, -4.37114e-08, -0.719948, 0, 1, -3.14699e-08, 0, 0, 0)
-mesh = SubResource("PlaneMesh_6s38v")
-surface_material_override/0 = ExtResource("1_su7xs")
-
 [node name="floor" type="RigidBody3D" parent="."]
 gravity_scale = 0.0
 freeze = true
 
 [node name="mesh" type="MeshInstance3D" parent="floor"]
-transform = Transform3D(5.70042, 0, 0, 0, 0.576272, 0, 0, 0, 5.19164, -0.00662575, 0.249899, -0.02759)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00662575, 0.249899, -0.02759)
 mesh = SubResource("PlaneMesh_dhes7")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="floor"]
-transform = Transform3D(5.19164, 0, 0, 0, 5.19164, 0, 0, 0, 5.19164, 0.0444552, 0.240208, 0.0037086)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0444552, 0.240208, 0.0037086)
 shape = SubResource("BoxShape3D_a6e6y")
 
+[node name="Customer" parent="." instance=ExtResource("1_hdmq4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.914, 0)
+
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.894935, 0.446198, 0, -0.446198, 0.894935, 0, 6.042, 6.742)
+transform = Transform3D(1, 0, 0, 0, 0.971887, 0.235447, 0, -0.235447, 0.971887, 0, 6.042, 15.6772)
