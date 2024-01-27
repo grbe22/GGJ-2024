@@ -47,7 +47,6 @@ albedo_texture = ExtResource("6_cp28g")
 albedo_texture = ExtResource("9_04f3w")
 
 [sub_resource type="BoxMesh" id="BoxMesh_v8sds"]
-size = Vector3(2, 3, 1.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5sabg"]
 albedo_texture = ExtResource("5_mvw2n")
@@ -163,9 +162,10 @@ mesh = SubResource("BoxMesh_xwbbe")
 surface_material_override/0 = SubResource("StandardMaterial3D_afkda")
 
 [node name="CANNON" type="StaticBody3D" parent="Environment"]
-transform = Transform3D(0.983306, 0, -0.181961, 0, 1, 0, 0.181961, 0, 0.983306, -1.8, 0, 2.22701)
+transform = Transform3D(1.96661, 0, -0.272941, 0, 3, 0, 0.363922, 0, 1.47496, -1.8, 0, 2.22701)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/CANNON"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.5, 0, 0, 0)
 shape = SubResource("BoxShape3D_qeagc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/CANNON"]
@@ -201,3 +201,5 @@ mesh = SubResource("PlaneMesh_q01bo")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.56486, 7.44232, 0)
 
 [connection signal="pressed" from="CameraSystem/TextureButton" to="." method="switchView"]
+[connection signal="mouse_entered" from="Environment/CANNON" to="." method="_on_cannon_mouse_entered"]
+[connection signal="mouse_exited" from="Environment/CANNON" to="." method="_on_cannon_mouse_exited"]
