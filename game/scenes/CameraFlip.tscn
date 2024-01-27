@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://b02wijohukthu"]
+[gd_scene load_steps=30 format=3 uid="uid://b02wijohukthu"]
 
 [ext_resource type="Script" path="res://scripts/Node3D.cs" id="3_kdf04"]
 [ext_resource type="Texture2D" uid="uid://bj75jamcoytd3" path="res://assets/tests/arrowTests/arrow_test_base.png" id="4_wkbch"]
@@ -53,6 +53,8 @@ size = Vector3(2, 3, 1.5)
 albedo_texture = ExtResource("5_mvw2n")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_q01bo"]
+
+[sub_resource type="Theme" id="Theme_blr0r"]
 
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.958147, 0, 0)
@@ -200,5 +202,18 @@ mesh = SubResource("PlaneMesh_q01bo")
 
 [node name="Customer" parent="." instance=ExtResource("11_n44iu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.56486, 7.44232, 0)
+Speed = null
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="CupButton" type="TextureButton" parent="Node2D"]
+offset_left = 113.0
+offset_top = 148.0
+offset_right = 121.0
+offset_bottom = 156.0
+scale = Vector2(9.69914, 14.3896)
+mouse_default_cursor_shape = 2
+theme = SubResource("Theme_blr0r")
+action_mode = 0
 
 [connection signal="pressed" from="CameraSystem/TextureButton" to="." method="switchView"]
