@@ -20,7 +20,13 @@ public partial class MovementTesting : CharacterBody3D
 	public override void _PhysicsProcess(double delta)
 	{
 		Vector2 inputDir = Input.GetVector("move_left", "move_right", "move_down", "move_up");
-		Vector3 vel = new(inputDir.X, inputDir.Y, 0);
+		int z = 0;
+		if (Input.IsActionPressed("move_close")) {
+			z = 1;
+		} else if (Input.IsActionPressed("move_far")) {
+			z = -1;
+		}
+		Vector3 vel = new(inputDir.X, inputDir.Y, z);
 		vel *= Speed * (float)delta;
 
 		Position += vel;
