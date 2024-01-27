@@ -10,14 +10,21 @@ public partial class CustomerController : CharacterBody3D
 	private bool floppyPrevState = false;
 	private int numImpulses = 0;
 	private Vector3 launchDir;
+	
+	// contains the text bubbles customers produce.
 	private Control demandContainer;
 	private Label3D demand;
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		// makes the ragdolls ragdoll
 		SetFloppy(EnableFloppy);
 		SetTexturePerson("res://assets/ophie");
+		
 		orders = new OrderHandler();
+		
+		// instantiates the text box 5m above the customer
 		demandContainer = new Control();
 		AddChild(demandContainer);
 		demand = new Label3D();
@@ -26,6 +33,8 @@ public partial class CustomerController : CharacterBody3D
 		Vector3 pos = Position;
 		pos[1] += 4;
 		demand.Position = pos;
+		
+		// fills the text box
 		demand.Text = orders.GetOrder();
 	}
 
