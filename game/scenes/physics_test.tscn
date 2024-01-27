@@ -1,10 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dh735dk57sey2"]
+[gd_scene load_steps=5 format=3 uid="uid://dh735dk57sey2"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_qnpfe"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4xr7h"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_i0nju"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_0yuth"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bua23"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_dhes7"]
 
@@ -16,25 +14,28 @@ size = Vector3(2.23029, 0.0599146, 2.05716)
 [node name="sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.366501, 0.930418, 0, -0.930418, -0.366501, 0, 6.2322, 8.07652)
 
-[node name="box1" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.39405, 0)
+[node name="joint1" type="PinJoint3D" parent="."]
+transform = Transform3D(0.64371, -0.76527, 0, 0.76527, 0.64371, 0, 0, 0, 1, 0, 6.64487, 0)
+node_a = NodePath("rigidbody1")
+node_b = NodePath("rigidbody2")
 
-[node name="mesh" type="MeshInstance3D" parent="box1"]
-mesh = SubResource("BoxMesh_qnpfe")
-skeleton = NodePath("../..")
+[node name="rigidbody1" type="RigidBody3D" parent="joint1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0683565, 0.959154, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="box1"]
-shape = SubResource("BoxShape3D_i0nju")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="joint1/rigidbody1"]
+mesh = SubResource("CapsuleMesh_4xr7h")
 
-[node name="box2" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.129507, 1.57237, 0.480416)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="joint1/rigidbody1"]
+shape = SubResource("CapsuleShape3D_bua23")
 
-[node name="mesh" type="MeshInstance3D" parent="box2"]
-mesh = SubResource("BoxMesh_qnpfe")
-skeleton = NodePath("../..")
+[node name="rigidbody2" type="RigidBody3D" parent="joint1"]
+transform = Transform3D(0.787645, -0.616129, 0, 0.616129, 0.787645, 0, 0, 0, 1, 0.457196, -0.721956, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="box2"]
-shape = SubResource("BoxShape3D_0yuth")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="joint1/rigidbody2"]
+mesh = SubResource("CapsuleMesh_4xr7h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="joint1/rigidbody2"]
+shape = SubResource("CapsuleShape3D_bua23")
 
 [node name="floor" type="RigidBody3D" parent="."]
 gravity_scale = 0.0
