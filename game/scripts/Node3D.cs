@@ -6,7 +6,7 @@ public partial class Node3D : Node
 	private bool cannonSelected = false;
 	private bool hoverCup = false;
 	private Camera3D currentCamera;
-	
+	private CustomerController currentCustomer;
 	private Texture2D emptyImg = new Texture2D();
 	Script scrpt = new CSharpScript();
 	
