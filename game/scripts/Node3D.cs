@@ -12,7 +12,7 @@ public partial class Node3D : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (Input.IsActionJustPressed("Switch Camera"))
+		if (Input.IsActionJustPressed("Switch Camera") && Input.IsActionPressed("Switch Camera"))
 		{
 			switchView();
 		}
