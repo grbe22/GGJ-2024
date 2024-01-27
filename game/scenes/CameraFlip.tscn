@@ -230,12 +230,8 @@ surface_material_override/0 = SubResource("StandardMaterial3D_olcw7")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("BoxShape3D_j3xxy")
 
-<<<<<<< Updated upstream
 [node name="Projectile" parent="." instance=ExtResource("10_0psra")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.35828, 2.9944, 0.816)
-=======
-[node name="Label3D" type="Label3D" parent="."]
->>>>>>> Stashed changes
 
 [connection signal="pressed" from="CameraSystem/TextureButton" to="." method="switchView"]
 [connection signal="mouse_entered" from="Environment/BackCounter/CoffeeCup" to="." method="_on_coffee_cup_mouse_entered"]
