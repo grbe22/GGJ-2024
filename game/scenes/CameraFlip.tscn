@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://b02wijohukthu"]
+[gd_scene load_steps=32 format=3 uid="uid://b02wijohukthu"]
 
 [ext_resource type="Script" path="res://scripts/Node3D.cs" id="3_kdf04"]
 [ext_resource type="Texture2D" uid="uid://bj75jamcoytd3" path="res://assets/tests/arrowTests/arrow_test_base.png" id="4_wkbch"]
@@ -52,6 +52,10 @@ albedo_texture = ExtResource("9_04f3w")
 albedo_texture = ExtResource("5_mvw2n")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_q01bo"]
+size = Vector2(40, 40)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nc2re"]
+size = Vector3(40, 40, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_olcw7"]
 
@@ -196,13 +200,20 @@ transform = Transform3D(1, 0, 5.32907e-15, 0, 1, 0, -5.32907e-15, 0, 1, -7.17987
 omni_range = 28.566
 omni_attenuation = 0.01
 
-[node name="Target" type="MeshInstance3D" parent="Environment"]
-transform = Transform3D(-3.33592e-07, -1, 8.52651e-14, 7.63169, -4.37114e-08, 0, 3.72694e-20, 7.10543e-15, 5.7741, 36.6404, 2.91555, 5.89163)
-material_override = SubResource("StandardMaterial3D_5sabg")
-mesh = SubResource("PlaneMesh_q01bo")
-
 [node name="Customer" parent="." instance=ExtResource("11_n44iu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.56486, 7.44232, 0)
+
+[node name="Target" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 3.55271e-15, 0, 1, 0, -3.55271e-15, 0, 1, 18, 8, -80)
+
+[node name="Target" type="MeshInstance3D" parent="Target"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, -4.4465e-21, 4.37114e-08, 1, -4.37114e-08, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_5sabg")
+mesh = SubResource("PlaneMesh_q01bo")
+skeleton = NodePath("../../Environment")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Target"]
+shape = SubResource("BoxShape3D_nc2re")
 
 [node name="Node2D" type="Node2D" parent="."]
 

@@ -5,29 +5,25 @@ using System.Diagnostics;
 public partial class CustomerController : CharacterBody3D
 {
 	public float Speed { get; set; } = 10f;
-	public bool EnableFloppy { get; set; } = true;
-	private bool floppyPrevState = true;
-	private int numImpulses = 40;
+	public bool EnableFloppy { get; set; } = false;
+
+	private bool floppyPrevState = false;
+	private int numImpulses = 0;
+	private Vector3 launchDir;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		SetFloppy();
+		SetFloppy(EnableFloppy);
 		SetTexturePerson("res://assets/ophie");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (numImpulses > 0)
-		{
-			ApplyBodyImpulse(this);
-			numImpulses--;
-		}
-
 		if (EnableFloppy != floppyPrevState)
 		{
-			SetFloppy();
+			SetFloppy(EnableFloppy);
 		}
 
 		floppyPrevState = EnableFloppy;
@@ -35,6 +31,7 @@ public partial class CustomerController : CharacterBody3D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		// movement testing
 		Vector2 inputDir = Input.GetVector("move_left", "move_right", "move_down", "move_up");
 		int z = 0;
 		if (Input.IsActionPressed("move_close"))
@@ -50,7 +47,26 @@ public partial class CustomerController : CharacterBody3D
 
 		Position += vel;
 
+		// launching logic
+		if (numImpulses > 0)
+		{
+			ApplyBodyImpulse(this);
+			numImpulses--;
+		}
+
 		base._PhysicsProcess(delta);
+	}
+
+	/// <summary>
+	/// Launches this customer at a desired direction
+	/// </summary>
+	/// <param name="numImpulses">Number of iterations/impulses to apply</param>
+	/// <param name="direction">Direction to launch customer</param>
+	public void Launch(int numImpulses, Vector3 direction)
+	{
+		EnableFloppy = true;
+		this.numImpulses = numImpulses;
+		this.launchDir = direction;
 	}
 
 	/// <summary>
@@ -58,9 +74,9 @@ public partial class CustomerController : CharacterBody3D
 	/// (unlock x/y rotation and make head fall)
 	/// </summary>
 	/// <param name="enabled">Desired floppy value</param>
-	private void SetFloppy()
+	private void SetFloppy(bool enabled)
 	{
-		SetFloppy(this, EnableFloppy);
+		SetFloppy(this, enabled);
 		GD.Print("Floppy value set to " + EnableFloppy);
 	}
 
@@ -134,12 +150,15 @@ public partial class CustomerController : CharacterBody3D
 		return name;
 	}
 
+	/// <summary>
+	/// Applies an impulse to only the body rigidbody
+	/// </summary>
+	/// <param name="node">Root node, to search recursively</param>
 	private void ApplyBodyImpulse(Node node)
 	{
 		if (node is RigidBody3D rb && rb.Name == "body")
 		{
-			Vector3 impulse = new(0, 0.1f, -1);
-			impulse *= 100;
+			Vector3 impulse = launchDir * 100;
 			rb.ApplyImpulse(impulse);
 			return;
 		}
