@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://5i0f8kytmvgt" path="res://assets/WallTextures/barWall.png" id="6_7uqjn"]
 [ext_resource type="Texture2D" uid="uid://cawqdebyk1vcl" path="res://assets/WallTextures/Counter.png" id="6_cp28g"]
 [ext_resource type="Texture2D" uid="uid://dobogechwcvxv" path="res://assets/crimmas.png" id="9_04f3w"]
-[ext_resource type="PackedScene" uid="uid://bysned2a3rsh8" path="res://scenes/Projectile.tscn" id="10_0psra"]
+[ext_resource type="PackedScene" path="res://scenes/Projectile.tscn" id="10_0psra"]
 [ext_resource type="PackedScene" uid="uid://c7mp1uudpl8mh" path="res://scenes/customer.tscn" id="11_n44iu"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_2pryr"]
@@ -165,7 +165,7 @@ transform = Transform3D(0.301511, 2.75286e-21, 0, 1.69407e-20, 1, 0, -3.90799e-1
 mesh = SubResource("CylinderMesh_qh2e7")
 
 [node name="WorkArea" type="StaticBody3D" parent="Environment/BackCounter"]
-transform = Transform3D(1, 3.96385e-21, 7.81597e-14, -2.10064e-19, 0.0704755, 8.17124e-14, 0, 3.9968e-15, 2.01053, -0.120398, -0.0327483, -0.0446053)
+transform = Transform3D(1, 4.18223e-21, 8.34888e-14, -1.84653e-19, 0.0704755, 8.88178e-14, 0, 3.9968e-15, 2.01053, -0.120398, -0.0327483, -0.0446053)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/BackCounter/WorkArea"]
 transform = Transform3D(1, 2.0117e-21, 8.88178e-16, 5.0822e-21, 1, 1.77636e-15, 0, 0, 1, 0, 0, 0)
@@ -206,7 +206,7 @@ omni_range = 28.566
 omni_attenuation = 0.01
 
 [node name="OmniLight3D3" type="OmniLight3D" parent="Environment"]
-transform = Transform3D(1, 0, 5.32907e-15, 0, 1, 0, -5.32907e-15, 0, 1, 32.1364, 2.13246, 5.07145)
+transform = Transform3D(0.333333, 0, 1.77636e-15, 0, 0.333333, 0, -1.77636e-15, 0, 0.333333, 24.5608, 2.13246, 3.76699)
 omni_range = 28.566
 omni_attenuation = 0.01
 
@@ -219,7 +219,7 @@ omni_attenuation = 0.01
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.56486, 7.44232, -4.25934)
 
 [node name="Target" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 3.55271e-15, 0, 1, 0, -3.55271e-15, 0, 1, 18, 8, -80)
+transform = Transform3D(1, 0, 3.55271e-15, 0, 1, 0, -3.55271e-15, 0, 1, 9.11775, 8, -79.7562)
 
 [node name="Target" type="MeshInstance3D" parent="Target"]
 transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, -4.4465e-21, 4.37114e-08, 1, -4.37114e-08, 0, 0, 0)
