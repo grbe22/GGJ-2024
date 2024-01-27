@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cawqdebyk1vcl" path="res://assets/WallTextures/Counter.png" id="6_cp28g"]
 [ext_resource type="Texture2D" uid="uid://dobogechwcvxv" path="res://assets/crimmas.png" id="9_04f3w"]
 [ext_resource type="PackedScene" uid="uid://fhrffs1bjckh" path="res://scenes/customer.tscn" id="11_n44iu"]
+[ext_resource type="PackedScene" uid="uid://c7mp1uudpl8mh" path="res://scenes/customer.tscn" id="11_n44iu"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_2pryr"]
 
@@ -68,6 +69,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 1, -1.5)
 
 [node name="TextureButton" type="TextureButton" parent="CameraSystem"]
+anchors_preset = -1
 offset_left = 595.0
 offset_top = 524.0
 offset_right = 708.0
