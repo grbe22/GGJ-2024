@@ -12,6 +12,7 @@ public partial class CustomerController : CharacterBody3D
 	private Vector3 launchDir;
 	private Control demandContainer;
 	private Label3D demand;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -21,7 +22,7 @@ public partial class CustomerController : CharacterBody3D
 		demandContainer = new Control();
 		AddChild(demandContainer);
 		demand = new Label3D();
-		demand.Scale = new Vector3(5,5,5);
+		demand.Scale = new Vector3(5, 5, 5);
 		demandContainer.AddChild(demand);
 		Vector3 pos = Position;
 		pos[1] += 4;
@@ -32,11 +33,13 @@ public partial class CustomerController : CharacterBody3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (demand != null) {
+		if (demand != null)
+		{
 			Vector3 pos = Position;
 			pos[1] += 4;
-			demand.Position = pos; 
+			demand.Position = pos;
 		}
+
 		if (EnableFloppy != floppyPrevState)
 		{
 			SetFloppy(EnableFloppy);
@@ -49,22 +52,6 @@ public partial class CustomerController : CharacterBody3D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		// movement testing
-		Vector2 inputDir = Input.GetVector("move_left", "move_right", "move_down", "move_up");
-		int z = 0;
-		if (Input.IsActionPressed("move_close"))
-		{
-			z = 1;
-		}
-		else if (Input.IsActionPressed("move_far"))
-		{
-			z = -1;
-		}
-		Vector3 vel = new(inputDir.X, inputDir.Y, z);
-		vel *= Speed * (float)delta;
-
-		Position += vel;
-
 		// launching logic
 		if (numImpulses > 0)
 		{
@@ -85,6 +72,24 @@ public partial class CustomerController : CharacterBody3D
 		EnableFloppy = true;
 		this.numImpulses = numImpulses;
 		this.launchDir = direction;
+	}
+
+	/// <summary>
+	/// Updates position towards inputted position
+	/// over time, must be put in update loop
+	/// </summary>
+	/// <param name="position">Position to seek</param>
+	public void SeekPosition(Vector3 position)
+	{
+		float distSquared = position.DistanceSquaredTo(this.Position);
+		float threshold = 1f;
+
+		if (distSquared > threshold)
+		{
+			Vector3 diff = position - this.Position;
+			diff = diff.Normalized();
+			Position += diff * 0.5f;
+		}
 	}
 
 	/// <summary>

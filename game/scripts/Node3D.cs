@@ -8,6 +8,9 @@ public partial class Node3D : Node
 	private Camera3D currentCamera;
 	private CustomerController currentCustomer;
 	private PackedScene projectile;
+	private PackedScene customerScene;
+
+	private Vector3 customerSeekPos = new(2.56f, 7.5f, -5.19f);
 
 	private PackedScene emptyCup;
 	Script scrpt = new CSharpScript();
@@ -15,35 +18,34 @@ public partial class Node3D : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		// load projectile
+		// load files
 		projectile = GD.Load<PackedScene>("res://scenes/Projectile.tscn");
+		customerScene = GD.Load<PackedScene>("res://scenes/customer.tscn");
+		emptyCup = GD.Load<PackedScene>("res://scenes/EmptyCup.tscn");
+		scrpt = GD.Load<Script>("res://scripts/MouseFollow.cs");
 
 		// set up view and order system
 		switchView();
-		
 
-		scrpt = GD.Load<Script>("res://scripts/MouseFollow.cs");
-		
-		emptyCup = GD.Load<PackedScene>("res://scenes/EmptyCup.tscn");
+		currentCustomer = SpawnCustomer();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		#region // Input updates
+
 		// cannon fire event
 		if (Input.IsActionJustPressed("click") && cannonSelected)
 		{
-			GD.Print("Cannon clicked");
-
-			UpdateCustomer();
-			if (currentCustomer != null && !currentCustomer.EnableFloppy)
+			if (currentCustomer != null)
 			{
 				// launch customer
 				Vector3 customerDir = new(0, 0.1f, -1);
 				currentCustomer.Launch(30, customerDir);
+				InstantiateProjectile();
+				currentCustomer = null;
 			}
-
-			InstantiateProjectile();
 		}
 
 		// camera switch event
@@ -56,13 +58,21 @@ public partial class Node3D : Node
 		if (Input.IsActionJustPressed("click") && hoverCup)
 		{
 			// todo: spawn cup at mouse position
-			
+
 			Node cup = emptyCup.Instantiate();
-			
+
 			//cup.position = GetViewport().GetMousePosition();
 			AddChild(cup);
 			GD.Print("grab cup");
 		}
+
+		#endregion
+
+		// if not null, seek position
+		currentCustomer?.SeekPosition(customerSeekPos);
+
+		// if null, spawn new customer
+		currentCustomer ??= SpawnCustomer();
 	}
 
 	public void switchView()
@@ -85,18 +95,6 @@ public partial class Node3D : Node
 		if (currentCamera != null)
 		{
 			currentCamera.Current = true;
-		}
-	}
-
-	private void UpdateCustomer()
-	{
-		// exit condition when there are no children
-		foreach (Node child in GetChildren())
-		{
-			if (child is CustomerController controller)
-			{
-				currentCustomer = controller;
-			}
 		}
 	}
 
@@ -135,5 +133,35 @@ public partial class Node3D : Node
 		// grab reference and launch projectile
 		ProjectileController controller = inst as ProjectileController;
 		controller.Launch(projDir, 200);
+	}
+
+	private CustomerController SpawnCustomer()
+	{
+		Node root = this.GetParent();
+		CustomerController instance = customerScene.Instantiate() as CustomerController;
+		root.AddChild(instance);
+		instance.Position = GetRandomStartPos();
+		return instance;
+	}
+
+	/// <summary>
+	/// Gets a random position to spawn customer on edge 
+	/// of large circle within a certain "view radius"
+	/// </summary>
+	private Vector3 GetRandomStartPos()
+	{
+		float radius = 50f;
+		float angleSpread = Mathf.Pi / 1.5f;
+
+		// calculate random angle centered forward (negative z)
+		RandomNumberGenerator rng = new();
+		float angle = (rng.Randf() * angleSpread) + angleSpread / 2;
+
+		// calculate coords
+		float randX = Mathf.Cos(angle) * radius;
+		float randZ = -Mathf.Sin(angle) * radius;
+
+		// return created vector
+		return new Vector3(randX, 0, randZ) + customerSeekPos;
 	}
 }
