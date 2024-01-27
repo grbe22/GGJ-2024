@@ -8,15 +8,15 @@
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.958147, 0, 0)
 
 [node name="Christmas Background" type="Sprite3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.41263, 0, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 texture = ExtResource("1_824t0")
 
 [node name="Not Christmastime at all" type="Sprite3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -11.5165, 0, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8, 0, 0)
 texture = ExtResource("3_dw6a3")
 
 [node name="CameraSystem" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.64198, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 script = ExtResource("1_hwerc")
 
 [node name="Camera1" type="Camera3D" parent="CameraSystem"]
