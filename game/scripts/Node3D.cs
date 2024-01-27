@@ -7,6 +7,10 @@ public partial class Node3D : Node
 	private bool hoverCup = false;
 	private Camera3D currentCamera;
 	
+	private Texture2D emptyImg = new Texture2D();
+	Script scrpt = new CSharpScript();
+	
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -16,6 +20,9 @@ public partial class Node3D : Node
 			int[] order = test.GenerateOrder();
 			GD.Print(test.PrintOrder(order));
 		} 
+		
+		emptyImg.ResourcePath = "res://assets/drinks/empty.png";
+		scrpt = GD.Load<Script>("res://scripts/MouseFollow.cs");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -35,15 +42,11 @@ public partial class Node3D : Node
 			// todo: spawn cup at mouse position
 			
 			Sprite2D cup = new Sprite2D();
-			Resource img = new Texture2D();
-			CSharpScript scrpt = new CSharpScript();
-			img.ResourcePath = "res://assets/drinks/empty.png";
-			scrpt.SourceCode = "res://scripts/MouseFollow.cs";
-			
-			cup.Texture = (Texture2D) img;
+			AddChild(cup);
+			cup.Texture = emptyImg;
 			cup.SetScript(scrpt);
 			cup.Position = GetViewport().GetMousePosition();
-			AddChild(cup);
+			//AddChild(cup);
 			
 			GD.Print("grab cup");
 		}
