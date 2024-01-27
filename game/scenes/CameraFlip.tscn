@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://5i0f8kytmvgt" path="res://assets/WallTextures/barWall.png" id="6_7uqjn"]
 [ext_resource type="Texture2D" uid="uid://cawqdebyk1vcl" path="res://assets/WallTextures/Counter.png" id="6_cp28g"]
 [ext_resource type="Texture2D" uid="uid://dobogechwcvxv" path="res://assets/crimmas.png" id="9_04f3w"]
-[ext_resource type="PackedScene" uid="uid://fhrffs1bjckh" path="res://scenes/customer.tscn" id="11_n44iu"]
+[ext_resource type="PackedScene" uid="uid://c7mp1uudpl8mh" path="res://scenes/customer.tscn" id="11_n44iu"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_2pryr"]
 
@@ -129,14 +129,6 @@ skeleton = NodePath("../Base")
 
 [node name="CoffeeCup" type="MeshInstance3D" parent="Environment/BackCounter"]
 transform = Transform3D(0.0795593, 2.24993e-21, 1.24345e-14, 3.90694e-20, 0.225532, 6.21725e-15, -6.03961e-14, -5.32907e-15, 0.546832, -0.599106, 1.50583, -0.500428)
-mesh = SubResource("CylinderMesh_0o8xg")
-
-[node name="CoffeeCup2" type="MeshInstance3D" parent="Environment/BackCounter"]
-transform = Transform3D(0.0795593, 2.24993e-21, 2.04281e-14, 3.5893e-20, 0.225532, 6.21725e-15, -1.95399e-13, -5.32907e-15, 0.546832, -0.2, 0.7, 4)
-mesh = SubResource("CylinderMesh_0o8xg")
-
-[node name="CoffeeCup3" type="MeshInstance3D" parent="Environment/BackCounter"]
-transform = Transform3D(0.0795593, 2.24993e-21, 2.04281e-14, 3.66342e-20, 0.225532, 6.21725e-15, -1.66978e-13, -5.32907e-15, 0.546832, 0.13, 0.6, 2)
 mesh = SubResource("CylinderMesh_0o8xg")
 
 [node name="FlavorStand" type="MeshInstance3D" parent="Environment/BackCounter"]
