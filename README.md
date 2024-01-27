@@ -24,3 +24,6 @@
   - Physics interactions (CANNON)
 - All
   - Coding (as needed)
+
+## Concepts/sketches
+<img src="mockups/layout_sketch.png" alt="Mock layout sketch" width=400>
