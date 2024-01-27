@@ -1,3 +1,19 @@
-[gd_scene format=3 uid="uid://b02wijohukthu"]
+[gd_scene load_steps=4 format=3 uid="uid://b02wijohukthu"]
+
+[ext_resource type="Script" path="res://scenes/Camera3D.cs" id="1_6wjcm"]
+[ext_resource type="Texture2D" uid="uid://dobogechwcvxv" path="res://crimmas.png" id="1_824t0"]
+[ext_resource type="Texture2D" uid="uid://dl54p2lj3ncu1" path="res://gray.png" id="3_dw6a3"]
 
 [node name="Node3D" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5, 1, 0)
+script = ExtResource("1_6wjcm")
+
+[node name="Christmas Background" type="Sprite3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.41263, 0, 0)
+texture = ExtResource("1_824t0")
+
+[node name="Not Christmastime at all" type="Sprite3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -11.5165, 0, 0)
+texture = ExtResource("3_dw6a3")
