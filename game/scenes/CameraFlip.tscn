@@ -68,7 +68,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 1, -1.5)
 
 [node name="TextureButton" type="TextureButton" parent="CameraSystem"]
-anchors_preset = -1
 offset_left = 595.0
 offset_top = 524.0
 offset_right = 708.0
@@ -77,7 +76,6 @@ texture_normal = ExtResource("4_wkbch")
 texture_pressed = ExtResource("5_yrllo")
 texture_hover = ExtResource("6_6xtfl")
 stretch_mode = 0
-metadata/_edit_use_anchors_ = true
 
 [node name="Environment" type="Node3D" parent="."]
 transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, 0, 0, 0)

@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 Camera="*res://scripts/Node3D.cs"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [dotnet]
 
 project/assembly_name="GGJ-loser-team"
