@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://b02wijohukthu"]
+[gd_scene load_steps=30 format=3 uid="uid://b02wijohukthu"]
 
 [ext_resource type="Script" path="res://scripts/Node3D.cs" id="3_kdf04"]
 [ext_resource type="Texture2D" uid="uid://bj75jamcoytd3" path="res://assets/tests/arrowTests/arrow_test_base.png" id="4_wkbch"]
@@ -47,12 +47,13 @@ albedo_texture = ExtResource("6_cp28g")
 albedo_texture = ExtResource("9_04f3w")
 
 [sub_resource type="BoxMesh" id="BoxMesh_v8sds"]
-size = Vector3(2, 3, 1.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5sabg"]
 albedo_texture = ExtResource("5_mvw2n")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_q01bo"]
+
+[sub_resource type="Theme" id="Theme_blr0r"]
 
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.958147, 0, 0)
@@ -163,9 +164,10 @@ mesh = SubResource("BoxMesh_xwbbe")
 surface_material_override/0 = SubResource("StandardMaterial3D_afkda")
 
 [node name="CANNON" type="StaticBody3D" parent="Environment"]
-transform = Transform3D(0.983306, 0, -0.181961, 0, 1, 0, 0.181961, 0, 0.983306, -1.8, 0, 2.22701)
+transform = Transform3D(1.96661, 0, -0.272941, 0, 3, 0, 0.363922, 0, 1.47496, -1.8, 0, 2.22701)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/CANNON"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.5, 0, 0, 0)
 shape = SubResource("BoxShape3D_qeagc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/CANNON"]
@@ -199,5 +201,20 @@ mesh = SubResource("PlaneMesh_q01bo")
 
 [node name="Customer" parent="." instance=ExtResource("11_n44iu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.56486, 7.44232, 0)
+Speed = null
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="CupButton" type="TextureButton" parent="Node2D"]
+offset_left = 113.0
+offset_top = 148.0
+offset_right = 121.0
+offset_bottom = 156.0
+scale = Vector2(9.69914, 14.3896)
+mouse_default_cursor_shape = 2
+theme = SubResource("Theme_blr0r")
+action_mode = 0
 
 [connection signal="pressed" from="CameraSystem/TextureButton" to="." method="switchView"]
+[connection signal="mouse_entered" from="Environment/CANNON" to="." method="_on_cannon_mouse_entered"]
+[connection signal="mouse_exited" from="Environment/CANNON" to="." method="_on_cannon_mouse_exited"]
