@@ -1,15 +1,23 @@
-[gd_scene load_steps=23 format=3 uid="uid://c7mp1uudpl8mh"]
+[gd_scene load_steps=34 format=3 uid="uid://fhrffs1bjckh"]
 
-[ext_resource type="Material" uid="uid://7rw30mq5xdvr" path="res://assets/materials/body/body.tres" id="1_jmfgq"]
 [ext_resource type="Script" path="res://scripts/CustomerLimbController.cs" id="1_kr8t8"]
+[ext_resource type="Script" path="res://scripts/MovementTesting.cs" id="1_lq7rp"]
+[ext_resource type="Material" path="res://assets/materials/body/eye_left.tres" id="2_6xjnc"]
 [ext_resource type="Material" uid="uid://bd2d7x2se5v68" path="res://assets/materials/body/upperarm_left.tres" id="2_pt81i"]
+[ext_resource type="Material" path="res://assets/materials/body/head.tres" id="2_uk5rh"]
+[ext_resource type="Material" path="res://assets/materials/body/pupil_left.tres" id="3_j7amh"]
 [ext_resource type="Material" uid="uid://ceujqljxe8yno" path="res://assets/materials/body/forearm_left.tres" id="3_virdb"]
 [ext_resource type="Material" uid="uid://c3bntj7il7f64" path="res://assets/materials/body/upperarm_right.tres" id="4_irpak"]
 [ext_resource type="Material" uid="uid://d3nx2macadoy" path="res://assets/materials/body/forearm_right.tres" id="5_fxi5u"]
+[ext_resource type="Material" path="res://assets/materials/body/eye_right.tres" id="5_te18p"]
+[ext_resource type="Material" path="res://assets/materials/body/pupil_right.tres" id="6_wiba6"]
 [ext_resource type="Material" uid="uid://ds385sp7nusag" path="res://assets/materials/body/upperleg_left.tres" id="7_1cthb"]
 [ext_resource type="Material" uid="uid://c2kqgdq067adf" path="res://assets/materials/body/lowerleg_left.tres" id="8_5ml8t"]
+[ext_resource type="Texture2D" uid="uid://da1ytdo0t3ebo" path="res://assets/tests/body.png" id="8_066bg"]
 [ext_resource type="Material" uid="uid://don2wbmb1bquk" path="res://assets/materials/body/upperleg_right.tres" id="9_ine2a"]
 [ext_resource type="Material" uid="uid://dnlg64x14b0t8" path="res://assets/materials/body/lowerleg_right.tres" id="10_1luax"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1c3ex"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_t0is6"]
 size = Vector2(3.04, 2.98)
@@ -17,8 +25,22 @@ size = Vector2(3.04, 2.98)
 [sub_resource type="BoxShape3D" id="BoxShape3D_hisrj"]
 size = Vector3(3.04, 2.98, 0.01)
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_tavpm"]
+size = Vector2(1.12, 1.14)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0grsd"]
+size = Vector3(1.12, 1.14, 0.01)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nng8l"]
+size = Vector2(0.66, 0.68)
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_mx3b6"]
 size = Vector2(3.98, 6.14)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n6opb"]
+transparency = 1
+cull_mode = 2
+albedo_texture = ExtResource("8_066bg")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_36fen"]
 size = Vector3(3.98, 6.14, 0.01)
@@ -47,39 +69,108 @@ size = Vector2(2.23, 5.83)
 [sub_resource type="BoxShape3D" id="BoxShape3D_sdqeb"]
 size = Vector3(2.23, 5.83, 0.01)
 
-[node name="Customer" type="Node3D"]
-metadata/EnableFloppy = true
+[node name="Customer" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.64511, 0)
+script = ExtResource("1_lq7rp")
+metadata/EnableFloppy = false
+
+[node name="customerCollisionShape" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_1c3ex")
 
 [node name="head" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.01393, 0.1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.287, 0)
+freeze = true
+script = ExtResource("1_kr8t8")
 
 [node name="TextureMesh" type="MeshInstance3D" parent="head"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+sorting_offset = 0.5
 mesh = SubResource("PlaneMesh_t0is6")
-surface_material_override/0 = ExtResource("1_jmfgq")
+surface_material_override/0 = ExtResource("2_uk5rh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="head"]
 shape = SubResource("BoxShape3D_hisrj")
 
+[node name="leftEyeJoint" type="PinJoint3D" parent="head"]
+transform = Transform3D(0.999998, -0.00174533, 0, 0.00174533, 0.999998, 0, 0, 0, 1, -0.715637, -0.036757, 0)
+node_a = NodePath("eyeLeft")
+node_b = NodePath("pupilLeft")
+
+[node name="eyeLeft" type="StaticBody3D" parent="head/leftEyeJoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06, -0.036, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="head/leftEyeJoint/eyeLeft"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+sorting_offset = 1.0
+mesh = SubResource("PlaneMesh_tavpm")
+surface_material_override/0 = ExtResource("2_6xjnc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="head/leftEyeJoint/eyeLeft"]
+shape = SubResource("BoxShape3D_0grsd")
+
+[node name="pupilLeft" type="RigidBody3D" parent="head/leftEyeJoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06, -0.338, 0)
+script = ExtResource("1_kr8t8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="head/leftEyeJoint/pupilLeft"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+sorting_offset = 2.0
+mesh = SubResource("PlaneMesh_nng8l")
+surface_material_override/0 = ExtResource("3_j7amh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="head/leftEyeJoint/pupilLeft"]
+shape = SubResource("BoxShape3D_0grsd")
+
+[node name="rightEyeJoint" type="PinJoint3D" parent="head"]
+transform = Transform3D(0.999998, -0.00174533, 0, 0.00174533, 0.999998, 0, 0, 0, 1, 0.716, -0.0370002, 0)
+node_a = NodePath("eyeRight")
+node_b = NodePath("pupilRight")
+
+[node name="eyeRight" type="StaticBody3D" parent="head/rightEyeJoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06, -0.036, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="head/rightEyeJoint/eyeRight"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+sorting_offset = 1.0
+mesh = SubResource("PlaneMesh_tavpm")
+surface_material_override/0 = ExtResource("5_te18p")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="head/rightEyeJoint/eyeRight"]
+shape = SubResource("BoxShape3D_0grsd")
+
+[node name="pupilRight" type="RigidBody3D" parent="head/rightEyeJoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06, -0.338, 0)
+script = ExtResource("1_kr8t8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="head/rightEyeJoint/pupilRight"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+sorting_offset = 2.0
+mesh = SubResource("PlaneMesh_nng8l")
+surface_material_override/0 = ExtResource("6_wiba6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="head/rightEyeJoint/pupilRight"]
+shape = SubResource("BoxShape3D_0grsd")
+
 [node name="headJoint" type="PinJoint3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.71133, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.01524, 0)
 node_a = NodePath("../head")
-node_b = NodePath("../torso")
+node_b = NodePath("torso")
 
-[node name="torso" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.1)
+[node name="torso" type="RigidBody3D" parent="headJoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.71133, -0.1)
+script = ExtResource("1_kr8t8")
 
-[node name="TextureMesh" type="MeshInstance3D" parent="torso"]
+[node name="TextureMesh" type="MeshInstance3D" parent="headJoint/torso"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 mesh = SubResource("PlaneMesh_mx3b6")
-surface_material_override/0 = ExtResource("1_jmfgq")
+surface_material_override/0 = SubResource("StandardMaterial3D_n6opb")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="torso"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="headJoint/torso"]
 shape = SubResource("BoxShape3D_36fen")
 
 [node name="leftArmJoint" type="PinJoint3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.29854, 1.64991, 0)
-node_a = NodePath("../torso")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.29854, -2.07666, 0)
+node_a = NodePath("../headJoint/torso")
 node_b = NodePath("armLeft/upperarmLeft")
 
 [node name="armLeft" type="PinJoint3D" parent="leftArmJoint"]
@@ -114,8 +205,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.61771, -0.4475, 0)
 shape = SubResource("BoxShape3D_e8lqc")
 
 [node name="rightArmJoint" type="PinJoint3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.299, 1.65, 0)
-node_a = NodePath("../torso")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.299, -2.07657, 0)
+node_a = NodePath("../headJoint/torso")
 node_b = NodePath("armRight/upperarmRight")
 
 [node name="armRight" type="PinJoint3D" parent="rightArmJoint"]
@@ -150,8 +241,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25091, -0.313858, 0)
 shape = SubResource("BoxShape3D_eqtut")
 
 [node name="leftLegJoint" type="PinJoint3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.30311, -2.54671, 0)
-node_a = NodePath("../torso")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.30311, -6.27328, 0)
+node_a = NodePath("../headJoint/torso")
 node_b = NodePath("legLeft/upperlegLeft")
 
 [node name="legLeft" type="PinJoint3D" parent="leftLegJoint"]
@@ -186,8 +277,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.235118, -2.22605, 0)
 shape = SubResource("BoxShape3D_sdqeb")
 
 [node name="rightLegJoint" type="PinJoint3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.303, -2.54704, 0)
-node_a = NodePath("../torso")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.303, -6.27361, 0)
+node_a = NodePath("../headJoint/torso")
 node_b = NodePath("legRight/upperlegRight")
 
 [node name="legRight" type="PinJoint3D" parent="rightLegJoint"]

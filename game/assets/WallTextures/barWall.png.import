@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://yh2r4ouxkhdh"
-path.s3tc="res://.godot/imported/pupil_right.png-128ec2d995d8149b878b899ad0654a06.s3tc.ctex"
+uid="uid://5i0f8kytmvgt"
+path.s3tc="res://.godot/imported/barWall.png-50766d666879a8dc1b9c4da9a4f1f080.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/tests/pupil_right.png"
-dest_files=["res://.godot/imported/pupil_right.png-128ec2d995d8149b878b899ad0654a06.s3tc.ctex"]
+source_file="res://assets/WallTextures/barWall.png"
+dest_files=["res://.godot/imported/barWall.png-50766d666879a8dc1b9c4da9a4f1f080.s3tc.ctex"]
 
 [params]
 
