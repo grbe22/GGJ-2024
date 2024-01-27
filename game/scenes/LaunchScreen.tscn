@@ -2,7 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://btgl4d7a1mcbw" path="res://assets/RubikBubbles-Regular.ttf" id="1_i7ayd"]
 [ext_resource type="FontFile" uid="uid://dmqyhfhx8srkh" path="res://assets/Pangolin-Regular.ttf" id="1_lyd3v"]
-[ext_resource type="Script" path="res://scenes/LaunchScreen.cs" id="3_sqspy"]
+[ext_resource type="Script" path="res://scripts/LaunchScreen.cs" id="3_sqspy"]
 
 [sub_resource type="Theme" id="Theme_xpinm"]
 default_font = ExtResource("1_lyd3v")
