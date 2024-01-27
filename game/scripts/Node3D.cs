@@ -6,6 +6,7 @@ public partial class Node3D : Node
 	private bool cannonSelected = false;
 	private bool hoverCup = false;
 	private Camera3D currentCamera;
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -32,6 +33,16 @@ public partial class Node3D : Node
 		}
 		if (Input.IsActionJustPressed("click") && hoverCup) {
 			// todo: spawn cup at mouse position
+			
+			Sprite2D cup = new Sprite2D();
+			Resource img = new Texture2D();
+			CSharpScript scrpt = new CSharpScript();
+			img.ResourcePath = "res://assets/drinks/empty.png";
+			scrpt.SourceCode = "res://scripts/MouseFollow.cs";
+			
+			cup.Texture = (Texture2D) img;
+			cup.SetScript(scrpt);
+			AddChild(cup);
 			GD.Print("grab cup");
 		}
 	}
@@ -82,7 +93,6 @@ public partial class Node3D : Node
 	{
 		hoverCup = true;
 	}
-	
 	private void _on_coffee_cup_mouse_exited() 
 	{
 		hoverCup = false;
