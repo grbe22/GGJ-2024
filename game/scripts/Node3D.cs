@@ -1,6 +1,6 @@
 using Godot;
 using System;
-using MouseFollow;
+using System.Collections.Generic;
 
 public partial class Node3D : Node
 {
@@ -14,6 +14,7 @@ public partial class Node3D : Node
 	private PackedScene emptyCup;
 	Script scrpt = new CSharpScript();
 	private Node2D heldItem;
+	private List<Node2D> items = new List<Node2D>();
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -27,7 +28,6 @@ public partial class Node3D : Node
 		scrpt = GD.Load<Script>("res://scripts/MouseFollow.cs");
 		
 		emptyCup = GD.Load<PackedScene>("res://scenes/EmptyCup.tscn");
-
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -37,13 +37,17 @@ public partial class Node3D : Node
 		if (Input.IsActionJustPressed("click") && cannonSelected)
 		{
 			GD.Print("Cannon clicked");
-
+			
 			UpdateCustomer();
-			if (currentCustomer != null && !currentCustomer.EnableFloppy)
+			if (currentCustomer != null && !currentCustomer.EnableFloppy && heldItem != null)
 			{
 				// launch customer
 				Vector3 customerDir = new(0, 0.1f, -1);
 				currentCustomer.Launch(30, customerDir);
+				
+				items.Remove(heldItem);
+				heldItem.QueueFree();
+				heldItem = null;
 			}
 
 			InstantiateProjectile();
@@ -54,23 +58,22 @@ public partial class Node3D : Node
 		{
 			switchView();
 		}
-
+		
 		// cup spawning event
-		if (Input.IsActionJustPressed("click") && hoverCup)
+		else if (Input.IsActionJustPressed("click") && hoverCup)
 		{
 			// If the user is already holding an item, remove that item
 			if (heldItem != null) 
 			{
+				items.Remove(heldItem);
 				heldItem.QueueFree();
 			}
 			heldItem = emptyCup.Instantiate() as Node2D;
+			items.Add(heldItem);
 			
 			AddChild(heldItem);
 			GD.Print("grab cup");
 			hoverCup = false;
-		}
-		if (Input.IsActionJustPressed("click") && hoverWork) {
-			//FollowToggle();
 		}
 	}
 
@@ -108,16 +111,6 @@ public partial class Node3D : Node
 			}
 		}
 	}
-	
-	//public void FollowToggle() {
-		//if (heldItem.follow) {
-			//heldItem.follow = false;
-		//}
-		//else 
-		//{
-			//heldItem.follow = true;
-		//}
-	//}
 
 	private void _on_cannon_mouse_entered()
 	{
@@ -165,6 +158,3 @@ public partial class Node3D : Node
 		controller.Launch(projDir, 200);
 	}
 }
-
-
-
