@@ -12,6 +12,8 @@ public partial class Node3D : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		// WHY THE HELL DO I HAVE TO USE ISACTIONPRESSED 
+		// ITS SUPPOSED TO JUST NEED ISACTIONJUSTPRESSED
 		if (Input.IsActionJustPressed("Switch Camera") && Input.IsActionPressed("Switch Camera"))
 		{
 			switchView();
