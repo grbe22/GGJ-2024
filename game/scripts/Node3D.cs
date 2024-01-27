@@ -9,6 +9,9 @@ public partial class Node3D : Node
 	private CustomerController currentCustomer;
 	private PackedScene projectile;
 
+	private PackedScene emptyCup;
+	Script scrpt = new CSharpScript();
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -17,12 +20,11 @@ public partial class Node3D : Node
 
 		// set up view and order system
 		switchView();
-		OrderScript test = new OrderScript();
-		for (int i = 0; i < 100; i++)
-		{
-			int[] order = test.GenerateOrder();
-			GD.Print(test.PrintOrder(order));
-		}
+		
+
+		scrpt = GD.Load<Script>("res://scripts/MouseFollow.cs");
+		
+		emptyCup = GD.Load<PackedScene>("res://scenes/EmptyCup.tscn");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -54,18 +56,11 @@ public partial class Node3D : Node
 		if (Input.IsActionJustPressed("click") && hoverCup)
 		{
 			// todo: spawn cup at mouse position
-
-			Sprite2D cup = new Sprite2D();
-			Resource img = new Texture2D();
-			CSharpScript scrpt = new CSharpScript();
-			img.ResourcePath = "res://assets/drinks/empty.png";
-			scrpt.SourceCode = "res://scripts/MouseFollow.cs";
-
-			cup.Texture = (Texture2D)img;
-			cup.SetScript(scrpt);
-			cup.Position = GetViewport().GetMousePosition();
+			
+			Node cup = emptyCup.Instantiate();
+			
+			//cup.position = GetViewport().GetMousePosition();
 			AddChild(cup);
-
 			GD.Print("grab cup");
 		}
 	}

@@ -6,7 +6,7 @@ public partial class CustomerController : CharacterBody3D
 {
 	public float Speed { get; set; } = 10f;
 	public bool EnableFloppy { get; set; } = false;
-
+	private OrderHandler orders;
 	private bool floppyPrevState = false;
 	private int numImpulses = 0;
 	private Vector3 launchDir;
@@ -16,6 +16,7 @@ public partial class CustomerController : CharacterBody3D
 	{
 		SetFloppy(EnableFloppy);
 		SetTexturePerson("res://assets/ophie");
+		orders = new OrderHandler();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
