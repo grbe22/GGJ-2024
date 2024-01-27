@@ -8,7 +8,7 @@ public partial class MovementTesting : CharacterBody3D
 	[Export]
 	public float Speed { get; set; } = 10f;
 
-	public bool EnableFloppy { get; set; } = true;
+	public bool EnableFloppy { get; set; } = false;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
