@@ -19,8 +19,11 @@ public partial class CameraSystem : Node
 			}
 
 			// Get the next camera
-			currentCamera = currentCamera == null || currentCamera.Name == "Camera1" ? GetNode<Camera3D>("Camera2") : GetNode<Camera3D>("Camera1");
-
+			if (currentCamera == null || currentCamera.Name == "Camera1") {
+				currentCamera = GetNode<Camera3D>("Camera2");
+			} else {
+				currentCamera = GetNode<Camera3D>("Camera1");
+			}
 			// Activate the new camera
 			if (currentCamera != null) {
 				currentCamera.Current = true;
