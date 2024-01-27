@@ -6,8 +6,9 @@ public partial class Node3D : Node
 	private bool cannonSelected = false;
 	private bool hoverCup = false;
 	private Camera3D currentCamera;
+	private CustomerController currentCustomer;
 	
-	private Texture2D emptyImg = new Texture2D();
+	private PackedScene emptyCup;
 	Script scrpt = new CSharpScript();
 	
 	
@@ -22,8 +23,10 @@ public partial class Node3D : Node
 			GD.Print(test.PrintOrder(order));
 		} 
 		
-		emptyImg.ResourcePath = "res://assets/drinks/empty.png";
+
 		scrpt = GD.Load<Script>("res://scripts/MouseFollow.cs");
+		
+		emptyCup = GD.Load<PackedScene>("res://scenes/EmptyCup.tscn");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -48,14 +51,11 @@ public partial class Node3D : Node
 		if (Input.IsActionJustPressed("click") && hoverCup)
 		{
 			// todo: spawn cup at mouse position
-
-			Sprite2D cup = new Sprite2D();
-			AddChild(cup);
-			cup.Texture = emptyImg;
-			cup.SetScript(scrpt);
-			cup.Position = GetViewport().GetMousePosition();
-			//AddChild(cup);
 			
+			Node cup = emptyCup.Instantiate();
+			
+			//cup.position = GetViewport().GetMousePosition();
+			AddChild(cup);
 			GD.Print("grab cup");
 		}
 	}
