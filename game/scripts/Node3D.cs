@@ -15,12 +15,6 @@ public partial class Node3D : Node
 	public override void _Ready()
 	{
 		switchView();
-		OrderScript test = new OrderScript();
-		for (int i = 0; i < 100; i++)
-		{
-			int[] order = test.GenerateOrder();
-			GD.Print(test.PrintOrder(order));
-		} 
 		
 		emptyImg.ResourcePath = "res://assets/drinks/empty.png";
 		scrpt = GD.Load<Script>("res://scripts/MouseFollow.cs");
