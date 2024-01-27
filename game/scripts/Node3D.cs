@@ -42,7 +42,9 @@ public partial class Node3D : Node
 			
 			cup.Texture = (Texture2D) img;
 			cup.SetScript(scrpt);
+			cup.Position = GetViewport().GetMousePosition();
 			AddChild(cup);
+			
 			GD.Print("grab cup");
 		}
 	}
