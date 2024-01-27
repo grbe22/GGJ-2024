@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://b02wijohukthu"]
+[gd_scene load_steps=31 format=3 uid="uid://b02wijohukthu"]
 
 [ext_resource type="Script" path="res://scripts/Node3D.cs" id="3_kdf04"]
 [ext_resource type="Texture2D" uid="uid://bj75jamcoytd3" path="res://assets/tests/arrowTests/arrow_test_base.png" id="4_wkbch"]
@@ -37,8 +37,6 @@ albedo_texture = ExtResource("6_cp28g")
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_qh2e7"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_olcw7"]
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_qeagc"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_xwbbe"]
@@ -54,6 +52,11 @@ albedo_texture = ExtResource("5_mvw2n")
 [sub_resource type="PlaneMesh" id="PlaneMesh_q01bo"]
 
 [sub_resource type="Theme" id="Theme_blr0r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_olcw7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j3xxy"]
+size = Vector3(200, 0.01, 200)
 
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.958147, 0, 0)
@@ -147,12 +150,6 @@ mesh = SubResource("CylinderMesh_qh2e7")
 transform = Transform3D(0.301511, 2.75286e-21, 0, 1.69407e-20, 1, 0, -3.90799e-14, 1.24345e-14, 0.600733, 0.312422, 1.4904, 0.0244927)
 mesh = SubResource("CylinderMesh_qh2e7")
 
-[node name="Flour" type="MeshInstance3D" parent="Environment"]
-transform = Transform3D(-1.56597e-06, 1.2296e-07, -29.211, 0, 2.813, 1.27685e-06, 35.8252, 5.37475e-15, -1.27685e-06, 22.619, -2.813, 3.57149)
-mesh = SubResource("PlaneMesh_2pryr")
-skeleton = NodePath("../../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_olcw7")
-
 [node name="Cash Resister" type="StaticBody3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, -4)
 
@@ -201,7 +198,6 @@ mesh = SubResource("PlaneMesh_q01bo")
 
 [node name="Customer" parent="." instance=ExtResource("11_n44iu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.56486, 7.44232, 0)
-Speed = null
 
 [node name="Node2D" type="Node2D" parent="."]
 
@@ -214,6 +210,18 @@ scale = Vector2(9.69914, 14.3896)
 mouse_default_cursor_shape = 2
 theme = SubResource("Theme_blr0r")
 action_mode = 0
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -8, -67)
+
+[node name="Flour" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(107.476, 1.35525e-20, 5.45697e-12, 0, 8.439, 3.83055e-06, 8.6402e-12, -3.6888e-07, 87.633, 0, 0, 0)
+mesh = SubResource("PlaneMesh_2pryr")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_olcw7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_j3xxy")
 
 [connection signal="pressed" from="CameraSystem/TextureButton" to="." method="switchView"]
 [connection signal="mouse_entered" from="Environment/CANNON" to="." method="_on_cannon_mouse_entered"]
