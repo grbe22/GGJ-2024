@@ -2,12 +2,37 @@ using Godot;
 using System;
 using System.Diagnostics;
 
+public enum DrinkType {
+	None,
+	Milk,
+	Coffee,
+	MilkCoffee,
+	VeganMilk,
+	VeganMilkCoffee
+}
+
+public enum AddonType {
+	None,
+	WhippedCream,
+	Mayo,
+	Chocolate,
+	Caramel
+}
+
+public enum FoodType {
+	None,
+	BleuCheese,
+	SmallFry,
+	Fruit
+}
+
 public partial class OrderScript : Node
 {
 	// none, milk, coffee, and milk coffee
 	// I'm going to randomize between 1 and Max, inclusively
 	private const int drinks = 6;
 	private static readonly string[] stringDrinks = { "None", "milk", "coffee", "milk coffee", "vegan milk", "vegan milk coffee" };
+	private static readonly DrinkType tmpType = (DrinkType)5;
 	// none, froth, sugar
 	private const int drinkAddons = 5;
 	private static readonly string[] stringAddons = { "None", "whipped cream", "mayo", "chocolate", "caramel" };
