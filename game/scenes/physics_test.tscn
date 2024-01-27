@@ -1,8 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://dh735dk57sey2"]
+[gd_scene load_steps=7 format=3 uid="uid://dh735dk57sey2"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_4xr7h"]
+[ext_resource type="Texture2D" uid="uid://b8mpeavujp1rp" path="res://assets/freddy.jpg" id="1_1gjh3"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bua23"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_dv81i"]
+size = Vector3(1.23438, 1.40918, 0.0537109)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6s38v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_subhg"]
+albedo_texture = ExtResource("1_1gjh3")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_dhes7"]
 
@@ -15,27 +21,32 @@ size = Vector3(2.23029, 0.0599146, 2.05716)
 transform = Transform3D(1, 0, 0, 0, -0.366501, 0.930418, 0, -0.930418, -0.366501, 0, 6.2322, 8.07652)
 
 [node name="joint1" type="PinJoint3D" parent="."]
-transform = Transform3D(0.64371, -0.76527, 0, 0.76527, 0.64371, 0, 0, 0, 1, 0, 6.64487, 0)
-node_a = NodePath("rigidbody1")
-node_b = NodePath("rigidbody2")
+transform = Transform3D(0.998041, -0.0624809, 0.00334721, 0.0623857, 0.997776, 0.0234702, -0.00480621, -0.0232154, 0.999719, 0, 6.64487, 0)
+node_a = NodePath("plane1")
+node_b = NodePath("plane2")
+exclude_nodes_from_collision = false
 
-[node name="rigidbody1" type="RigidBody3D" parent="joint1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0683565, 0.959154, 0)
+[node name="plane1" type="RigidBody3D" parent="joint1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.736994, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="joint1/rigidbody1"]
-mesh = SubResource("CapsuleMesh_4xr7h")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="joint1/plane1"]
+shape = SubResource("BoxShape3D_dv81i")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="joint1/rigidbody1"]
-shape = SubResource("CapsuleShape3D_bua23")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="joint1/plane1"]
+transform = Transform3D(0.607967, 0, 0, 0, -4.37114e-08, -0.719948, 0, 1, -3.14699e-08, 0, 0, 0)
+mesh = SubResource("PlaneMesh_6s38v")
+surface_material_override/0 = SubResource("StandardMaterial3D_subhg")
 
-[node name="rigidbody2" type="RigidBody3D" parent="joint1"]
-transform = Transform3D(0.787645, -0.616129, 0, 0.616129, 0.787645, 0, 0, 0, 1, 0.457196, -0.721956, 0)
+[node name="plane2" type="RigidBody3D" parent="joint1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.736646, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="joint1/rigidbody2"]
-mesh = SubResource("CapsuleMesh_4xr7h")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="joint1/plane2"]
+shape = SubResource("BoxShape3D_dv81i")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="joint1/rigidbody2"]
-shape = SubResource("CapsuleShape3D_bua23")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="joint1/plane2"]
+transform = Transform3D(0.607967, 0, 0, 0, -4.37114e-08, -0.719948, 0, 1, -3.14699e-08, 0, 0, 0)
+mesh = SubResource("PlaneMesh_6s38v")
+surface_material_override/0 = SubResource("StandardMaterial3D_subhg")
 
 [node name="floor" type="RigidBody3D" parent="."]
 gravity_scale = 0.0
@@ -51,4 +62,4 @@ transform = Transform3D(5.19164, 0, 0, 0, 5.19164, 0, 0, 0, 5.19164, 0.0444552, 
 shape = SubResource("BoxShape3D_a6e6y")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.965881, 0.258988, 0, -0.258988, 0.965881, 0, 6.2322, 8.07652)
+transform = Transform3D(1, 0, 0, 0, 0.894935, 0.446198, 0, -0.446198, 0.894935, 0, 6.042, 6.742)
