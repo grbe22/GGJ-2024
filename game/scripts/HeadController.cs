@@ -11,7 +11,7 @@ public partial class HeadController : LimbController
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-        this.Freeze = !Floppy;
-        base._Process(delta);
+		this.Freeze = !Floppy;
+		base._Process(delta);
 	}
 }
