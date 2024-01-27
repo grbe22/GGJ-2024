@@ -11,7 +11,7 @@ public partial class CustomerLimbController : RigidBody3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		bool locked = false;
+		bool locked = true;
 
 		// iterates until current is the root node
 		Node current = this;
@@ -20,14 +20,7 @@ public partial class CustomerLimbController : RigidBody3D
 			current = current.GetParent();
 		}
 
-		// print name and all metadata
-		GD.Print("root name ?: " + current);
-		foreach (StringName name in current.GetMetaList())
-		{
-			GD.Print("metadata name: " + name);
-		}
-
-		bool hasData = current.HasMeta("Enable Floppy");
+		bool hasData = current.HasMeta("enableFloppy");
 		if (hasData)
 		{
 			locked = !(bool)GetMeta("Enable Floppy");
