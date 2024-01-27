@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dyu2fxntifk7u"
-path.s3tc="res://.godot/imported/forearm_right.png-aeff0ba4a09164c9cb85a7b496b253c2.s3tc.ctex"
+uid="uid://dyk36jrwjsmbe"
+path.s3tc="res://.godot/imported/arrow_test_highlight.png-0188829acfd8de96891d423913e2b7b8.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/tests/forearm_right.png"
-dest_files=["res://.godot/imported/forearm_right.png-aeff0ba4a09164c9cb85a7b496b253c2.s3tc.ctex"]
+source_file="res://assets/tests/arrowTests/arrow_test_highlight.png"
+dest_files=["res://.godot/imported/arrow_test_highlight.png-0188829acfd8de96891d423913e2b7b8.s3tc.ctex"]
 
 [params]
 
