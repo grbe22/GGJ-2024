@@ -83,7 +83,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.287, 0)
 freeze = true
 script = ExtResource("2_4qhum")
 
-[node name="TextureMesh" type="MeshInstance3D" parent="head"]
+[node name="MESH-head" type="MeshInstance3D" parent="head"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 sorting_offset = 0.5
 mesh = SubResource("PlaneMesh_t0is6")
@@ -100,7 +100,7 @@ node_b = NodePath("pupilLeft")
 [node name="eyeLeft" type="StaticBody3D" parent="head/leftEyeJoint"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06, -0.036, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="head/leftEyeJoint/eyeLeft"]
+[node name="MESH-eye_left" type="MeshInstance3D" parent="head/leftEyeJoint/eyeLeft"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 sorting_offset = 1.0
 mesh = SubResource("PlaneMesh_tavpm")
@@ -114,7 +114,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06, -0.338, 0)
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="head/leftEyeJoint/pupilLeft"]
+[node name="MESH-pupil_left" type="MeshInstance3D" parent="head/leftEyeJoint/pupilLeft"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 sorting_offset = 2.0
 mesh = SubResource("PlaneMesh_nng8l")
@@ -131,7 +131,7 @@ node_b = NodePath("pupilRight")
 [node name="eyeRight" type="StaticBody3D" parent="head/rightEyeJoint"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06, -0.036, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="head/rightEyeJoint/eyeRight"]
+[node name="MESH-eye_right" type="MeshInstance3D" parent="head/rightEyeJoint/eyeRight"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 sorting_offset = 1.0
 mesh = SubResource("PlaneMesh_tavpm")
@@ -145,7 +145,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06, -0.338, 0)
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="head/rightEyeJoint/pupilRight"]
+[node name="MESH-pupil_right" type="MeshInstance3D" parent="head/rightEyeJoint/pupilRight"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 sorting_offset = 2.0
 mesh = SubResource("PlaneMesh_nng8l")
@@ -163,7 +163,7 @@ node_b = NodePath("torso")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.71133, -0.1)
 script = ExtResource("5_j6alb")
 
-[node name="TextureMesh" type="MeshInstance3D" parent="headJoint/torso"]
+[node name="MESH-body" type="MeshInstance3D" parent="headJoint/torso"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 mesh = SubResource("PlaneMesh_mx3b6")
 surface_material_override/0 = SubResource("StandardMaterial3D_n6opb")
@@ -179,13 +179,13 @@ node_b = NodePath("armLeft/upperarmLeft")
 [node name="armLeft" type="PinJoint3D" parent="leftArmJoint"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.93837, -0.63016, 0)
 node_a = NodePath("upperarmLeft")
-node_b = NodePath("frearmLeft")
+node_b = NodePath("forearmLeft")
 
 [node name="upperarmLeft" type="RigidBody3D" parent="leftArmJoint/armLeft"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.10199, 0.761988, 0)
 script = ExtResource("5_j6alb")
 
-[node name="TextureMesh" type="MeshInstance3D" parent="leftArmJoint/armLeft/upperarmLeft"]
+[node name="MESH-upperarm_left" type="MeshInstance3D" parent="leftArmJoint/armLeft/upperarmLeft"]
 transform = Transform3D(4.09, 0, 0, 0, -4.37114e-08, -2.04, 0, 1, -8.91712e-08, -1.67597, -0.523323, 0)
 mesh = SubResource("PlaneMesh_p5016")
 surface_material_override/0 = ExtResource("2_pt81i")
@@ -194,16 +194,16 @@ surface_material_override/0 = ExtResource("2_pt81i")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.67597, -0.523323, 0)
 shape = SubResource("BoxShape3D_e8lqc")
 
-[node name="frearmLeft" type="RigidBody3D" parent="leftArmJoint/armLeft"]
+[node name="forearmLeft" type="RigidBody3D" parent="leftArmJoint/armLeft"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0147312, 0.0162803, 0)
 script = ExtResource("5_j6alb")
 
-[node name="TextureMesh" type="MeshInstance3D" parent="leftArmJoint/armLeft/frearmLeft"]
+[node name="MESH-forearm_left" type="MeshInstance3D" parent="leftArmJoint/armLeft/forearmLeft"]
 transform = Transform3D(4.09, 0, 0, 0, -4.37114e-08, -2.04, 0, 1, -8.91712e-08, -1.61771, -0.4475, 0)
 mesh = SubResource("PlaneMesh_p5016")
 surface_material_override/0 = ExtResource("3_virdb")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="leftArmJoint/armLeft/frearmLeft"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="leftArmJoint/armLeft/forearmLeft"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.61771, -0.4475, 0)
 shape = SubResource("BoxShape3D_e8lqc")
 
@@ -221,7 +221,7 @@ node_b = NodePath("forearmRight")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.84471, 0.529899, 0)
 script = ExtResource("5_j6alb")
 
-[node name="TextureMesh" type="MeshInstance3D" parent="rightArmJoint/armRight/upperarmRight"]
+[node name="MESH-upperarm_right" type="MeshInstance3D" parent="rightArmJoint/armRight/upperarmRight"]
 transform = Transform3D(4.09, 0, 0, 0, -4.37114e-08, -2.04, 0, 1, -8.91712e-08, 1.30898, -0.27808, 0)
 mesh = SubResource("PlaneMesh_p5016")
 surface_material_override/0 = ExtResource("4_irpak")
@@ -234,7 +234,7 @@ shape = SubResource("BoxShape3D_64wte")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0561913, 0.0648473, 0)
 script = ExtResource("5_j6alb")
 
-[node name="TextureMesh" type="MeshInstance3D" parent="rightArmJoint/armRight/forearmRight"]
+[node name="MESH-forearm_right" type="MeshInstance3D" parent="rightArmJoint/armRight/forearmRight"]
 transform = Transform3D(4.09, 0, 0, 0, -4.37114e-08, -2.04, 0, 1, -8.91712e-08, 1.25091, -0.313858, 0)
 mesh = SubResource("PlaneMesh_p5016")
 surface_material_override/0 = ExtResource("5_fxi5u")
@@ -257,7 +257,7 @@ node_b = NodePath("lowerlegLeft")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.134431, 3.78592, 0)
 script = ExtResource("5_j6alb")
 
-[node name="TextureMesh" type="MeshInstance3D" parent="leftLegJoint/legLeft/upperlegLeft"]
+[node name="MESH-upperleg_left" type="MeshInstance3D" parent="leftLegJoint/legLeft/upperlegLeft"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.0897521, -1.88265, 0)
 mesh = SubResource("PlaneMesh_gsfrf")
 surface_material_override/0 = ExtResource("7_1cthb")
@@ -270,7 +270,7 @@ shape = SubResource("BoxShape3D_lludu")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0382152, 0.143414, 0)
 script = ExtResource("5_j6alb")
 
-[node name="TextureMesh" type="MeshInstance3D" parent="leftLegJoint/legLeft/lowerlegLeft"]
+[node name="MESH-lowerleg_left" type="MeshInstance3D" parent="leftLegJoint/legLeft/lowerlegLeft"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.235118, -2.22605, 0)
 mesh = SubResource("PlaneMesh_l6rfs")
 surface_material_override/0 = ExtResource("8_5ml8t")
@@ -293,7 +293,7 @@ node_b = NodePath("lowerlegRight")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.134431, 3.78592, 0)
 script = ExtResource("5_j6alb")
 
-[node name="TextureMesh" type="MeshInstance3D" parent="rightLegJoint/legRight/upperlegRight"]
+[node name="MESH-upperleg_right" type="MeshInstance3D" parent="rightLegJoint/legRight/upperlegRight"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.0897521, -1.88265, 0)
 mesh = SubResource("PlaneMesh_gsfrf")
 surface_material_override/0 = ExtResource("9_ine2a")
@@ -306,7 +306,7 @@ shape = SubResource("BoxShape3D_lludu")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0382152, 0.143414, 0)
 script = ExtResource("5_j6alb")
 
-[node name="TextureMesh" type="MeshInstance3D" parent="rightLegJoint/legRight/lowerlegRight"]
+[node name="MESH-lowerleg_right" type="MeshInstance3D" parent="rightLegJoint/legRight/lowerlegRight"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.0762144, -2.22605, 0)
 mesh = SubResource("PlaneMesh_l6rfs")
 surface_material_override/0 = ExtResource("10_1luax")
