@@ -14,20 +14,19 @@ size = Vector3(40, 0.01, 40)
 transform = Transform3D(1, 0, 0, 0, -0.366501, 0.930418, 0, -0.930418, -0.366501, 0, 6.2322, 8.07652)
 
 [node name="floor" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.625, 0)
 gravity_scale = 0.0
 freeze = true
 
 [node name="mesh" type="MeshInstance3D" parent="floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00662575, 0.249899, -0.02759)
 mesh = SubResource("PlaneMesh_dhes7")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0444552, 0.240208, 0.0037086)
 shape = SubResource("BoxShape3D_a6e6y")
 
 [node name="Customer" parent="." instance=ExtResource("1_hdmq4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.914, 0)
+transform = Transform3D(1, 0, 0, 0, 0.995396, 0.0958458, 0, -0.0958458, 0.995396, 0, 7.914, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.971887, 0.235447, 0, -0.235447, 0.971887, 0, 6.042, 15.6772)
+transform = Transform3D(1, 0, 0, 0, 0.971887, 0.235447, 0, -0.235447, 0.971887, 0, 7.41241, 15.6772)

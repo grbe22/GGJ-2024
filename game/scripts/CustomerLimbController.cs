@@ -11,7 +11,7 @@ public partial class CustomerLimbController : RigidBody3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		bool locked = true;
+		bool locked = false;
 
 		// iterates until current is the root node
 		Node current = this;
@@ -34,7 +34,7 @@ public partial class CustomerLimbController : RigidBody3D
 			GD.Print("found floppy thing? value: " + !locked);
 		}
 
-		AxisLockAngularY = locked;
+		AxisLockAngularY = true;
 		AxisLockAngularX = locked;
 	}
 }

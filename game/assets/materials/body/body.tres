@@ -1,7 +1,7 @@
 [gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://7rw30mq5xdvr"]
 
-[ext_resource type="Texture2D" uid="uid://8yyf7vbfbkll" path="res://assets/tests/body.png" id="1_tsov1"]
+[ext_resource type="Texture2D" uid="uid://dblsyn5clkk57" path="res://assets/tests/head.png" id="1_ulhud"]
 
 [resource]
 transparency = 1
-albedo_texture = ExtResource("1_tsov1")
+albedo_texture = ExtResource("1_ulhud")
