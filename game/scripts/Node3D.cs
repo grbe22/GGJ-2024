@@ -1,26 +1,28 @@
 using Godot;
 using System;
+using MouseFollow;
 
 public partial class Node3D : Node
 {
 	private bool cannonSelected = false;
 	private bool hoverCup = false;
+	private bool hoverWork = false;
 	private Camera3D currentCamera;
 	private CustomerController currentCustomer;
 	
 	private PackedScene emptyCup;
 	Script scrpt = new CSharpScript();
-	
+	private Node2D heldItem;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		switchView();
 		
-
 		scrpt = GD.Load<Script>("res://scripts/MouseFollow.cs");
 		
 		emptyCup = GD.Load<PackedScene>("res://scenes/EmptyCup.tscn");
+
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -44,13 +46,19 @@ public partial class Node3D : Node
 		}
 		if (Input.IsActionJustPressed("click") && hoverCup)
 		{
-			// todo: spawn cup at mouse position
+			// If the user is already holding an item, remove that item
+			if (heldItem != null) 
+			{
+				heldItem.QueueFree();
+			}
+			heldItem = emptyCup.Instantiate() as Node2D;
 			
-			Node cup = emptyCup.Instantiate();
-			
-			//cup.position = GetViewport().GetMousePosition();
-			AddChild(cup);
+			AddChild(heldItem);
 			GD.Print("grab cup");
+			hoverCup = false;
+		}
+		if (Input.IsActionJustPressed("click") && hoverWork) {
+			//FollowToggle();
 		}
 	}
 
@@ -88,6 +96,16 @@ public partial class Node3D : Node
 			}
 		}
 	}
+	
+	//public void FollowToggle() {
+		//if (heldItem.follow) {
+			//heldItem.follow = false;
+		//}
+		//else 
+		//{
+			//heldItem.follow = true;
+		//}
+	//}
 
 	private void _on_cannon_mouse_entered()
 	{
@@ -107,4 +125,16 @@ public partial class Node3D : Node
 	{
 		hoverCup = false;
 	}
+	private void _on_work_area_mouse_entered()
+	{
+		hoverWork = true;
+	}
+	private void _on_work_area_mouse_exited()
+	{
+		hoverWork = false;
+	}
+	
 }
+
+
+
