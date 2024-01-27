@@ -18,7 +18,7 @@ gravity_scale = 0.0
 freeze = true
 
 [node name="mesh" type="MeshInstance3D" parent="floor"]
-transform = Transform3D(5.70042, 0, 0, 0, 0.576272, 0, 0, 0, 5.19164, -0.698538, 2.31956, -1.06548)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.73885)
 mesh = SubResource("PlaneMesh_dhes7")
 skeleton = NodePath("../..")
 

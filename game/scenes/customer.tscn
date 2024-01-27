@@ -157,23 +157,23 @@ shape = SubResource("BoxShape3D_0grsd")
 [node name="headJoint" type="PinJoint3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.01524, 0)
 node_a = NodePath("../head")
-node_b = NodePath("torso")
+node_b = NodePath("body")
 
-[node name="torso" type="RigidBody3D" parent="headJoint"]
+[node name="body" type="RigidBody3D" parent="headJoint"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.71133, -0.1)
 script = ExtResource("5_j6alb")
 
-[node name="MESH-body" type="MeshInstance3D" parent="headJoint/torso"]
+[node name="MESH-body" type="MeshInstance3D" parent="headJoint/body"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 mesh = SubResource("PlaneMesh_mx3b6")
 surface_material_override/0 = SubResource("StandardMaterial3D_n6opb")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="headJoint/torso"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="headJoint/body"]
 shape = SubResource("BoxShape3D_36fen")
 
 [node name="leftArmJoint" type="PinJoint3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.29854, -2.07666, 0)
-node_a = NodePath("../headJoint/torso")
+node_a = NodePath("../headJoint/body")
 node_b = NodePath("armLeft/upperarmLeft")
 
 [node name="armLeft" type="PinJoint3D" parent="leftArmJoint"]
@@ -209,7 +209,7 @@ shape = SubResource("BoxShape3D_e8lqc")
 
 [node name="rightArmJoint" type="PinJoint3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.299, -2.07657, 0)
-node_a = NodePath("../headJoint/torso")
+node_a = NodePath("../headJoint/body")
 node_b = NodePath("armRight/upperarmRight")
 
 [node name="armRight" type="PinJoint3D" parent="rightArmJoint"]
@@ -245,7 +245,7 @@ shape = SubResource("BoxShape3D_eqtut")
 
 [node name="leftLegJoint" type="PinJoint3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.30311, -6.27328, 0)
-node_a = NodePath("../headJoint/torso")
+node_a = NodePath("../headJoint/body")
 node_b = NodePath("legLeft/upperlegLeft")
 
 [node name="legLeft" type="PinJoint3D" parent="leftLegJoint"]
@@ -281,7 +281,7 @@ shape = SubResource("BoxShape3D_sdqeb")
 
 [node name="rightLegJoint" type="PinJoint3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.303, -6.27361, 0)
-node_a = NodePath("../headJoint/torso")
+node_a = NodePath("../headJoint/body")
 node_b = NodePath("legRight/upperlegRight")
 
 [node name="legRight" type="PinJoint3D" parent="rightLegJoint"]

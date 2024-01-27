@@ -5,22 +5,29 @@ using System.Diagnostics;
 public partial class CustomerController : CharacterBody3D
 {
 	public float Speed { get; set; } = 10f;
-	public bool EnableFloppy { get; set; } = false;
-	private bool floppyPrevState = false;
+	public bool EnableFloppy { get; set; } = true;
+	private bool floppyPrevState = true;
+	private int numImpulses = 40;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		SetFloppy(EnableFloppy);
+		SetFloppy();
 		SetTexturePerson("res://assets/ophie");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		if (numImpulses > 0)
+		{
+			ApplyBodyImpulse(this);
+			numImpulses--;
+		}
+
 		if (EnableFloppy != floppyPrevState)
 		{
-			SetFloppy(EnableFloppy);
+			SetFloppy();
 		}
 
 		floppyPrevState = EnableFloppy;
@@ -51,10 +58,10 @@ public partial class CustomerController : CharacterBody3D
 	/// (unlock x/y rotation and make head fall)
 	/// </summary>
 	/// <param name="enabled">Desired floppy value</param>
-	public void SetFloppy(bool enabled)
+	private void SetFloppy()
 	{
-		SetFloppy(this, enabled);
-		GD.Print("Floppy value set to " + enabled);
+		SetFloppy(this, EnableFloppy);
+		GD.Print("Floppy value set to " + EnableFloppy);
 	}
 
 	/// <summary>
@@ -125,5 +132,21 @@ public partial class CustomerController : CharacterBody3D
 		name += ".png";
 
 		return name;
+	}
+
+	private void ApplyBodyImpulse(Node node)
+	{
+		if (node is RigidBody3D rb && rb.Name == "body")
+		{
+			Vector3 impulse = new(0, 0.1f, -1);
+			impulse *= 100;
+			rb.ApplyImpulse(impulse);
+			return;
+		}
+
+		foreach (Node child in node.GetChildren())
+		{
+			ApplyBodyImpulse(child);
+		}
 	}
 }
