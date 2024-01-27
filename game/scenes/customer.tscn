@@ -1,6 +1,6 @@
 [gd_scene load_steps=35 format=3 uid="uid://c7mp1uudpl8mh"]
 
-[ext_resource type="Script" path="res://scripts/MovementTesting.cs" id="1_lq7rp"]
+[ext_resource type="Script" path="res://scripts/CustomerController.cs" id="1_46n2i"]
 [ext_resource type="Script" path="res://scripts/HeadController.cs" id="2_4qhum"]
 [ext_resource type="Material" uid="uid://clt4i0xxnyqvm" path="res://assets/materials/body/eye_left.tres" id="2_6xjnc"]
 [ext_resource type="Material" uid="uid://bd2d7x2se5v68" path="res://assets/materials/body/upperarm_left.tres" id="2_pt81i"]
@@ -72,7 +72,7 @@ size = Vector3(2.23, 5.83, 0.01)
 
 [node name="Customer" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.64511, 0)
-script = ExtResource("1_lq7rp")
+script = ExtResource("1_46n2i")
 metadata/EnableFloppy = false
 
 [node name="customerCollisionShape" type="CollisionShape3D" parent="."]

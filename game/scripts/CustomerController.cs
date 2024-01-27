@@ -1,7 +1,5 @@
 using Godot;
 using System;
-using System.Diagnostics;
-using System.Transactions;
 
 public partial class CustomerController : CharacterBody3D
 {
