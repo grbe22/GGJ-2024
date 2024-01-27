@@ -13,6 +13,20 @@
 - Target on the back wall
 - Point and click interactions, no camera movement other than switching views
 
+## Food Drink Items
+- Coffee
+  - You can add ingredients to this
+- Additions
+  - Mayo
+  - Milk
+  - "VEGAN" Milk
+  - Whipped Cream
+  - Chocolate
+  - Caramel
+- Bowl Items
+  - Fruit
+  - Bleu Cheese
+
 ## Job management
 - Goose
   - Artwork
