@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://c7mp1uudpl8mh"]
+[gd_scene load_steps=34 format=3 uid="uid://c7mp1uudpl8mh"]
 
 [ext_resource type="Script" path="res://scripts/CustomerController.cs" id="1_46n2i"]
 [ext_resource type="Script" path="res://scripts/HeadController.cs" id="2_4qhum"]
@@ -17,8 +17,6 @@
 [ext_resource type="Texture2D" uid="uid://da1ytdo0t3ebo" path="res://assets/tests/body.png" id="8_066bg"]
 [ext_resource type="Material" uid="uid://don2wbmb1bquk" path="res://assets/materials/body/upperleg_right.tres" id="9_ine2a"]
 [ext_resource type="Material" uid="uid://dnlg64x14b0t8" path="res://assets/materials/body/lowerleg_right.tres" id="10_1luax"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1c3ex"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_t0is6"]
 size = Vector2(3.04, 2.98)
@@ -74,9 +72,6 @@ size = Vector3(2.23, 5.83, 0.01)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.64511, 0)
 script = ExtResource("1_46n2i")
 metadata/EnableFloppy = false
-
-[node name="customerCollisionShape" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_1c3ex")
 
 [node name="head" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.287, 0)

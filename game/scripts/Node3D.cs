@@ -9,7 +9,8 @@ public partial class Node3D : Node
 	private bool hoverWork = false;
 	private Camera3D currentCamera;
 	private CustomerController currentCustomer;
-	
+	private PackedScene projectile;
+
 	private PackedScene emptyCup;
 	Script scrpt = new CSharpScript();
 	private Node2D heldItem;
@@ -17,6 +18,10 @@ public partial class Node3D : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		// load projectile
+		projectile = GD.Load<PackedScene>("res://scenes/Projectile.tscn");
+
+		// set up view and order system
 		switchView();
 		
 		scrpt = GD.Load<Script>("res://scripts/MouseFollow.cs");
@@ -28,22 +33,29 @@ public partial class Node3D : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		// WHY THE HELL DO I HAVE TO USE ISACTIONPRESSED 
-		// ITS SUPPOSED TO JUST NEED ISACTIONJUSTPRESSED
+		// cannon fire event
 		if (Input.IsActionJustPressed("click") && cannonSelected)
 		{
-			// todo: build cannon fire function
+			GD.Print("Cannon clicked");
+
 			UpdateCustomer();
-			if (!currentCustomer.EnableFloppy)
+			if (currentCustomer != null && !currentCustomer.EnableFloppy)
 			{
-				Vector3 direction = new(0, 0.1f, -1);
-				currentCustomer.Launch(30, direction);
+				// launch customer
+				Vector3 customerDir = new(0, 0.1f, -1);
+				currentCustomer.Launch(30, customerDir);
 			}
+
+			InstantiateProjectile();
 		}
-		if (Input.IsActionJustPressed("Switch Camera") && Input.IsActionPressed("Switch Camera"))
+
+		// camera switch event
+		if (Input.IsActionJustPressed("Switch Camera"))
 		{
 			switchView();
 		}
+
+		// cup spawning event
 		if (Input.IsActionJustPressed("click") && hoverCup)
 		{
 			// If the user is already holding an item, remove that item
@@ -134,6 +146,24 @@ public partial class Node3D : Node
 		hoverWork = false;
 	}
 	
+
+	private void InstantiateProjectile()
+	{
+		// add projectile instance
+		RigidBody3D inst = projectile.Instantiate() as RigidBody3D;
+
+		// update position to be in front of customer
+		inst.Position = new Vector3(6.35f, 3f, 0.81f);
+		AddChild(inst);
+
+		// set projectile direction
+		Vector3 projDir = currentCustomer.Position - inst.Position;
+		projDir = projDir.Normalized();
+
+		// grab reference and launch projectile
+		ProjectileController controller = inst as ProjectileController;
+		controller.Launch(projDir, 200);
+	}
 }
 
 
