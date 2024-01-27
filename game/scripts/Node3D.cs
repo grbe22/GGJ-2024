@@ -6,16 +6,18 @@ public partial class Node3D : Node
 	private bool cannonSelected = false;
 	private bool hoverCup = false;
 	private Camera3D currentCamera;
-	
+	private CustomerController currentCustomer;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		switchView();
 		OrderScript test = new OrderScript();
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < 100; i++)
+		{
 			int[] order = test.GenerateOrder();
 			GD.Print(test.PrintOrder(order));
-		} 
+		}
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -23,64 +25,74 @@ public partial class Node3D : Node
 	{
 		// WHY THE HELL DO I HAVE TO USE ISACTIONPRESSED 
 		// ITS SUPPOSED TO JUST NEED ISACTIONJUSTPRESSED
-		if (Input.IsActionJustPressed("click") && cannonSelected) {
+		if (Input.IsActionJustPressed("click") && cannonSelected)
+		{
 			// todo: build cannon fire function
-			SetFloppy(this);
+			UpdateCustomer();
+			if (!currentCustomer.EnableFloppy)
+			{
+				Vector3 direction = new(0, 0.1f, -1);
+				currentCustomer.Launch(30, direction);
+			}
 		}
 		if (Input.IsActionJustPressed("Switch Camera") && Input.IsActionPressed("Switch Camera"))
 		{
 			switchView();
 		}
-		if (Input.IsActionJustPressed("click") && hoverCup) {
+		if (Input.IsActionJustPressed("click") && hoverCup)
+		{
 			// todo: spawn cup at mouse position
-			
+
 			Sprite2D cup = new Sprite2D();
 			Resource img = new Texture2D();
 			CSharpScript scrpt = new CSharpScript();
 			img.ResourcePath = "res://assets/drinks/empty.png";
 			scrpt.SourceCode = "res://scripts/MouseFollow.cs";
-			
-			cup.Texture = (Texture2D) img;
+
+			cup.Texture = (Texture2D)img;
 			cup.SetScript(scrpt);
 			cup.Position = GetViewport().GetMousePosition();
 			AddChild(cup);
-			
+
 			GD.Print("grab cup");
 		}
 	}
-	
-	public void switchView() {
-		if (currentCamera != null) {
+
+	public void switchView()
+	{
+		if (currentCamera != null)
+		{
 			currentCamera.Current = false;
 		}
 
 		// Get the next camera
-		if (currentCamera == null || currentCamera.Name == "Camera1") {
+		if (currentCamera == null || currentCamera.Name == "Camera1")
+		{
 			currentCamera = GetNode<Camera3D>("CameraSystem/Camera2");
-		} else {
+		}
+		else
+		{
 			currentCamera = GetNode<Camera3D>("CameraSystem/Camera1");
 		}
 		// Activate the new camera
-		if (currentCamera != null) {
+		if (currentCamera != null)
+		{
 			currentCamera.Current = true;
 		}
 	}
-	
-	private void SetFloppy(Node node)
-	{
-		CustomerController controller = node as CustomerController;
-		if (controller != null)
-		{
-			controller.EnableFloppy = true;
-		}
 
+	private void UpdateCustomer()
+	{
 		// exit condition when there are no children
-		foreach (Node child in node.GetChildren())
+		foreach (Node child in GetChildren())
 		{
-			SetFloppy(child);
+			if (child is CustomerController controller)
+			{
+				currentCustomer = controller;
+			}
 		}
 	}
-	
+
 	private void _on_cannon_mouse_entered()
 	{
 		cannonSelected = true;
@@ -89,13 +101,13 @@ public partial class Node3D : Node
 	private void _on_cannon_mouse_exited()
 	{
 		cannonSelected = false;
-	// Replace with function body.
+		// Replace with function body.
 	}
-	private void _on_coffee_cup_mouse_entered() 
+	private void _on_coffee_cup_mouse_entered()
 	{
 		hoverCup = true;
 	}
-	private void _on_coffee_cup_mouse_exited() 
+	private void _on_coffee_cup_mouse_exited()
 	{
 		hoverCup = false;
 	}
