@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/GrabStuff.cs" id="3_83fym"]
 [ext_resource type="Script" path="res://scripts/Node3D.cs" id="3_kdf04"]
 [ext_resource type="Texture2D" uid="uid://4xopxhkuiy4" path="res://assets/WallTextures/customerBackWall.png" id="5_mvw2n"]
-[ext_resource type="Texture2D" uid="uid://d2uo1jcgkmer7" path="res://assets/drinks/veganmilkcarton.png" id="5_umk1q"]
+[ext_resource type="Texture2D" uid="uid://bw33gke5fdox2" path="res://assets/drinks/veganmilkcarton.png" id="5_umk1q"]
 [ext_resource type="Texture2D" uid="uid://5i0f8kytmvgt" path="res://assets/WallTextures/barWall.png" id="6_7uqjn"]
 [ext_resource type="Texture2D" uid="uid://cawqdebyk1vcl" path="res://assets/WallTextures/Counter.png" id="6_cp28g"]
 [ext_resource type="Texture2D" uid="uid://c7esqi1v2cegu" path="res://assets/drinks/groundcoffee.png" id="6_sgkiq"]
