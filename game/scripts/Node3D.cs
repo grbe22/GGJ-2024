@@ -7,6 +7,9 @@ public partial class Node3D : Node
 	private bool cannonSelected = false;
 	private bool hoverCup = false;
 	private bool hoverWork = false;
+	private bool hoverCoffee = false;
+	private bool hoverMilk = false;
+	private bool hoverVeganMilk = false;
 	private Camera3D currentCamera;
 	private CustomerController currentCustomer;
 	private PackedScene projectile;
@@ -14,14 +17,27 @@ public partial class Node3D : Node
 
 	private Vector3 customerSeekPos = new(2.56f, 7.5f, -5.19f);
 
+	int[] order;
+
 	private PackedScene emptyCup;
 	Script scrpt = new CSharpScript();
 	private Node2D heldItem;
 	private List<Node2D> items = new List<Node2D>();
-
+	
+	// for handling sprites
+	private SpriteHandler sprites;
+	private Sprite3D cup;
+	private Sprite3D bowl;
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		// load Cup and start spriteHandler
+		cup = GetNode<Sprite3D>("../Node3D/Cup/Cup");
+		sprites = new SpriteHandler(cup, cup);
+		
+		// starts an empty order
+		order = new int[3];
 		// load files
 		projectile = GD.Load<PackedScene>("res://scenes/Projectile.tscn");
 		customerScene = GD.Load<PackedScene>("res://scenes/customer.tscn");
@@ -37,6 +53,15 @@ public partial class Node3D : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		// 0 is coffee, 1 is milk, 2 is veganmilk
+		// checks if you click on coffee & updates drink
+		if (Input.IsActionJustPressed("click") && hoverCoffee) {
+			order[1] = sprites.SetCup(0, order[1]);
+		}
+		if (Input.IsActionJustPressed("click") && hoverMilk) {
+			order[1] = sprites.SetCup(1, order[1]);
+		}
+		
 		#region // Input updates
 
 		// cannon fire event
@@ -60,24 +85,6 @@ public partial class Node3D : Node
 		if (Input.IsActionJustPressed("Switch Camera"))
 		{
 			switchView();
-		}
-
-		// cup spawning event
-		else if (Input.IsActionJustPressed("click") && hoverCup)
-		{
-			// If the user is already holding an item, remove that item
-			if (heldItem != null) 
-			{
-				items.Remove(heldItem);
-				heldItem.QueueFree();
-			}
-			heldItem = emptyCup.Instantiate() as Node2D;
-			items.Add(heldItem);
-			
-			AddChild(heldItem);
-
-			GD.Print("grab cup");
-			hoverCup = false;
 		}
 
 		#endregion
@@ -157,6 +164,14 @@ public partial class Node3D : Node
 		ProjectileController controller = inst as ProjectileController;
 		controller.Launch(projDir, 200);
 	}
+	private void _on_coffee_mouse_entered()
+	{
+		hoverCoffee = true;
+	}
+	private void _on_coffee_mouse_exited()
+	{
+		hoverCoffee = false;
+	}
 
 	private CustomerController SpawnCustomer()
 	{
@@ -186,5 +201,13 @@ public partial class Node3D : Node
 
 		// return created vector
 		return new Vector3(randX, 0, randZ) + customerSeekPos;
+	}
+	private void _on_milk_mouse_entered()
+	{
+		hoverMilk = true;
+	}
+	private void _on_milk_mouse_exited()
+	{
+		hoverMilk = false;
 	}
 }

@@ -10,19 +10,22 @@ public partial class CustomerController : CharacterBody3D
 	private bool floppyPrevState = false;
 	private int numImpulses = 0;
 	private Vector3 launchDir;
-	
+
 	// contains the text bubbles customers produce.
 	private Control demandContainer;
 	private Label3D demand;
-	
+
+	private string[] skinPaths = { "tests", "gabe", "goose", "nikki", "ophie", "sarah" };
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		// makes the ragdolls ragdoll
 		SetFloppy(EnableFloppy);
-		SetTexturePerson("res://assets/sarah");
+		SetTexturePerson(GetRandomSkinPath());
+
 		orders = new OrderHandler();
-		
+
 		// instantiates the text box 5m above the customer
 		demandContainer = new Control();
 		AddChild(demandContainer);
@@ -32,7 +35,7 @@ public partial class CustomerController : CharacterBody3D
 		Vector3 pos = Position;
 		pos[1] += 4;
 		demand.Position = pos;
-		
+
 		// fills the text box
 		demand.Text = orders.GetOrder();
 	}
@@ -197,5 +200,21 @@ public partial class CustomerController : CharacterBody3D
 		{
 			ApplyBodyImpulse(child);
 		}
+	}
+
+	private string GetRandomSkinPath()
+	{
+		RandomNumberGenerator rng = new();
+		int index = -1;
+
+		// never generates index of dummy
+		while (index <= 0)
+		{
+			index = (int)rng.Randi() % skinPaths.Length;
+		}
+
+		GD.Print("Index: " + index);
+
+		return "res://assets/" + skinPaths[index];
 	}
 }
