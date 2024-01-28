@@ -87,7 +87,7 @@ public partial class Node3D : Node
 		}
 
 		// camera switch event
-		if (Input.IsActionJustPressed("Switch Camera"))
+		if (Input.IsActionJustPressed("Switch Camera") && Input.IsActionJustPressed("Switch Camera"))
 		{
 			switchView();
 		}
@@ -194,6 +194,7 @@ public partial class Node3D : Node
 	private void _on_coffee_mouse_exited()
 	{
 		hoverCoffee = false;
+	}
 
 	private CustomerController SpawnCustomer()
 	{
