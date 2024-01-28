@@ -37,9 +37,8 @@ public partial class Scoring : Node
 		}
 		
 		if (order[0] == provided[0]) {
-			finalScore = 30;
+			finalScore += 30;
 		}
-		
 		return finalScore;
 	}
 }
