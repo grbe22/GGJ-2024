@@ -88,10 +88,11 @@ public partial class Node3D : Node
 				currentCustomer.Launch(30, customerDir);
 				InstantiateProjectile();
 				currentCustomer = null;
-
-				items.Remove(heldItem);
-				heldItem.QueueFree();
-				heldItem = null;
+				if (heldItem != null) {
+					items.Remove(heldItem);
+					heldItem.QueueFree();
+					heldItem = null;
+				}
 			}
 		}
 

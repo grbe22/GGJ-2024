@@ -52,7 +52,10 @@ public partial class CustomerController : CharacterBody3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (demand != null)
+		if (!IsInstanceValid(this)) {
+			return;
+		}
+		if (demand != null && IsInstanceValid(demand))
 		{
 			Vector3 pos = Position;
 			pos[1] += 4;
