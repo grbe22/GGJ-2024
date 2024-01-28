@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 public partial class Node3D : Node
 {
+	
+	//scoring variable
+	int score;
 	// values for hander
 	private bool cannonSelected = false;
 	private bool trashHover = false;
@@ -44,6 +47,7 @@ public partial class Node3D : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		score = 0;
 		// load Cup and start spriteHandler
 		// GetNode reaches from root/camera for some reason. we need to be at root/Node3D
 		// so keep the absolute path used here unless there's some issue on machines that aren't mine
@@ -66,7 +70,8 @@ public partial class Node3D : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-
+		Label scoreboard = GetNode<Label>("../Node3D/Scoreboard");
+		scoreboard.Text = "" +score;
 		#region // Input updates
 		if (Input.IsActionJustPressed("click"))
 		{
@@ -129,12 +134,13 @@ public partial class Node3D : Node
 		// cannon fire event
 		if (Input.IsActionJustPressed("click") && cannonSelected)
 		{
+			int curScore = 0;
 			// if (currentCustomer != null && heldItem != null)
 			if (currentCustomer != null)
 			{
 				// launch customer
 				Vector3 customerDir = new(0, 0.2f, -1);
-				currentCustomer.Launch(40, customerDir);
+				curScore = currentCustomer.Launch(40, customerDir);
 				InstantiateProjectile();
 				currentCustomer = null;
 				if (heldItem != null) {
@@ -143,6 +149,7 @@ public partial class Node3D : Node
 					heldItem = null;
 				}
 			}
+			score += curScore;
 		}
 
 		// camera switch event

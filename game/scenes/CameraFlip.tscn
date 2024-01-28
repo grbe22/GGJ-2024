@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://b02wijohukthu"]
+[gd_scene load_steps=64 format=3 uid="uid://b02wijohukthu"]
 
 [ext_resource type="Script" path="res://scripts/GrabStuff.cs" id="3_83fym"]
 [ext_resource type="Texture2D" uid="uid://cnr4ptp4pxpia" path="res://assets/drinks/whippedcreamcan.png" id="3_as7mc"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://2tgqkpr8863x" path="res://assets/objects/trashcan.png" id="13_h2e4y"]
 [ext_resource type="Texture2D" uid="uid://cx47ahlj5s1mb" path="res://assets/objects/target.png" id="19_00epc"]
 [ext_resource type="Texture2D" uid="uid://drnkg0yh844rx" path="res://assets/objects/lightbulb.png" id="19_rcbj8"]
+[ext_resource type="FontFile" uid="uid://dmqyhfhx8srkh" path="res://assets/Pangolin-Regular.ttf" id="22_ak3xu"]
 
 [sub_resource type="Environment" id="Environment_m0xu7"]
 fog_enabled = true
@@ -483,6 +484,23 @@ surface_material_override/0 = SubResource("StandardMaterial3D_olcw7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("BoxShape3D_j3xxy")
+
+[node name="Scoreboard" type="Label" parent="."]
+offset_left = 956.0
+offset_top = 13.0
+offset_right = 1116.0
+offset_bottom = 72.0
+horizontal_alignment = 2
+
+[node name="Score" type="Label" parent="."]
+offset_left = 998.0
+offset_top = 11.0
+offset_right = 1152.0
+offset_bottom = 79.0
+text = "Score: "
+
+[node name="Label3D" type="Label3D" parent="Score"]
+font = ExtResource("22_ak3xu")
 
 [connection signal="mouse_entered" from="Coffee" to="." method="_on_coffee_mouse_entered"]
 [connection signal="mouse_exited" from="Coffee" to="." method="_on_coffee_mouse_exited"]
