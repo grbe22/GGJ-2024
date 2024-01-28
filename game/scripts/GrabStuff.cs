@@ -1,10 +1,10 @@
 using Godot;
 using System;
 
-public partial class GrabStuff : StaticBody2D
+public partial class GrabStuff : Node
 {
-	public StaticBody2D heldItem;
-	public bool hover;
+	public Node heldItem;
+	public bool hoverCup;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -13,29 +13,20 @@ public partial class GrabStuff : StaticBody2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (Input.IsActionJustPressed("click") && hover && heldItem == null) {
-			heldItem = GetNode<StaticBody2D>("Cup");
-			GD.Print("grab");
+		if (Input.IsActionJustPressed("click") && hoverCup) {
+			// todo: spawn cup at mouse position
 		}
-		else if (Input.IsActionJustPressed("click") && heldItem != null)
-		{
-			heldItem = null;
-			GD.Print("Drop");
-		}
-		else if (heldItem != null) 
-		{
-			heldItem.Position = GetViewport().GetMousePosition();
-			GD.Print("move");
-		}
+		//if (Input.IsActionJustPressed("Switch Camera") && Input.IsActionPressed("Switch Camera"))
+		//{
+			//switchView();
+		//}
 	}
 	
-	private void _on_self_mouse_entered() {
-		hover = true;
+	private void _on_coffee_cup_mouse_entered() {
+		hoverCup = true;
 	}
 	
-	private void _on_self_mouse_exited() {
-		hover = false;
+	private void _on_coffee_cup_mouse_exited() {
+		hoverCup = false;
 	}
-	
-	
 }
