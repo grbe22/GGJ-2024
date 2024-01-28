@@ -27,6 +27,10 @@ window/stretch/mode="canvas_items"
 
 project/assembly_name="GGJ-loser-team"
 
+[gui]
+
+theme/custom_font="res://assets/Pangolin-Regular.ttf"
+
 [input]
 
 "Switch Camera"={
