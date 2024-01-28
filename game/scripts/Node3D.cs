@@ -14,8 +14,6 @@ public partial class Node3D : Node
 	// values for hander
 	private bool cannonSelected = false;
 	private bool trashHover = false;
-	private bool hoverCup = false;
-	private bool hoverBowl = false;
 	private bool hoverWork = false;
 	private bool hoverCoffee = false;
 	private bool hoverMilk = false;
@@ -189,25 +187,26 @@ public partial class Node3D : Node
 
 			// ~~ food choosing ~~		
 			// if no addon exists yet,  consider food
-			if (workingOrder[0] != 0)
+			if (workingOrder[0] == 0)
 			{
+				GD.Print("WAH");
 				if (hoverBleuCheese)
 				{
-					workingOrder[3] = sprites.SetBowl(0);
+					workingOrder[0] = sprites.SetBowl(0);
 					PlayAudioFx("bloop_mid");
 				}
 				if (hoverFruit)
 				{
-					workingOrder[3] = sprites.SetBowl(1);
+					workingOrder[0] = sprites.SetBowl(1);
 					PlayAudioFx("bloop_mid");
 				}
 				if (hoverPotato)
 				{
-					workingOrder[3] = sprites.SetBowl(2);
+					workingOrder[0] = sprites.SetBowl(2);
 					PlayAudioFx("bloop_mid");
 				}
 			}
-
+			GD.Print(workingOrder[0]);
 			// ~~ cannon events ~~
 
 			// cannon fire, button pressed
@@ -232,6 +231,7 @@ public partial class Node3D : Node
 					CupGrab.Visible = true;
 					BowlGrab.Visible = true;
 					sprites.ResetCup();
+					sprites.EmptyBowl();
 					ResetOrders();
 					currentCustomer = null;
 				}
@@ -380,6 +380,7 @@ public partial class Node3D : Node
 	private void ResetOrders()
 	{
 		workingOrder = new int[3];
+		GD.Print("eep");
 		cannonContents = new int[3];
 	}
 
@@ -447,14 +448,6 @@ public partial class Node3D : Node
 	// for cannons
 	private void _on_cannon_mouse_entered() { cannonSelected = true; }
 	private void _on_cannon_mouse_exited() { cannonSelected = false; }
-
-	// for coffee cup
-	private void _on_coffee_cup_mouse_entered() { hoverCup = true; }
-	private void _on_coffee_cup_mouse_exited() { hoverCup = false; }
-
-	// for bowl
-	private void _on_bowl_mouse_entered() { hoverBowl = true; }
-	private void _on_bowl_mouse_exited() { hoverBowl = false; }
 
 	// for the specific area around machines
 	private void _on_work_area_mouse_entered() { hoverWork = true; }

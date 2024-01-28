@@ -84,6 +84,7 @@ public partial class SpriteHandler : Node
 	public int SetBowl(int state)
 	{
 		Texture2D texture = bowl.Texture;
+	
 		
 		// 0 for BleuCheese, 1 for Fruit, 2 for Fry
 		if (state == 0)
@@ -98,14 +99,20 @@ public partial class SpriteHandler : Node
 		{
 			texture = (Texture2D)GD.Load("res://assets/foods/fry.png");
 		}
-		
-		return state;
+		bowl.Texture = texture;
+		return state + 1;
 	}
 
 	// only for clearing the cup
 	public int EmptyCup()
 	{
 		cup.Texture = (Texture2D)GD.Load("res://assets/drinks/empty.png");
+		return 0;
+	}
+	
+	public int EmptyBowl()
+	{
+		bowl.Texture = (Texture2D)GD.Load("res://assets/foods/empty.png");
 		return 0;
 	}
 
@@ -119,5 +126,6 @@ public partial class SpriteHandler : Node
 	{
 		EmptyCup();
 		ClearTopping();
+		EmptyBowl();
 	}
 }

@@ -24,7 +24,7 @@ public partial class GrabStuff : StaticBody3D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		offset = GetNode<StaticBody3D>("%Cup").Position;
+		offset = this.Position;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -41,7 +41,7 @@ public partial class GrabStuff : StaticBody3D
 			}
 			else if (Hovered)
 			{
-				heldItem = GetNode<StaticBody3D>("%Cup");
+				heldItem = this;
 			}
 		}
 		else if (Input.IsActionJustPressed("Switch Camera") && Input.IsActionPressed("Switch Camera"))
@@ -62,7 +62,6 @@ public partial class GrabStuff : StaticBody3D
 					heldItem.Position = new Vector3((float)9.7, (float)1.6, (float)28.6);
 				}
 			}
-
 
 		}
 		else if (IsGrabbed)
