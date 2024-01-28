@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cj7ad4ieny3ph"
-path="res://.godot/imported/bleucheese.png-b9f2da97612081baadb66fae596ebd23.ctex"
+uid="uid://d1xn05wg628iu"
+path="res://.godot/imported/cashregister.png-acb181e239688757bf865ab4ea60459c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/foods/bleucheese.png"
-dest_files=["res://.godot/imported/bleucheese.png-b9f2da97612081baadb66fae596ebd23.ctex"]
+source_file="res://assets/objects/cashregister.png"
+dest_files=["res://.godot/imported/cashregister.png-acb181e239688757bf865ab4ea60459c.ctex"]
 
 [params]
 
