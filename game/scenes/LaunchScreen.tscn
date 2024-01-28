@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bp0oq4rfntagl"]
+[gd_scene load_steps=7 format=3 uid="uid://bp0oq4rfntagl"]
 
 [ext_resource type="FontFile" uid="uid://btgl4d7a1mcbw" path="res://assets/RubikBubbles-Regular.ttf" id="1_i7ayd"]
 [ext_resource type="FontFile" uid="uid://dmqyhfhx8srkh" path="res://assets/Pangolin-Regular.ttf" id="1_lyd3v"]
@@ -16,13 +16,12 @@ Fonts/fonts/normal = ExtResource("1_lyd3v")
 Label/font_sizes/font_size = 100
 Label/fonts/font = ExtResource("1_i7ayd")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jllpj"]
-transparency = 1
-cull_mode = 2
-albedo_texture = ExtResource("4_n1rd0")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_tooeu"]
-material = SubResource("StandardMaterial3D_jllpj")
+[sub_resource type="LabelSettings" id="LabelSettings_larn2"]
+font = ExtResource("1_i7ayd")
+font_size = 70
+outline_size = 19
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
 
 [node name="LaunchScreen" type="Control"]
 layout_mode = 3
@@ -34,26 +33,31 @@ grow_vertical = 2
 theme = SubResource("Theme_xpinm")
 script = ExtResource("3_sqspy")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-mesh = SubResource("PlaneMesh_tooeu")
-
 [node name="Button" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.007
 anchor_bottom = 0.012
-offset_left = 405.0
-offset_top = 382.0
-offset_right = 769.936
-offset_bottom = 524.116
+offset_left = 380.0
+offset_top = 384.0
+offset_right = 744.936
+offset_bottom = 526.116
 text = "Play"
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 475.0
-offset_top = 159.0
-offset_right = 720.0
-offset_bottom = 278.0
-text = "Title"
+offset_left = 253.0
+offset_top = 63.0
+offset_right = 892.0
+offset_bottom = 304.0
+text = "Coffee Shop
+Simulator"
+label_settings = SubResource("LabelSettings_larn2")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -5
+position = Vector2(576, 324)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("4_n1rd0")
