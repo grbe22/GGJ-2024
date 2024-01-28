@@ -185,6 +185,7 @@ public partial class Node3D : Node
 
 					if (orderCorrect)
 					{
+						curScore += 100;
 						GD.Print("ORDER CORRECT!");
 					}
 					else
