@@ -7,9 +7,9 @@ public partial class CustomerController : CharacterBody3D
 	// fixes the initial double spawning and helps cull excess guys
 	public static int me = 1;
 	public int me2;
-	
+
 	private double timer;
-	
+
 	public float Speed { get; set; } = 10f;
 	public bool EnableFloppy { get; set; } = false;
 	public int[] Order
@@ -19,6 +19,17 @@ public partial class CustomerController : CharacterBody3D
 			return orders.Order;
 		}
 	}
+	public bool AtPosition { get; private set; } = false;
+
+	public bool JustArrivedAtPosition
+	{
+		get
+		{
+			return AtPosition && !atPositionPrev;
+		}
+	}
+
+	private bool atPositionPrev = false;
 
 	private OrderHandler orders;
 	private bool floppyPrevState = false;
@@ -69,7 +80,8 @@ public partial class CustomerController : CharacterBody3D
 	public override void _Process(double delta)
 	{
 		timer -= delta;
-		if (!IsInstanceValid(this)) {
+		if (!IsInstanceValid(this))
+		{
 			return;
 		}
 		if (demand != null && IsInstanceValid(demand))
@@ -87,6 +99,7 @@ public partial class CustomerController : CharacterBody3D
 		}
 
 		floppyPrevState = EnableFloppy;
+		atPositionPrev = AtPosition;
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -131,6 +144,8 @@ public partial class CustomerController : CharacterBody3D
 			return;
 		}
 
+		AtPosition = false;
+
 		Vector3 pos = this.Position;
 		float distSquared = position.DistanceSquaredTo(pos);
 		float threshold = 1f;
@@ -140,6 +155,10 @@ public partial class CustomerController : CharacterBody3D
 			Vector3 diff = position - this.Position;
 			diff = diff.Normalized();
 			Position += diff * speedScalar;
+		}
+		else
+		{
+			AtPosition = true;
 		}
 	}
 

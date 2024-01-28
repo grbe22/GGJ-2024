@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 public partial class Node3D : Node
 {
-	
+
 	// fuck this game engine
 	private static bool man = true;
 	private bool woman = true;
-	
+
 	//scoring variable
 	int score;
 	// values for hander
@@ -58,6 +58,9 @@ public partial class Node3D : Node
 	private Vector3 cupInitialPos;
 	private Vector3 bowlInitialPos;
 
+	// audio
+	private AudioStreamPlayer fxPlayer;
+
 	/// <summary>
 	/// Reference to cup static body's GrabStuff script
 	/// </summary>
@@ -83,7 +86,8 @@ public partial class Node3D : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		if (man) {
+		if (man)
+		{
 			man = false;
 			GD.Print(man);
 			return;
@@ -101,6 +105,11 @@ public partial class Node3D : Node
 		addon = GetNode<Sprite3D>("../Node3D/Cup/Addon");
 		sprites = new SpriteHandler(cup, bowl, addon);
 
+		cupInitialPos = CupGrab.Position;
+		bowlInitialPos = BowlGrab.Position;
+
+		fxPlayer = GetNode<AudioStreamPlayer>("../Node3D/FxPlayer");
+
 		// starts an empty order
 		ResetOrders();
 
@@ -117,10 +126,11 @@ public partial class Node3D : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (woman) {
+		if (woman)
+		{
 			return;
 		}
-		scoreboard.Text = "" +score;
+		scoreboard.Text = "" + score;
 		#region // Input updates
 		if (Input.IsActionJustPressed("click"))
 		{
@@ -131,19 +141,23 @@ public partial class Node3D : Node
 			if (hoverCoffee)
 			{
 				workingOrder[1] = sprites.SetCup(0, workingOrder[1]);
+				PlayAudioFx("bloop_mid");
 			}
 			if (hoverMilk)
 			{
 				workingOrder[1] = sprites.SetCup(1, workingOrder[1]);
+				PlayAudioFx("bloop_mid");
 			}
 			if (hoverVeganMilk)
 			{
 				workingOrder[1] = sprites.SetCup(2, workingOrder[1]);
+				PlayAudioFx("bloop_mid");
 			}
 			if (trashHover)
 			{
 				workingOrder[1] = sprites.EmptyCup();
 				workingOrder[2] = sprites.ClearTopping();
+				PlayAudioFx("bit_1");
 			}
 
 			// ~~ topping/addon choosing ~~
@@ -154,23 +168,31 @@ public partial class Node3D : Node
 				if (hoverWhippedCream)
 				{
 					workingOrder[2] = sprites.SetAddon(AddonType.WhippedCream);
+					PlayAudioFx("bloop_mid");
 				}
 				if (hoverMayo)
 				{
 					workingOrder[2] = sprites.SetAddon(AddonType.Mayo);
+					PlayAudioFx("bloop_mid");
 				}
 				if (hoverChocolate)
 				{
 					workingOrder[2] = sprites.SetAddon(AddonType.Chocolate);
+					PlayAudioFx("bloop_mid");
 				}
 				if (hoverCaramel)
 				{
 					workingOrder[2] = sprites.SetAddon(AddonType.Caramel);
+					PlayAudioFx("bloop_mid");
 				}
 			}
+<<<<<<< HEAD
 			
 			
 			
+=======
+
+>>>>>>> 3a69f5b12a7d8a1f2db6f56025b49a368a8eb2c8
 			// ~~ food choosing ~~		
 			// if no addon exists yet,  consider food
 			if (workingOrder[0] == 0)
@@ -178,6 +200,7 @@ public partial class Node3D : Node
 				GD.Print("WAH");
 				if (hoverBleuCheese)
 				{
+<<<<<<< HEAD
 					workingOrder[0] = sprites.SetBowl(0);
 				}
 				if (hoverFruit)
@@ -187,6 +210,20 @@ public partial class Node3D : Node
 				if (hoverPotato)
 				{
 					workingOrder[0] = sprites.SetBowl(2);
+=======
+					workingOrder[3] = sprites.SetBowl(0);
+					PlayAudioFx("bloop_mid");
+				}
+				if (hoverFruit)
+				{
+					workingOrder[3] = sprites.SetBowl(1);
+					PlayAudioFx("bloop_mid");
+				}
+				if (hoverPotato)
+				{
+					workingOrder[3] = sprites.SetBowl(2);
+					PlayAudioFx("bloop_mid");
+>>>>>>> 3a69f5b12a7d8a1f2db6f56025b49a368a8eb2c8
 				}
 			}
 			GD.Print(workingOrder[0]);
@@ -195,12 +232,13 @@ public partial class Node3D : Node
 			// cannon fire, button pressed
 			if (hoverCannonButon)
 			{
-				GD.Print("button clicked");
 				int curScore = 0;
 
-				// if (currentCustomer != null && heldItem != null)
-				if (currentCustomer != null)
+				// LAUNCHING
+				if (currentCustomer != null && currentCustomer.AtPosition)
 				{
+					PlayAudioFx("wet_clonk");
+
 					// launch customer
 					Vector3 customerDir = new(0, 0.2f, -1);
 					currentCustomer.Launch(40, customerDir);
@@ -246,6 +284,8 @@ public partial class Node3D : Node
 					// save cup info in cannon order
 					cannonContents[1] = workingOrder[1];
 					cannonContents[2] = workingOrder[2];
+
+					PlayAudioFx("clonk");
 				}
 
 				// make bowl invisible and put it back in 
@@ -257,6 +297,8 @@ public partial class Node3D : Node
 
 					// save bowl info in cannon order
 					cannonContents[0] = workingOrder[0];
+
+					PlayAudioFx("clonk");
 				}
 			}
 		}
@@ -282,7 +324,16 @@ public partial class Node3D : Node
 		}
 
 		// if not null, seek position
-		currentCustomer?.SeekPosition(customerSeekPos, 1f);
+		if (currentCustomer != null)
+		{
+			currentCustomer.SeekPosition(customerSeekPos, 1f);
+
+			// only plays sound once
+			if (currentCustomer.JustArrivedAtPosition)
+			{
+				PlayAudioFx("weedle_1");
+			}
+		}
 	}
 
 	public void switchView()
@@ -364,6 +415,13 @@ public partial class Node3D : Node
 		cannonContents = new int[3];
 	}
 
+	private void PlayAudioFx(string effectName)
+	{
+		AudioStream effect = GD.Load<AudioStream>("res://assets/audio/fx/" + effectName + ".wav");
+		fxPlayer.Stream = effect;
+		fxPlayer.Play();
+	}
+
 	// ~~ drinks ~~
 
 	// when selecting coffee
@@ -396,18 +454,18 @@ public partial class Node3D : Node
 	// when selecting caramel
 	private void _on_caramel_mouse_entered() { hoverCaramel = true; }
 	private void _on_caramel_mouse_exited() { hoverCaramel = false; }
-	
-	
+
+
 	// ~~ foods ~~
-	
+
 	// when selecting bleu cheese
 	private void _on_bleu_cheese_mouse_entered() { hoverBleuCheese = true; }
 	private void _on_bleu_cheese_mouse_exited() { hoverBleuCheese = false; }
-	
+
 	// when selecting fruit
 	private void _on_fruit_mouse_entered() { hoverFruit = true; }
 	private void _on_fruit_mouse_exited() { hoverFruit = false; }
-	
+
 	// when selecting potato
 	private void _on_potato_mouse_entered() { hoverPotato = true; }
 	private void _on_potato_mouse_exited() { hoverPotato = false; }
@@ -425,7 +483,7 @@ public partial class Node3D : Node
 	// for coffee cup
 	private void _on_coffee_cup_mouse_entered() { hoverCup = true; }
 	private void _on_coffee_cup_mouse_exited() { hoverCup = false; }
-	
+
 	// for bowl
 	private void _on_bowl_mouse_entered() { hoverBowl = true; }
 	private void _on_bowl_mouse_exited() { hoverBowl = false; }
