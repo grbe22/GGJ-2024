@@ -222,23 +222,12 @@ public partial class Node3D : Node
 
 					// launch customer
 					Vector3 customerDir = new(0, 0.2f, -1);
-					currentCustomer.Launch(40, customerDir);
+					score += currentCustomer.Launch(40, customerDir);
 					InstantiateProjectile();
 
-					bool orderCorrect =
-						cannonContents[0] == currentCustomer.Order[0] &&
-						cannonContents[1] == currentCustomer.Order[1] &&
-						cannonContents[2] == currentCustomer.Order[2];
-
-					if (orderCorrect)
-					{
-						curScore += 100;
-						GD.Print("ORDER CORRECT!");
-					}
-					else
-					{
-						GD.Print("ORDER INCORRECT!");
-					}
+					Scoring scoreGen = new Scoring();
+					score += scoreGen.Grade(currentCustomer.Order, cannonContents);
+					
 
 					CupGrab.Visible = true;
 					BowlGrab.Visible = true;
