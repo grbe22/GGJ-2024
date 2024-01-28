@@ -191,7 +191,7 @@ public partial class Node3D : Node
 			// if no addon exists yet,  consider food
 			if (workingOrder[0] == 0)
 			{
-				
+
 				if (hoverBleuCheese)
 				{
 					workingOrder[0] = sprites.SetBowl(0);
@@ -217,8 +217,13 @@ public partial class Node3D : Node
 			{
 				int curScore = 0;
 
+				bool cannonEmpty =
+					cannonContents[0] == 0 &&
+					cannonContents[1] == 0 &&
+					cannonContents[2] == 0;
+
 				// LAUNCHING
-				if (currentCustomer != null && currentCustomer.AtPosition)
+				if (currentCustomer != null && currentCustomer.AtPosition && !cannonEmpty)
 				{
 					PlayAudioFx("wet_clonk");
 
@@ -229,7 +234,7 @@ public partial class Node3D : Node
 
 					Scoring scoreGen = new Scoring();
 					score += scoreGen.Grade(currentCustomer.Order, cannonContents);
-					
+
 
 					sprites.ResetCup();
 					sprites.EmptyBowl();
