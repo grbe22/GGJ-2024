@@ -53,8 +53,8 @@ public partial class CustomerController : CharacterBody3D
 		if (EnableFloppy != floppyPrevState)
 		{
 			SetFloppy(EnableFloppy);
-			demandContainer.QueueFree();
-			demand.QueueFree();
+			demandContainer?.QueueFree();
+			demand?.QueueFree();
 		}
 
 		floppyPrevState = EnableFloppy;
@@ -110,7 +110,6 @@ public partial class CustomerController : CharacterBody3D
 	private void SetFloppy(bool enabled)
 	{
 		SetFloppy(this, enabled);
-		GD.Print("Floppy value set to " + EnableFloppy);
 	}
 
 	/// <summary>
@@ -211,8 +210,6 @@ public partial class CustomerController : CharacterBody3D
 		{
 			index = (int)rng.Randi() % skinPaths.Length;
 		}
-
-		GD.Print("Index: " + index);
 
 		return "res://assets/" + skinPaths[index];
 	}
