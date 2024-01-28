@@ -18,25 +18,28 @@ public partial class Node3D : Node
 
 	private Vector3 customerSeekPos = new(2.56f, 7.5f, -5.19f);
 
+	private readonly int spawnFrameOffset = 10;
+	private int frameCounter = 0;
+
 	int[] order;
 
 	private PackedScene emptyCup;
 	Script scrpt = new CSharpScript();
 	private Node2D heldItem;
 	private List<Node2D> items = new List<Node2D>();
-	
+
 	// for handling sprites
 	private SpriteHandler sprites;
 	private Sprite3D cup;
 	private Sprite3D bowl;
-	
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		// load Cup and start spriteHandler
 		cup = GetNode<Sprite3D>("../Node3D/Cup/Cup");
 		sprites = new SpriteHandler(cup, cup);
-		
+
 		// starts an empty order
 		order = new int[3];
 		// load files
@@ -56,25 +59,30 @@ public partial class Node3D : Node
 	{
 		// 0 is coffee, 1 is milk, 2 is veganmilk
 		// checks if you click on coffee & updates drink
-		if (Input.IsActionJustPressed("click") && hoverCoffee) {
+		if (Input.IsActionJustPressed("click") && hoverCoffee)
+		{
 			order[1] = sprites.SetCup(0, order[1]);
 		}
-		if (Input.IsActionJustPressed("click") && hoverMilk) {
+		if (Input.IsActionJustPressed("click") && hoverMilk)
+		{
 			order[1] = sprites.SetCup(1, order[1]);
 		}
-		if (Input.IsActionJustPressed("click") && hoverVeganMilk) {
+		if (Input.IsActionJustPressed("click") && hoverVeganMilk)
+		{
 			order[1] = sprites.SetCup(2, order[1]);
 		}
-		if (Input.IsActionJustPressed("click") && trashHover) {
+		if (Input.IsActionJustPressed("click") && trashHover)
+		{
 			order[1] = sprites.EmptyCup();
 		}
-		
+
 		#region // Input updates
 
 		// cannon fire event
 		if (Input.IsActionJustPressed("click") && cannonSelected)
 		{
-			if (currentCustomer != null && heldItem != null)
+			// if (currentCustomer != null && heldItem != null)
+			if (currentCustomer != null)
 			{
 				// launch customer
 				Vector3 customerDir = new(0, 0.1f, -1);
@@ -96,11 +104,19 @@ public partial class Node3D : Node
 
 		#endregion
 
+		// only spawn first customer after first few frames
+		if (frameCounter > spawnFrameOffset)
+		{
+			// if null, spawn new customer
+			currentCustomer ??= SpawnCustomer();
+		}
+		else
+		{
+			frameCounter++;
+		}
+
 		// if not null, seek position
 		currentCustomer?.SeekPosition(customerSeekPos);
-
-		// if null, spawn new customer
-		currentCustomer ??= SpawnCustomer();
 	}
 
 	public void switchView()
@@ -113,7 +129,7 @@ public partial class Node3D : Node
 		// Get the next camera
 		if (currentCamera == null || currentCamera.Name == "Camera1")
 		{
-			currentCamera = GetNode<Camera3D>("CameraSystem/Camera2");
+			currentCamera = GetNode<Camera3D>("../Node3D/CameraSystem/Camera2");
 		}
 		else
 		{
@@ -182,9 +198,12 @@ public partial class Node3D : Node
 
 	private CustomerController SpawnCustomer()
 	{
+		GD.Print("spawn customer ? ");
+
 		Node root = this.GetParent();
 		CustomerController instance = customerScene.Instantiate() as CustomerController;
 		root.AddChild(instance);
+		// root.CallDeferred("add_child", instance);
 		instance.Position = GetRandomStartPos();
 		return instance;
 	}
