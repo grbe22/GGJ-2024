@@ -5,6 +5,7 @@ using System.Diagnostics;
 public partial class CustomerController : CharacterBody3D
 {
 	public static int me = 0;
+	public int me2;
 	public float Speed { get; set; } = 10f;
 	public bool EnableFloppy { get; set; } = false;
 	private OrderHandler orders;
@@ -21,6 +22,7 @@ public partial class CustomerController : CharacterBody3D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		me2 = me;
 		if (me == 0) {
 			QueueFree();
 		}
@@ -67,6 +69,9 @@ public partial class CustomerController : CharacterBody3D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		if (me - 20 > me2) {
+			QueueFree();
+		}
 		// launching logic
 		if (numImpulses > 0)
 		{
