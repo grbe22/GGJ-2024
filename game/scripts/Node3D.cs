@@ -32,10 +32,6 @@ public partial class Node3D : Node
 		switchView();
 
 		currentCustomer = SpawnCustomer();
-
-		scrpt = GD.Load<Script>("res://scripts/MouseFollow.cs");
-
-		emptyCup = GD.Load<PackedScene>("res://scenes/EmptyCup.tscn");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -46,7 +42,7 @@ public partial class Node3D : Node
 		// cannon fire event
 		if (Input.IsActionJustPressed("click") && cannonSelected)
 		{
-			if (currentCustomer != null && !currentCustomer.EnableFloppy && heldItem != null)
+			if (currentCustomer != null && heldItem != null)
 			{
 				// launch customer
 				Vector3 customerDir = new(0, 0.1f, -1);
