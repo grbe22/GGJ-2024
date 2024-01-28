@@ -155,7 +155,9 @@ public partial class Node3D : Node
 			{
 				workingOrder[1] = sprites.EmptyCup();
 				workingOrder[2] = sprites.ClearTopping();
+				workingOrder[0] = sprites.EmptyBowl();
 				PlayAudioFx("bit_1");
+				ResetOrders();
 			}
 
 			// ~~ topping/addon choosing ~~
@@ -239,10 +241,9 @@ public partial class Node3D : Node
 						GD.Print("ORDER INCORRECT!");
 					}
 
-					CupGrab.Visible = true;
-					BowlGrab.Visible = true;
 					sprites.ResetCup();
 					sprites.EmptyBowl();
+					sprites.EmptyCup();
 					ResetOrders();
 					currentCustomer = null;
 				}
@@ -391,8 +392,12 @@ public partial class Node3D : Node
 	private void ResetOrders()
 	{
 		workingOrder = new int[3];
-		GD.Print("eep");
 		cannonContents = new int[3];
+		GD.Print("eep");
+		CupGrab.Position = cupInitialPos;
+		BowlGrab.Position = bowlInitialPos;
+		CupGrab.Visible = true;
+		BowlGrab.Visible = true;
 	}
 
 	private void PlayAudioFx(string effectName)

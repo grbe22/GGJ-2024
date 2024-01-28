@@ -89,7 +89,7 @@ public partial class SpriteHandler : Node
 		// 0 for BleuCheese, 1 for Fruit, 2 for Fry
 		if (state == 0)
 		{
-			texture = (Texture2D)GD.Load("res://assets/foods/bleuCheese.png");
+			texture = (Texture2D)GD.Load("res://assets/foods/bleucheese.png");
 		}
 		if (state == 1)
 		{
