@@ -11,8 +11,8 @@ public partial class SpriteHandler : Node
 	}
 	
 	public int SetCup(int state, int curSprite) {
-		Texture2D texture = (Texture2D)GD.Load("res://assets/drinks/none.png");
-		int outp = 0;
+		Texture2D texture = cup.Texture;
+		int outp = curSprite;
 		if (state == 0) {
 			if (curSprite == 0) {
 				texture = (Texture2D)GD.Load("res://assets/drinks/coffee.png");
