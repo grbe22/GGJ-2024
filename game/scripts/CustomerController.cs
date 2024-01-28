@@ -4,8 +4,10 @@ using System.Diagnostics;
 
 public partial class CustomerController : CharacterBody3D
 {
+	// fixes the initial double spawning and helps cull excess guys
 	public static int me = 0;
 	public int me2;
+	
 	public float Speed { get; set; } = 10f;
 	public bool EnableFloppy { get; set; } = false;
 	private OrderHandler orders;
