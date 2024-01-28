@@ -15,12 +15,12 @@
 [ext_resource type="Material" uid="uid://ds385sp7nusag" path="res://assets/materials/body/upperleg_left.tres" id="7_1cthb"]
 [ext_resource type="Material" uid="uid://c2kqgdq067adf" path="res://assets/materials/body/lowerleg_left.tres" id="8_5ml8t"]
 [ext_resource type="Texture2D" uid="uid://da1ytdo0t3ebo" path="res://assets/tests/body.png" id="8_066bg"]
-[ext_resource type="Material" uid="uid://dd4tagj8eapw2" path="res://assets/materials/body/hair_back.tres" id="8_rruul"]
+[ext_resource type="Material" uid="uid://byxx4y4rbe0o0" path="res://assets/materials/body/hair_back.tres" id="8_rruul"]
 [ext_resource type="Material" uid="uid://don2wbmb1bquk" path="res://assets/materials/body/upperleg_right.tres" id="9_ine2a"]
-[ext_resource type="Material" uid="uid://ddluvs7drsdvv" path="res://assets/materials/body/hair_middle.tres" id="9_prflp"]
+[ext_resource type="Material" uid="uid://c3mmvrsbx20de" path="res://assets/materials/body/hair_middle.tres" id="9_prflp"]
 [ext_resource type="Material" uid="uid://dnlg64x14b0t8" path="res://assets/materials/body/lowerleg_right.tres" id="10_1luax"]
-[ext_resource type="Material" uid="uid://dqxcvjbemb7i0" path="res://assets/materials/body/hair_front.tres" id="10_x1t4a"]
-[ext_resource type="Material" uid="uid://ch57ieqki8kpu" path="res://assets/materials/body/mouth_closed.tres" id="11_dfr62"]
+[ext_resource type="Material" uid="uid://bf3smf7bvpoor" path="res://assets/materials/body/hair_front.tres" id="10_x1t4a"]
+[ext_resource type="Material" uid="uid://c0advphahopo6" path="res://assets/materials/body/mouth_closed.tres" id="11_dfr62"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_t0is6"]
 size = Vector2(4.36, 4.24)
@@ -29,6 +29,7 @@ size = Vector2(4.36, 4.24)
 size = Vector3(4.36, 4.24, 0.01)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_tavpm"]
+resource_local_to_scene = true
 size = Vector2(1.18, 1.15)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0grsd"]
@@ -56,6 +57,7 @@ size = Vector3(1.94, 0.83, 1)
 size = Vector2(4.02, 6.63)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n6opb"]
+resource_local_to_scene = true
 transparency = 1
 cull_mode = 2
 albedo_texture = ExtResource("8_066bg")

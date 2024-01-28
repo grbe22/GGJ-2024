@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bmg3flxrt6qub" path="res://assets/tests/eye_left.png" id="1_w17xm"]
 
 [resource]
+resource_local_to_scene = true
 transparency = 1
 cull_mode = 2
 albedo_texture = ExtResource("1_w17xm")

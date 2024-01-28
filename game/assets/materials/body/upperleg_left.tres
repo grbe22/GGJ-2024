@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dck0os3n6u5gu" path="res://assets/tests/upperleg_left.png" id="1_tpogc"]
 
 [resource]
+resource_local_to_scene = true
 transparency = 1
 cull_mode = 2
 albedo_texture = ExtResource("1_tpogc")
