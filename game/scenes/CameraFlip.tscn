@@ -3,13 +3,14 @@
 [ext_resource type="Script" path="res://scripts/GrabStuff.cs" id="3_83fym"]
 [ext_resource type="Script" path="res://scripts/Node3D.cs" id="3_kdf04"]
 [ext_resource type="Texture2D" uid="uid://4xopxhkuiy4" path="res://assets/WallTextures/customerBackWall.png" id="5_mvw2n"]
-[ext_resource type="Texture2D" uid="uid://bw33gke5fdox2" path="res://assets/drinks/veganmilkcarton.png" id="5_umk1q"]
+[ext_resource type="Texture2D" uid="uid://d2uo1jcgkmer7" path="res://assets/drinks/veganmilkcarton.png" id="5_umk1q"]
 [ext_resource type="Texture2D" uid="uid://5i0f8kytmvgt" path="res://assets/WallTextures/barWall.png" id="6_7uqjn"]
 [ext_resource type="Texture2D" uid="uid://cawqdebyk1vcl" path="res://assets/WallTextures/Counter.png" id="6_cp28g"]
 [ext_resource type="Texture2D" uid="uid://c7esqi1v2cegu" path="res://assets/drinks/groundcoffee.png" id="6_sgkiq"]
 [ext_resource type="Texture2D" uid="uid://d6b0og7pfa8i" path="res://assets/drinks/milkcarton.png" id="7_14qxa"]
 [ext_resource type="Texture2D" uid="uid://d01wvlkvx13om" path="res://assets/drinks/empty.png" id="8_gnphm"]
 [ext_resource type="Texture2D" uid="uid://dobogechwcvxv" path="res://assets/crimmas.png" id="9_04f3w"]
+[ext_resource type="Texture2D" uid="uid://bnxdio4lpi1uk" path="res://assets/objects/cannon_full.png" id="9_i4qrw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u32yr"]
 size = Vector3(6, 0.01, 6)
@@ -87,13 +88,12 @@ albedo_texture = ExtResource("6_cp28g")
 [sub_resource type="BoxMesh" id="BoxMesh_iajfa"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qeagc"]
+size = Vector3(7, 5, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_xwbbe"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_afkda"]
 albedo_texture = ExtResource("9_04f3w")
-
-[sub_resource type="BoxMesh" id="BoxMesh_v8sds"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5sabg"]
 albedo_texture = ExtResource("5_mvw2n")
@@ -196,7 +196,7 @@ skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_vi6tt")
 
 [node name="Counter" type="MeshInstance3D" parent="Environment"]
-transform = Transform3D(-3.49691e-07, 1.2296e-07, 1.5, -3.23318e-13, 2.813, -6.5567e-08, -8, -1.19062e-13, -6.55671e-08, -1.66988, -1.5, 3)
+transform = Transform3D(-1.74846e-07, 1.2296e-07, 1.5, -1.61659e-13, 2.813, -6.5567e-08, -4, -1.19061e-13, -6.55671e-08, -1.66988, -1.5, -0.651823)
 mesh = SubResource("PlaneMesh_2pryr")
 skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_p5usa")
@@ -286,15 +286,15 @@ mesh = SubResource("BoxMesh_xwbbe")
 surface_material_override/0 = SubResource("StandardMaterial3D_afkda")
 
 [node name="CANNON" type="StaticBody3D" parent="Environment"]
-transform = Transform3D(1.99772, 0, -0.0716529, 0, 3, 0, 0.0955382, 0, 1.49829, -1.8, 0, 2.22701)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.557953, 0, 3.9543)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/CANNON"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.5, 0, 0, 0)
 shape = SubResource("BoxShape3D_qeagc")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/CANNON"]
-mesh = SubResource("BoxMesh_v8sds")
-surface_material_override/0 = SubResource("StandardMaterial3D_afkda")
+[node name="Sprite3D" type="Sprite3D" parent="Environment/CANNON"]
+transform = Transform3D(0.464702, -0.13619, 0.124516, 0.13155, 0.481095, 0.0352487, -0.12941, -3.84282e-09, 0.482963, 0, 0, 0)
+flip_h = true
+texture = ExtResource("9_i4qrw")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.18784, 2.13246, -3.95728)

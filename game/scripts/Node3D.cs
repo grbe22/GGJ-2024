@@ -113,7 +113,7 @@ public partial class Node3D : Node
 		// Get the next camera
 		if (currentCamera == null || currentCamera.Name == "Camera1")
 		{
-			currentCamera = GetNode<Camera3D>("CameraSystem/Camera2");
+			currentCamera = GetNode<Camera3D>("../Node3D/CameraSystem/Camera2");
 		}
 		else
 		{
