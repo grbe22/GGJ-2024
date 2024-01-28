@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://b02wijohukthu"]
+[gd_scene load_steps=63 format=3 uid="uid://b02wijohukthu"]
 
 [ext_resource type="Script" path="res://scripts/GrabStuff.cs" id="3_83fym"]
 [ext_resource type="Texture2D" uid="uid://cnr4ptp4pxpia" path="res://assets/drinks/whippedcreamcan.png" id="3_as7mc"]
@@ -50,15 +50,7 @@ transparency = 1
 albedo_texture = ExtResource("6_sgkiq")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uqb60"]
-size = Vector3(2, 1, 4)
-
-[sub_resource type="QuadMesh" id="QuadMesh_nan35"]
-size = Vector2(2, 4)
-orientation = 1
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v8cta"]
-transparency = 1
-albedo_texture = ExtResource("3_as7mc")
+size = Vector3(2, 4, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rc6dl"]
 size = Vector3(1, 3, 2)
@@ -189,17 +181,13 @@ skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_ubr6l")
 
 [node name="WhippedCream" type="StaticBody3D" parent="."]
-transform = Transform3D(-1.04568e-14, -1.94707e-07, -1, 1.22864, -4.37114e-08, 1.88908e-21, -5.37054e-08, -1, 1.94707e-07, -9.09328, -2.02958, 29.6898)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.09328, -2.02958, 29.6898)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WhippedCream"]
-transform = Transform3D(-4.37114e-08, 3.55271e-15, -1, 0, 1, 3.55271e-15, 1, 0, -4.37114e-08, 0, 0, 0)
 shape = SubResource("BoxShape3D_uqb60")
 
-[node name="Mesh" type="MeshInstance3D" parent="WhippedCream"]
-transform = Transform3D(-4.37114e-08, 3.55271e-15, -1, 0, 1, 3.55271e-15, 1, 0, -4.37114e-08, 0, 0, 0)
-mesh = SubResource("QuadMesh_nan35")
-skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_v8cta")
+[node name="Mesh" type="Sprite3D" parent="WhippedCream"]
+texture = ExtResource("3_as7mc")
 
 [node name="Mayo" type="StaticBody3D" parent="."]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -12.0625, -3.37057, 30)
@@ -383,7 +371,7 @@ mesh = SubResource("CylinderMesh_iihsf")
 skeleton = NodePath("../Base")
 
 [node name="CoffeeCup" type="StaticBody3D" parent="Environment/BackCounter"]
-transform = Transform3D(0.0795593, 2.99109e-21, 1.42109e-14, 3.90694e-20, 0.225532, 6.21725e-15, -6.03961e-14, -3.55271e-15, 0.546832, -0.599106, 1.50583, -0.500428)
+transform = Transform3D(1, -4.91073e-19, 7.59133e-13, 4.91073e-19, 1, 1.57526e-14, -7.59133e-13, -1.57526e-14, 1, -0.599106, 1.50583, -0.500428)
 visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/BackCounter/CoffeeCup"]
@@ -410,7 +398,7 @@ transform = Transform3D(0.301511, 2.75286e-21, 0, 1.69407e-20, 1, 0, -3.90799e-1
 mesh = SubResource("CylinderMesh_qh2e7")
 
 [node name="WorkArea" type="StaticBody3D" parent="Environment/BackCounter"]
-transform = Transform3D(1, 4.18223e-21, 8.34888e-14, -1.84653e-19, 0.0704755, 8.88178e-14, 0, 3.9968e-15, 2.01053, -0.120398, -0.0327483, -0.0446053)
+transform = Transform3D(1, 1.84653e-19, -1.86293e-32, -1.84653e-19, 1, -5.67119e-14, 8.15729e-33, 5.67119e-14, 1, -0.120398, -0.0327483, -0.0446053)
 visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/BackCounter/WorkArea"]
