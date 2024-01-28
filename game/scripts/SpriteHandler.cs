@@ -10,27 +10,38 @@ public partial class SpriteHandler : Node
 		this.bowl = bowl;
 	}
 	
-	public void setCup(int state) {
+	public void setCup(int state, int curSprite) {
+		// texture = (Texture2D)GD.Load("res://assets/drinks/none.png");
 		Texture2D texture;
-		Switch state {
-			case 0:
-				texture = (Texture2D)GD.Load("res://assets/drinks/none.png");
-				break;
-			case 1:
-				texture = (Texture2D)GD.Load("res://assets/drinks/milk.png");
-				break;
-			case 2:
+		if (state == 0) {
+			if (curSprite == 0) {
 				texture = (Texture2D)GD.Load("res://assets/drinks/coffee.png");
-				break;
-			case 3:
+			}
+			if (curSprite == 1) {
 				texture = (Texture2D)GD.Load("res://assets/drinks/milk_coffee.png");
-				break;
-			case 4:
+			}
+			if (curSprite == 4) {
+				// todo: replace with veganmmilkcoffee
+				texture = (Texture2D)GD.Load("res://assets/drinks/milk_coffee.png");
+			}
+		}
+		if (state == 1) {
+			if (curSprite == 0) {
+				texture = (Texture2D)GD.Load("res://assets/drinks/mlik.png");
+			}
+			if (curSprite == 2) {
+				texture = (Texture2D)GD.Load("res://assets/drinks/milk_coffee.png");
+			}
+		}
+		if (state == 2) {
+			if (curSprite == 0) {
+				// todo: replace with veganmilk
 				texture = (Texture2D)GD.Load("res://assets/drinks/milk.png");
-				break;
-			case 5:
-				texture = (Texture2D)GD.Load("res://assets/drinks/milk.png");
-				break;
+			}
+			if (curSprite == 2) {
+				// todo: replace with veganmilkcoffee
+				texture = (Texture2D)GD.Load("res://assets/drinks/milk_coffee.png");
+			}
 		}
 		cup.Texture = texture;
 	}

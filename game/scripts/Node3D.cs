@@ -22,13 +22,17 @@ public partial class Node3D : Node
 	private Node2D heldItem;
 	private List<Node2D> items = new List<Node2D>();
 	
+	// for handling sprites
+	private SpriteHandler sprites;
 	private Sprite3D cup;
+	private Sprite3D bowl;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		// load Cup
+		// load Cup and start spriteHandler
 		cup = GetNode<Sprite3D>("../Node3D/Cup/Cup");
+		sprites = new SpriteHandler(cup, cup);
 		
 		// starts an empty order
 		order = new int[3];
@@ -47,24 +51,10 @@ public partial class Node3D : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		// 0 is coffee, 1 is milk, 2 is veganmilk
 		// checks if you click on coffee & updates drink
 		if (Input.IsActionJustPressed("click") && hoverCoffee) {
-			if (order[1] == 0) {
-				order[1] = 2;
-			}
-			if (order[1] == 1) {
-				order[1] = 3;
-			}
-			if (order[1] == 4) {
-				order[1] = 5;
-			}
-		}
-		
-		// updates sprite for the cup.
-		if (order[1] == 2	) {
-			Texture2D texture = (Texture2D)GD.Load("res://assets/drinks/milk.png");
-			// Ensure the material is not shared to avoid modifying a shared material
-			cup.Texture = texture;
+			sprites.SetCup(0, order[1]);
 		}
 		
 		#region // Input updates
@@ -87,7 +77,7 @@ public partial class Node3D : Node
 		}
 
 		// camera switch event
-		if (Input.IsActionJustPressed("Switch Camera") && Input.IsActionJustPressed("Switch Camera"))
+		if (Input.IsActionJustPressed("Switch Camera"))
 		{
 			switchView();
 		}
@@ -194,7 +184,6 @@ public partial class Node3D : Node
 	private void _on_coffee_mouse_exited()
 	{
 		hoverCoffee = false;
-	}
 
 	private CustomerController SpawnCustomer()
 	{
