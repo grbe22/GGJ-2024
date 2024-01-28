@@ -189,7 +189,7 @@ public partial class Node3D : Node
 			// if no addon exists yet,  consider food
 			if (workingOrder[0] == 0)
 			{
-				GD.Print("WAH");
+				
 				if (hoverBleuCheese)
 				{
 					workingOrder[0] = sprites.SetBowl(0);
@@ -197,6 +197,7 @@ public partial class Node3D : Node
 				}
 				if (hoverFruit)
 				{
+					GD.Print("foot");
 					workingOrder[0] = sprites.SetBowl(1);
 					PlayAudioFx("bloop_mid");
 				}
@@ -443,8 +444,8 @@ public partial class Node3D : Node
 	private void _on_bleu_cheese_mouse_exited() { hoverBleuCheese = false; }
 
 	// when selecting fruit
-	private void _on_fruit_mouse_entered() { hoverFruit = true; }
-	private void _on_fruit_mouse_exited() { hoverFruit = false; }
+	private void _on_fruitbowl_mouse_entered() { hoverFruit = true; }
+	private void _on_fruitbowl_mouse_exited() { hoverFruit = false; }
 
 	// when selecting potato
 	private void _on_potato_mouse_entered() { hoverPotato = true; }
