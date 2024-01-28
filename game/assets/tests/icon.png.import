@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmf8rjl55frqq"
-path="res://.godot/imported/bleucheese.png-b9f2da97612081baadb66fae596ebd23.ctex"
+uid="uid://b3r1inikacprt"
+path="res://.godot/imported/icon.png-2e228b6d25d73158731abbf7e54d892b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/foods/bleucheese.png"
-dest_files=["res://.godot/imported/bleucheese.png-b9f2da97612081baadb66fae596ebd23.ctex"]
+source_file="res://assets/tests/icon.png"
+dest_files=["res://.godot/imported/icon.png-2e228b6d25d73158731abbf7e54d892b.ctex"]
 
 [params]
 

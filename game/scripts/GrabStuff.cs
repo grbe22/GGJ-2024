@@ -25,18 +25,19 @@ public partial class GrabStuff : StaticBody3D
 			else if (hoverCup)
 			{
 				heldItem = GetNode<StaticBody3D>("%Cup");
-				GD.Print("pickup");
 			}
 		}
 		else if (heldItem != null) {
 			Vector2 mousePos = GetViewport().GetMousePosition();
 			Vector3 self = new Vector3(mousePos[0] / 100, mousePos[1] / 100, offset[2]);
+			mousePos.Y /= 60f;
+			mousePos.X /= 30f;
+			mousePos *= -1f;
+			Vector3 newVector = new Vector3(mousePos.X + 18, mousePos.Y + 8, heldItem.Position.Z);
 			
-			heldItem.Position = self;
-			GD.Print("move", mousePos);
+			heldItem.Position = newVector;
 		}
 		else {
-			GD.Print(offset);
 		}
 	}
 	
