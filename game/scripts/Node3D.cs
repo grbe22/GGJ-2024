@@ -89,7 +89,7 @@ public partial class Node3D : Node
 			if (trashHover)
 			{
 				order[1] = sprites.EmptyCup();
-				order[0] = sprites.ClearTopping();
+				order[2] = sprites.ClearTopping();
 			}
 
 			// ~~ topping/addon choosing ~~
@@ -182,7 +182,7 @@ public partial class Node3D : Node
 		}
 		else
 		{
-			currentCamera = GetNode<Camera3D>("CameraSystem/Camera1");
+			currentCamera = GetNode<Camera3D>("../Node3D/CameraSystem/Camera1");
 		}
 		// Activate the new camera
 		if (currentCamera != null)
