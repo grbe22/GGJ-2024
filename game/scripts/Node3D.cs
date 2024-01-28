@@ -169,24 +169,27 @@ public partial class Node3D : Node
 				}
 			}
 			
+			
+			
 			// ~~ food choosing ~~		
 			// if no addon exists yet,  consider food
-			if (workingOrder[0] != 0)
+			if (workingOrder[0] == 0)
 			{
+				GD.Print("WAH");
 				if (hoverBleuCheese)
 				{
-					workingOrder[3] = sprites.SetBowl(0);
+					workingOrder[0] = sprites.SetBowl(0);
 				}
 				if (hoverFruit)
 				{
-					workingOrder[3] = sprites.SetBowl(1);
+					workingOrder[0] = sprites.SetBowl(1);
 				}
 				if (hoverPotato)
 				{
-					workingOrder[3] = sprites.SetBowl(2);
+					workingOrder[0] = sprites.SetBowl(2);
 				}
 			}
-
+			GD.Print(workingOrder[0]);
 			// ~~ cannon events ~~
 
 			// cannon fire, button pressed
@@ -221,6 +224,7 @@ public partial class Node3D : Node
 					CupGrab.Visible = true;
 					BowlGrab.Visible = true;
 					sprites.ResetCup();
+					sprites.EmptyBowl();
 					ResetOrders();
 					currentCustomer = null;
 				}
@@ -356,6 +360,7 @@ public partial class Node3D : Node
 	private void ResetOrders()
 	{
 		workingOrder = new int[3];
+		GD.Print("eep");
 		cannonContents = new int[3];
 	}
 
