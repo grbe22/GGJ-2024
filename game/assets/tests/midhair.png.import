@@ -2,7 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< HEAD
+uid="uid://bggskxcqxjfct"
+=======
 uid="uid://bv8a7fwk6r8j4"
+>>>>>>> 70e14e874f6b949bbb4d01f050b852d250a9064a
 path="res://.godot/imported/midhair.png-dcb9527562b5ae9d6c4565e010f82fa1.ctex"
 metadata={
 "vram_texture": false

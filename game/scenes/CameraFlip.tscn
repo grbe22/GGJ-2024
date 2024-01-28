@@ -84,10 +84,10 @@ albedo_texture = ExtResource("9_04f3w")
 albedo_texture = ExtResource("5_mvw2n")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_q01bo"]
-size = Vector2(40, 40)
+size = Vector2(40, 60)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nc2re"]
-size = Vector3(40, 40, 1)
+size = Vector3(60, 40, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_olcw7"]
 
@@ -274,7 +274,7 @@ omni_range = 28.566
 omni_attenuation = 0.01
 
 [node name="OmniLight3D3" type="OmniLight3D" parent="Environment"]
-transform = Transform3D(0.333333, 0, 1.77636e-15, 0, 0.333333, 0, -1.77636e-15, 0, 0.333333, 24.5608, 2.13246, 3.76699)
+transform = Transform3D(1, 0, 5.32907e-15, 0, 1, 0, -5.32907e-15, 0, 1, 30.318, 2.13246, 2.09124)
 omni_range = 28.566
 omni_attenuation = 0.01
 
@@ -283,11 +283,8 @@ transform = Transform3D(1, 0, 5.32907e-15, 0, 1, 0, -5.32907e-15, 0, 1, -7.17987
 omni_range = 28.566
 omni_attenuation = 0.01
 
-[node name="Customer" parent="." instance=ExtResource("11_n44iu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.56486, 7.44232, -4.25934)
-
 [node name="Target" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 3.55271e-15, 0, 1, 0, -3.55271e-15, 0, 1, 9.11775, 8, -79.7562)
+transform = Transform3D(1, 0, 3.55271e-15, 0, 1, 0, -3.55271e-15, 0, 1, 4.04897, 8, -80)
 
 [node name="Target" type="MeshInstance3D" parent="Target"]
 transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, -4.4465e-21, 4.37114e-08, 1, -4.37114e-08, 0, 0, 0)
@@ -311,9 +308,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_olcw7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("BoxShape3D_j3xxy")
-
-[node name="Projectile" parent="." instance=ExtResource("10_0psra")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.35828, 2.9944, 0.816)
 
 [connection signal="pressed" from="CameraSystem/TextureButton" to="." method="switchView"]
 [connection signal="mouse_entered" from="Coffee" to="." method="_on_coffee_mouse_entered"]

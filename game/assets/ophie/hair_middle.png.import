@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ppjrhywduum6"
-path="res://.godot/imported/eye_left.png-de82d7276fc1a9aa36b9f53c9a255c09.ctex"
+uid="uid://b5hwkf1k0q371"
+path="res://.godot/imported/hair_middle.png-7e08c6c312fc00e8d24661a14c9e8a71.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/goose/eye_left.png"
-dest_files=["res://.godot/imported/eye_left.png-de82d7276fc1a9aa36b9f53c9a255c09.ctex"]
+source_file="res://assets/ophie/hair_middle.png"
+dest_files=["res://.godot/imported/hair_middle.png-7e08c6c312fc00e8d24661a14c9e8a71.ctex"]
 
 [params]
 
