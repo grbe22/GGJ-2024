@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 public partial class Node3D : Node
 {
-	
+
 	// fuck this game engine
 	private static bool man = true;
 	private bool woman = true;
-	
+
 	//scoring variable
 	int score;
 	// values for hander
@@ -83,7 +83,8 @@ public partial class Node3D : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		if (man) {
+		if (man)
+		{
 			man = false;
 			GD.Print(man);
 			return;
@@ -100,6 +101,9 @@ public partial class Node3D : Node
 		bowl = GetNode<Sprite3D>("../Node3D/Bowl/Bowl");
 		addon = GetNode<Sprite3D>("../Node3D/Cup/Addon");
 		sprites = new SpriteHandler(cup, bowl, addon);
+		
+		cupInitialPos = CupGrab.Position;
+		bowlInitialPos = BowlGrab.Position;
 
 		// starts an empty order
 		ResetOrders();
@@ -117,10 +121,11 @@ public partial class Node3D : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (woman) {
+		if (woman)
+		{
 			return;
 		}
-		scoreboard.Text = "" +score;
+		scoreboard.Text = "" + score;
 		#region // Input updates
 		if (Input.IsActionJustPressed("click"))
 		{
@@ -168,7 +173,7 @@ public partial class Node3D : Node
 					workingOrder[2] = sprites.SetAddon(AddonType.Caramel);
 				}
 			}
-			
+
 			// ~~ food choosing ~~		
 			// if no addon exists yet,  consider food
 			if (workingOrder[0] != 0)
@@ -391,18 +396,18 @@ public partial class Node3D : Node
 	// when selecting caramel
 	private void _on_caramel_mouse_entered() { hoverCaramel = true; }
 	private void _on_caramel_mouse_exited() { hoverCaramel = false; }
-	
-	
+
+
 	// ~~ foods ~~
-	
+
 	// when selecting bleu cheese
 	private void _on_bleu_cheese_mouse_entered() { hoverBleuCheese = true; }
 	private void _on_bleu_cheese_mouse_exited() { hoverBleuCheese = false; }
-	
+
 	// when selecting fruit
 	private void _on_fruit_mouse_entered() { hoverFruit = true; }
 	private void _on_fruit_mouse_exited() { hoverFruit = false; }
-	
+
 	// when selecting potato
 	private void _on_potato_mouse_entered() { hoverPotato = true; }
 	private void _on_potato_mouse_exited() { hoverPotato = false; }
@@ -420,7 +425,7 @@ public partial class Node3D : Node
 	// for coffee cup
 	private void _on_coffee_cup_mouse_entered() { hoverCup = true; }
 	private void _on_coffee_cup_mouse_exited() { hoverCup = false; }
-	
+
 	// for bowl
 	private void _on_bowl_mouse_entered() { hoverBowl = true; }
 	private void _on_bowl_mouse_exited() { hoverBowl = false; }
