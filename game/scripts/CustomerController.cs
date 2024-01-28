@@ -52,7 +52,10 @@ public partial class CustomerController : CharacterBody3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (demand != null)
+		if (!IsInstanceValid(this)) {
+			return;
+		}
+		if (demand != null && IsInstanceValid(demand))
 		{
 			Vector3 pos = Position;
 			pos[1] += 4;
@@ -104,7 +107,12 @@ public partial class CustomerController : CharacterBody3D
 	/// <param name="speedScalar">Scale of position offset</param>
 	public void SeekPosition(Vector3 position, float speedScalar)
 	{
-		float distSquared = position.DistanceSquaredTo(this.Position);
+		if (!IsInstanceValid(this)) {
+			return;
+		}
+		
+		Vector3 pos = this.Position;
+		float distSquared = position.DistanceSquaredTo(pos);
 		float threshold = 1f;
 
 		if (distSquared > threshold)
@@ -152,10 +160,12 @@ public partial class CustomerController : CharacterBody3D
 	private void SetTexturePerson(Node node, string personFolderPath)
 	{
 		// update texture if this is a mesh
-		if (node is MeshInstance3D mesh)
+		if (node is Sprite3D mesh)
 		{
 			string fileName = GetFilenameFromMesh(mesh);
-			ApplyTexture(mesh, $"{personFolderPath}/{fileName}");
+			string path = $"{personFolderPath}/{fileName}";
+			Texture2D tex = (Texture2D)GD.Load(path);
+			mesh.Texture = tex;
 		}
 
 		// exit condition when there are no child nodes
@@ -181,7 +191,7 @@ public partial class CustomerController : CharacterBody3D
 	/// </summary>
 	/// <param name="mesh">Reference of mesh</param>
 	/// <returns>String of file</returns>
-	private string GetFilenameFromMesh(MeshInstance3D mesh)
+	private string GetFilenameFromMesh(Sprite3D mesh)
 	{
 		string name = mesh.Name;
 		if (name.Contains("MESH-"))

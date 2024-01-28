@@ -24,7 +24,7 @@ public partial class Node3D : Node
 	private PackedScene customerScene;
 
 	// useful data things
-	private Vector3 customerSeekPos = new(2.56f, 7.5f, -5.19f);
+	private Vector3 customerSeekPos = new(-5f, 7.5f, -5.19f);
 	private readonly int spawnFrameOffset = 10;
 	private int frameCounter = 0;
 
@@ -124,10 +124,11 @@ public partial class Node3D : Node
 				currentCustomer.Launch(30, customerDir);
 				InstantiateProjectile();
 				currentCustomer = null;
-
-				items.Remove(heldItem);
-				heldItem.QueueFree();
-				heldItem = null;
+				if (heldItem != null) {
+					items.Remove(heldItem);
+					heldItem.QueueFree();
+					heldItem = null;
+				}
 			}
 		}
 
@@ -151,7 +152,7 @@ public partial class Node3D : Node
 		}
 
 		// if not null, seek position
-		currentCustomer?.SeekPosition(customerSeekPos, 4f);
+		currentCustomer?.SeekPosition(customerSeekPos, 1f);
 	}
 
 	public void switchView()
@@ -212,7 +213,7 @@ public partial class Node3D : Node
 	/// </summary>
 	private Vector3 GetRandomStartPos()
 	{
-		float radius = 400f;
+		float radius = 200f;
 		float angleSpread = Mathf.Pi / 1.5f;
 
 		// calculate random angle centered forward (negative z)
