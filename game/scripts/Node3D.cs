@@ -329,7 +329,7 @@ public partial class Node3D : Node
 		{
 			incorrectOrders = 0;
 			ResetOrders();
-			GD.Print("GAME OVER CONDITION");
+			GetTree().ChangeSceneToFile("res://scenes/lose.tscn");
 		}
 	}
 

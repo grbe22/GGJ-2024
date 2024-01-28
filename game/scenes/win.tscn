@@ -1,0 +1,76 @@
+[gd_scene load_steps=8 format=3 uid="uid://dk4mwku723rnu"]
+
+[ext_resource type="Script" path="res://scripts/LaunchScreen.cs" id="1_l3psn"]
+[ext_resource type="FontFile" uid="uid://btgl4d7a1mcbw" path="res://assets/RubikBubbles-Regular.ttf" id="1_ualsv"]
+[ext_resource type="FontFile" uid="uid://dmqyhfhx8srkh" path="res://assets/Pangolin-Regular.ttf" id="2_vf34q"]
+[ext_resource type="Texture2D" uid="uid://ca3nllkkr0j58" path="res://assets/goose/bodyparts.png" id="3_1yif6"]
+[ext_resource type="Texture2D" uid="uid://boqv0kxm0begd" path="res://assets/nikki/bodyparts.png" id="4_vjq8p"]
+[ext_resource type="Texture2D" uid="uid://bliwufwdt8d2u" path="res://assets/gabe/bodyparts.png" id="5_i6d00"]
+[ext_resource type="Texture2D" uid="uid://bo8p4p7oocghn" path="res://assets/sarah/bodyparts.png" id="6_fpuul"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l3psn")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(1152, 648)
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.698039, 0.513726, 0.729412, 1)
+
+[node name="Label" type="Label" parent="ColorRect"]
+offset_left = 357.0
+offset_top = 86.0
+offset_right = 788.0
+offset_bottom = 181.0
+theme_override_fonts/font = ExtResource("1_ualsv")
+theme_override_font_sizes/font_size = 80
+text = "YOU WIN!!!"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 375.0
+offset_top = 162.0
+offset_right = 806.0
+offset_bottom = 257.0
+theme_override_fonts/font = ExtResource("1_ualsv")
+theme_override_font_sizes/font_size = 40
+text = "you get nothing <3"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.007
+anchor_bottom = 0.012
+offset_left = 379.0
+offset_top = 320.0
+offset_right = 743.936
+offset_bottom = 462.116
+theme_override_fonts/font = ExtResource("2_vf34q")
+theme_override_font_sizes/font_size = 60
+text = "Play Again."
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-142, 1032)
+rotation = 0.494658
+texture = ExtResource("3_1yif6")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(1187, -395)
+rotation = -2.84984
+texture = ExtResource("4_vjq8p")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(-243, -324)
+rotation = 2.45099
+texture = ExtResource("6_fpuul")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(1322, 1009)
+rotation = -0.557869
+scale = Vector2(1, 1)
+texture = ExtResource("5_i6d00")

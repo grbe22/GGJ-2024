@@ -2,7 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://btgl4d7a1mcbw" path="res://assets/RubikBubbles-Regular.ttf" id="1_i7ayd"]
 [ext_resource type="FontFile" uid="uid://dmqyhfhx8srkh" path="res://assets/Pangolin-Regular.ttf" id="1_lyd3v"]
-[ext_resource type="Script" path="res://scripts/LaunchScreen.cs" id="3_sqspy"]
+[ext_resource type="Script" path="res://scripts/Tutorial.cs" id="3_opvut"]
 [ext_resource type="Texture2D" uid="uid://wcqjp6dgm126" path="res://assets/objects/title.png" id="4_n1rd0"]
 
 [sub_resource type="Theme" id="Theme_xpinm"]
@@ -38,7 +38,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_xpinm")
-script = ExtResource("3_sqspy")
+script = ExtResource("3_opvut")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 1
