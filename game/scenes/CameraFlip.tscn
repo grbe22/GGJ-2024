@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://b02wijohukthu"]
+[gd_scene load_steps=58 format=3 uid="uid://b02wijohukthu"]
 
 [ext_resource type="Script" path="res://scripts/GrabStuff.cs" id="3_83fym"]
 [ext_resource type="Texture2D" uid="uid://cnr4ptp4pxpia" path="res://assets/drinks/whippedcreamcan.png" id="3_as7mc"]
@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bxxmbvcogekrw" path="res://assets/drinks/mayocontainer.png" id="4_fixmn"]
 [ext_resource type="Texture2D" uid="uid://btvt1txewf6jd" path="res://assets/drinks/caramelbottle.png" id="5_1dl1e"]
 [ext_resource type="Texture2D" uid="uid://4xopxhkuiy4" path="res://assets/WallTextures/customerBackWall.png" id="5_mvw2n"]
-[ext_resource type="Texture2D" uid="uid://c7hxhoxgygyfp" path="res://assets/drinks/veganmilkcarton.png" id="5_umk1q"]
+[ext_resource type="Texture2D" uid="uid://bw33gke5fdox2" path="res://assets/drinks/veganmilkcarton.png" id="5_umk1q"]
 [ext_resource type="Texture2D" uid="uid://cxsmvjvt2tsqu" path="res://assets/drinks/chocolatebottle.png" id="6_4uq5d"]
 [ext_resource type="Texture2D" uid="uid://5i0f8kytmvgt" path="res://assets/WallTextures/barWall.png" id="6_7uqjn"]
 [ext_resource type="Texture2D" uid="uid://cawqdebyk1vcl" path="res://assets/WallTextures/Counter.png" id="6_cp28g"]
@@ -223,6 +223,9 @@ shape = SubResource("BoxShape3D_5ly6d")
 pixel_size = 0.03
 texture = ExtResource("8_gnphm")
 
+[node name="Addon" type="Sprite3D" parent="Cup"]
+pixel_size = 0.03
+
 [node name="Milk" type="StaticBody3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -3.06914, 9.0238, 30.5422)
 
@@ -419,14 +422,14 @@ shape = SubResource("BoxShape3D_j3xxy")
 
 [connection signal="mouse_entered" from="Coffee" to="." method="_on_coffee_mouse_entered"]
 [connection signal="mouse_exited" from="Coffee" to="." method="_on_coffee_mouse_exited"]
-[connection signal="mouse_entered" from="WhippedCream" to="." method="_on_coffee_mouse_entered"]
-[connection signal="mouse_exited" from="WhippedCream" to="." method="_on_coffee_mouse_exited"]
-[connection signal="mouse_entered" from="Mayo" to="." method="_on_coffee_mouse_entered"]
-[connection signal="mouse_exited" from="Mayo" to="." method="_on_coffee_mouse_exited"]
-[connection signal="mouse_entered" from="Caramel" to="." method="_on_coffee_mouse_entered"]
-[connection signal="mouse_exited" from="Caramel" to="." method="_on_coffee_mouse_exited"]
-[connection signal="mouse_entered" from="Chocolate" to="." method="_on_coffee_mouse_entered"]
-[connection signal="mouse_exited" from="Chocolate" to="." method="_on_coffee_mouse_exited"]
+[connection signal="mouse_entered" from="WhippedCream" to="." method="_on_whipped_cream_mouse_entered"]
+[connection signal="mouse_exited" from="WhippedCream" to="." method="_on_whipped_cream_mouse_exited"]
+[connection signal="mouse_entered" from="Mayo" to="." method="_on_mayo_mouse_entered"]
+[connection signal="mouse_exited" from="Mayo" to="." method="_on_mayo_mouse_exited"]
+[connection signal="mouse_entered" from="Caramel" to="." method="_on_caramel_mouse_entered"]
+[connection signal="mouse_exited" from="Caramel" to="." method="_on_caramel_mouse_exited"]
+[connection signal="mouse_entered" from="Chocolate" to="." method="_on_chocolate_mouse_entered"]
+[connection signal="mouse_exited" from="Chocolate" to="." method="_on_chocolate_mouse_exited"]
 [connection signal="mouse_entered" from="Cup" to="Cup" method="_on_self_mouse_entered"]
 [connection signal="mouse_exited" from="Cup" to="Cup" method="_on_self_mouse_exited"]
 [connection signal="mouse_entered" from="Milk" to="." method="_on_milk_mouse_entered"]

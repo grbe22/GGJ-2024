@@ -4,20 +4,27 @@ using System.Collections.Generic;
 
 public partial class Node3D : Node
 {
+	// values for hander
 	private bool cannonSelected = false;
+	private bool trashHover = false;
 	private bool hoverCup = false;
 	private bool hoverWork = false;
 	private bool hoverCoffee = false;
 	private bool hoverMilk = false;
 	private bool hoverVeganMilk = false;
-	private bool trashHover = false;
+	private bool hoverWhippedCream = false;
+	private bool hoverMayo = false;
+	private bool hoverChocolate = false;
+	private bool hoverCaramel = false;
+
+	// objects/instances
 	private Camera3D currentCamera;
 	private CustomerController currentCustomer;
 	private PackedScene projectile;
 	private PackedScene customerScene;
 
+	// useful data things
 	private Vector3 customerSeekPos = new(2.56f, 7.5f, -5.19f);
-
 	private readonly int spawnFrameOffset = 10;
 	private int frameCounter = 0;
 
@@ -32,13 +39,15 @@ public partial class Node3D : Node
 	private SpriteHandler sprites;
 	private Sprite3D cup;
 	private Sprite3D bowl;
+	private Sprite3D addon;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		// load Cup and start spriteHandler
-		cup = GetNode<Sprite3D>("../Node3D/Cup/Cup");
-		sprites = new SpriteHandler(cup, cup);
+		cup = GetNode<Sprite3D>("Cup/Cup");
+		addon = GetNode<Sprite3D>("Cup/Addon");
+		sprites = new SpriteHandler(cup, cup, addon);
 
 		// starts an empty order
 		order = new int[3];
@@ -57,25 +66,52 @@ public partial class Node3D : Node
 	{
 
 		#region // Input updates
+		if (Input.IsActionJustPressed("click"))
+		{
+			// ~~ main drink choosing ~~
 
-		// 0 is coffee, 1 is milk, 2 is veganmilk
-		// checks if you click on coffee & updates drink
-		if (Input.IsActionJustPressed("click") && hoverCoffee)
-		{
-			order[1] = sprites.SetCup(0, order[1]);
+			// 0 is coffee, 1 is milk, 2 is veganmilk
+			// checks if you click on coffee & updates drink
+			if (hoverCoffee)
+			{
+				order[1] = sprites.SetCup(0, order[1]);
+			}
+			if (hoverMilk)
+			{
+				order[1] = sprites.SetCup(1, order[1]);
+			}
+			if (hoverVeganMilk)
+			{
+				order[1] = sprites.SetCup(2, order[1]);
+			}
+			if (trashHover)
+			{
+				order[1] = sprites.EmptyCup();
+			}
+
+			// ~~ topping/addon choosing ~~
+			// if no addon exists yet, AND liquid is not empty, do addon shtuff
+			if (order[2] == 0 && order[1] != 0)
+			{
+				if (hoverWhippedCream)
+				{
+					order[2] = sprites.SetAddon(AddonType.WhippedCream);
+				}
+				if (hoverMayo)
+				{
+					order[2] = sprites.SetAddon(AddonType.Mayo);
+				}
+				if (hoverChocolate)
+				{
+					order[2] = sprites.SetAddon(AddonType.Chocolate);
+				}
+				if (hoverCaramel)
+				{
+					order[2] = sprites.SetAddon(AddonType.Caramel);
+				}
+			}
 		}
-		if (Input.IsActionJustPressed("click") && hoverMilk)
-		{
-			order[1] = sprites.SetCup(1, order[1]);
-		}
-		if (Input.IsActionJustPressed("click") && hoverVeganMilk)
-		{
-			order[1] = sprites.SetCup(2, order[1]);
-		}
-		if (Input.IsActionJustPressed("click") && trashHover)
-		{
-			order[1] = sprites.EmptyCup();
-		}
+
 
 		// cannon fire event
 		if (Input.IsActionJustPressed("click") && cannonSelected)
@@ -190,31 +226,54 @@ public partial class Node3D : Node
 		// return created vector
 		return new Vector3(randX, 0, randZ) + customerSeekPos;
 	}
-	
+
+	// ~~ drinks ~~
+
 	// when selecting coffee
 	private void _on_coffee_mouse_entered() { hoverCoffee = true; }
 	private void _on_coffee_mouse_exited() { hoverCoffee = false; }
-	
+
 	// when selecting normal milk
 	private void _on_milk_mouse_entered() { hoverMilk = true; }
 	private void _on_milk_mouse_exited() { hoverMilk = false; }
-	
+
 	// when selecting veganmilk
 	private void _on_vegan_milk_mouse_entered() { hoverVeganMilk = true; }
 	private void _on_vegan_milk_mouse_exited() { hoverVeganMilk = false; }
-	
+
+
+	// ~~ toppings ~~
+
+	// when selecting whipped cream
+	private void _on_whipped_cream_mouse_entered() { hoverWhippedCream = true; }
+	private void _on_whipped_cream_mouse_exited() { hoverWhippedCream = false; }
+
+	// when selecting mayo 
+	private void _on_mayo_mouse_entered() { hoverMayo = true; }
+	private void _on_mayo_mouse_exited() { hoverMayo = false; }
+
+	// when selecting chocolate
+	private void _on_chocolate_mouse_entered() { hoverChocolate = true; }
+	private void _on_chocolate_mouse_exited() { hoverChocolate = false; }
+
+	// when selecting caramel
+	private void _on_caramel_mouse_entered() { hoverCaramel = true; }
+	private void _on_caramel_mouse_exited() { hoverCaramel = false; }
+
+	// ~~ misc ~~ 
+
 	// for disposing of drinks
 	private void _on_trash_man_mouse_entered() { trashHover = true; }
 	private void _on_trash_man_mouse_exited() { trashHover = false; }
-	
+
 	// for cannons
-	private void _on_cannon_mouse_entered()	{ cannonSelected = true; }
+	private void _on_cannon_mouse_entered() { cannonSelected = true; }
 	private void _on_cannon_mouse_exited() { cannonSelected = false; }
-	
+
 	// for coffee cup
 	private void _on_coffee_cup_mouse_entered() { hoverCup = true; }
 	private void _on_coffee_cup_mouse_exited() { hoverCup = false; }
-	
+
 	// for the specific area around machines
 	private void _on_work_area_mouse_entered() { hoverWork = true; }
 	private void _on_work_area_mouse_exited() { hoverWork = false; }

@@ -5,44 +5,58 @@ public partial class SpriteHandler : Node
 {
 	private static Sprite3D cup;
 	private static Sprite3D bowl;
-	public SpriteHandler(Sprite3D cuppa, Sprite3D bowlla) {
+	private static Sprite3D addon;
+	public SpriteHandler(Sprite3D cuppa, Sprite3D bowlla, Sprite3D addonna)
+	{
 		cup = cuppa;
 		bowl = bowlla;
+		addon = addonna;
 	}
-	
-	public int SetCup(int state, int curSprite) {
+
+	public int SetCup(int state, int curSprite)
+	{
 		Texture2D texture = cup.Texture;
 		int outp = curSprite;
-		if (state == 0) {
-			if (curSprite == 0) {
+		if (state == 0)
+		{
+			if (curSprite == 0)
+			{
 				texture = (Texture2D)GD.Load("res://assets/drinks/coffee.png");
 				outp = 2;
 			}
-			if (curSprite == 1) {
+			if (curSprite == 1)
+			{
 				texture = (Texture2D)GD.Load("res://assets/drinks/milk_coffee.png");
 				outp = 3;
 			}
-			if (curSprite == 4) {
+			if (curSprite == 4)
+			{
 				texture = (Texture2D)GD.Load("res://assets/drinks/veganmilk_coffee.png");
 				outp = 5;
 			}
 		}
-		if (state == 1) {
-			if (curSprite == 0) {
+		if (state == 1)
+		{
+			if (curSprite == 0)
+			{
 				texture = (Texture2D)GD.Load("res://assets/drinks/milk.png");
 				outp = 1;
 			}
-			if (curSprite == 2) {
+			if (curSprite == 2)
+			{
 				texture = (Texture2D)GD.Load("res://assets/drinks/milk_coffee.png");
 				outp = 3;
 			}
 		}
-		if (state == 2) {
-			if (curSprite == 0) {
+		if (state == 2)
+		{
+			if (curSprite == 0)
+			{
 				texture = (Texture2D)GD.Load("res://assets/drinks/veganmilk.png");
 				outp = 4;
 			}
-			if (curSprite == 2) {
+			if (curSprite == 2)
+			{
 				// todo: replace with veganmilkcoffee
 				texture = (Texture2D)GD.Load("res://assets/drinks/veganmilk_coffee.png");
 				outp = 5;
@@ -51,9 +65,24 @@ public partial class SpriteHandler : Node
 		cup.Texture = texture;
 		return outp;
 	}
-	
+
+	public int SetAddon(AddonType type)
+	{
+		// create string from enum
+		string addonString = type.ToString().ToLower();
+		if (type == AddonType.None) addonString = "notopping";
+
+		// load texture based on string
+		Texture2D loadedTex = GD.Load<Texture2D>("res://assets/drinks/" + addonString + ".png");
+		addon.Texture = loadedTex;
+
+		// return enum parsed to int
+		return (int)type;
+	}
+
 	// only for clearing the cup
-	public int EmptyCup() {
+	public int EmptyCup()
+	{
 		cup.Texture = (Texture2D)GD.Load("res://assets/drinks/empty.png");
 		return 0;
 	}
