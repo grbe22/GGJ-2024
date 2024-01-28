@@ -37,6 +37,7 @@ size = Vector3(2.35, 6.04, 0.01)
 
 [node name="Customer" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.64511, 0)
+safe_margin = 0.01
 script = ExtResource("1_46n2i")
 metadata/EnableFloppy = false
 

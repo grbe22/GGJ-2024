@@ -113,6 +113,16 @@ public partial class Node3D : Node
 					order[2] = sprites.SetAddon(AddonType.Caramel);
 				}
 			}
+			
+			// ~~ food choosing ~~
+			// if no addon exists yet,  consider food
+			if (order[0] != 0)
+			{
+				if (hoverWhippedCream)
+				{
+					order[0] = sprites.SetAddon(AddonType.WhippedCream);
+				}
+			}
 		}
 
 
