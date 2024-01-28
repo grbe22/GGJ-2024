@@ -1,6 +1,8 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Reflection.Metadata;
 
 public partial class Node3D : Node
 {
@@ -59,6 +61,9 @@ public partial class Node3D : Node
 
 	// audio
 	private AudioStreamPlayer fxPlayer;
+
+	private int incorrectOrders = 0;
+	private const int MaxIncorrectOrders = 3;
 
 	/// <summary>
 	/// Reference to cup static body's GrabStuff script
@@ -239,6 +244,15 @@ public partial class Node3D : Node
 					score += grade;
 					lastScore.Text = "\n+" + grade; 
 
+					bool orderCorrect =
+						cannonContents[0] == currentCustomer.Order[0] &&
+						cannonContents[1] == currentCustomer.Order[1] &&
+						cannonContents[2] == currentCustomer.Order[2];
+
+					if (!orderCorrect)
+					{
+						incorrectOrders++;
+					}
 
 					sprites.ResetCup();
 					sprites.EmptyBowl();
@@ -313,6 +327,15 @@ public partial class Node3D : Node
 			{
 				PlayAudioFx("weedle_1");
 			}
+		}
+
+		// END GAME IF TOO MANY WRONG ORDERS
+		if (incorrectOrders > MaxIncorrectOrders)
+		{
+			score = 0;
+			incorrectOrders = 0;
+			ResetOrders();
+			GD.Print("GAME OVER CONDITION");
 		}
 	}
 
@@ -390,13 +413,20 @@ public partial class Node3D : Node
 
 	private void ResetOrders()
 	{
+		GD.Print("order reset");
+
 		workingOrder = new int[3];
 		cannonContents = new int[3];
-		GD.Print("eep");
+
 		CupGrab.Position = cupInitialPos;
 		BowlGrab.Position = bowlInitialPos;
+
 		CupGrab.Visible = true;
 		BowlGrab.Visible = true;
+		
+		sprites.EmptyBowl();
+		sprites.EmptyCup();
+		sprites.ClearTopping();
 	}
 
 	private void PlayAudioFx(string effectName)
