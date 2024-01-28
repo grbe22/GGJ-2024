@@ -87,24 +87,6 @@ public partial class Node3D : Node
 			switchView();
 		}
 
-		// cup spawning event
-		else if (Input.IsActionJustPressed("click") && hoverCup)
-		{
-			// If the user is already holding an item, remove that item
-			if (heldItem != null) 
-			{
-				items.Remove(heldItem);
-				heldItem.QueueFree();
-			}
-			heldItem = emptyCup.Instantiate() as Node2D;
-			items.Add(heldItem);
-			
-			AddChild(heldItem);
-
-			GD.Print("grab cup");
-			hoverCup = false;
-		}
-
 		#endregion
 
 		// if not null, seek position
