@@ -11,8 +11,6 @@ public partial class Node3D : Node
 	private static bool man = true;
 	private bool woman = true;
 
-	//scoring variable
-	int score;
 	// values for hander
 	private bool cannonSelected = false;
 	private bool trashHover = false;
@@ -93,15 +91,12 @@ public partial class Node3D : Node
 		if (man)
 		{
 			man = false;
-			GD.Print(man);
 			return;
 		}
 		woman = false;
-		GD.Print("Ayudar");
 		scoreboard = GetNode<Label>("../Node3D/Scoreboard");
 		lastScore = GetNode<Label>("../Node3D/AddOn");
-		GD.Print(scoreboard);
-		score = 0;
+		Global.GetInstance().score = 0;
 		// load Cup and start spriteHandler
 		// GetNode reaches from root/camera for some reason. we need to be at root/Node3D
 		// so keep the absolute path used here unless there's some issue on machines that aren't mine
@@ -135,7 +130,7 @@ public partial class Node3D : Node
 		{
 			return;
 		}
-		scoreboard.Text = "" + score;
+		scoreboard.Text = "" + Global.GetInstance().score;
 		#region // Input updates
 		if (Input.IsActionJustPressed("click"))
 		{
@@ -206,7 +201,6 @@ public partial class Node3D : Node
 				}
 				if (hoverFruit)
 				{
-					GD.Print("foot");
 					workingOrder[0] = sprites.SetBowl(1);
 					PlayAudioFx("bloop_mid");
 				}
@@ -216,7 +210,7 @@ public partial class Node3D : Node
 					PlayAudioFx("bloop_mid");
 				}
 			}
-			GD.Print(workingOrder[0]);
+			
 			// ~~ cannon events ~~
 
 			// cannon fire, button pressed
@@ -237,12 +231,12 @@ public partial class Node3D : Node
 					// launch customer
 					Vector3 customerDir = new(0, 0.2f, -1);
 					int time = currentCustomer.Launch(40, customerDir);
-					score += time;
+					Global.GetInstance().score += time;
 					InstantiateProjectile();
 
 					Scoring scoreGen = new Scoring();
 					int grade = scoreGen.Grade(currentCustomer.Order, cannonContents);
-					score += grade;
+					Global.GetInstance().score += grade;
 					lastScore.Text = "\n+" + (grade + time); 
 
 					bool orderCorrect =
@@ -262,7 +256,7 @@ public partial class Node3D : Node
 					currentCustomer = null;
 				}
 
-				score += curScore;
+				Global.GetInstance().score += curScore;
 
 			}
 
@@ -333,7 +327,6 @@ public partial class Node3D : Node
 		// END GAME IF TOO MANY WRONG ORDERS
 		if (incorrectOrders > MaxIncorrectOrders)
 		{
-			score = 0;
 			incorrectOrders = 0;
 			ResetOrders();
 			GD.Print("GAME OVER CONDITION");
@@ -414,7 +407,6 @@ public partial class Node3D : Node
 
 	private void ResetOrders()
 	{
-		GD.Print("order reset");
 
 		workingOrder = new int[3];
 		cannonContents = new int[3];
