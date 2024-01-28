@@ -55,6 +55,9 @@ public partial class Node3D : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+
+		#region // Input updates
+
 		// 0 is coffee, 1 is milk, 2 is veganmilk
 		// checks if you click on coffee & updates drink
 		if (Input.IsActionJustPressed("click") && hoverCoffee)
@@ -73,8 +76,6 @@ public partial class Node3D : Node
 		{
 			order[1] = sprites.EmptyCup();
 		}
-
-		#region // Input updates
 
 		// cannon fire event
 		if (Input.IsActionJustPressed("click") && cannonSelected)
@@ -161,8 +162,6 @@ public partial class Node3D : Node
 
 	private CustomerController SpawnCustomer()
 	{
-		GD.Print("spawn customer ? ");
-
 		Node root = this.GetParent();
 		CustomerController instance = customerScene.Instantiate() as CustomerController;
 		// root.AddChild(instance);

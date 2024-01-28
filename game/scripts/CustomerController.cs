@@ -120,7 +120,6 @@ public partial class CustomerController : CharacterBody3D
 	private void SetFloppy(bool enabled)
 	{
 		SetFloppy(this, enabled);
-		GD.Print("Floppy value set to " + EnableFloppy);
 	}
 
 	/// <summary>
@@ -221,8 +220,6 @@ public partial class CustomerController : CharacterBody3D
 		{
 			index = (int)rng.Randi() % skinPaths.Length;
 		}
-
-		GD.Print("Index: " + index);
 
 		return "res://assets/" + skinPaths[index];
 	}
