@@ -39,7 +39,8 @@ public partial class Node3D : Node
 	private readonly int spawnFrameOffset = 10;
 	private int frameCounter = 0;
 
-	int[] order;
+	int[] workingOrder;         // order that player is working on
+	int[] cannonContents;       // what's in the cannon
 
 	private PackedScene emptyCup;
 	Script scrpt = new CSharpScript();
@@ -52,6 +53,31 @@ public partial class Node3D : Node
 	private Sprite3D cup;
 	private Sprite3D bowl;
 	private Sprite3D addon;
+
+	private Vector3 cupInitialPos;
+	private Vector3 bowlInitialPos;
+
+	/// <summary>
+	/// Reference to cup static body's GrabStuff script
+	/// </summary>
+	private GrabStuff CupGrab
+	{
+		get
+		{
+			return GetNode<GrabStuff>("../Node3D/Cup");
+		}
+	}
+
+	/// <summary>
+	/// Reference to bowl static body's GrabStuff script
+	/// </summary>
+	private GrabStuff BowlGrab
+	{
+		get
+		{
+			return GetNode<GrabStuff>("../Node3D/Bowl");
+		}
+	}
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -75,7 +101,8 @@ public partial class Node3D : Node
 		sprites = new SpriteHandler(cup, bowl, addon);
 
 		// starts an empty order
-		order = new int[3];
+		ResetOrders();
+
 		// load files
 		projectile = GD.Load<PackedScene>("res://scenes/Projectile.tscn");
 		customerScene = GD.Load<PackedScene>("res://scenes/customer.tscn");
@@ -102,47 +129,48 @@ public partial class Node3D : Node
 			// checks if you click on coffee & updates drink
 			if (hoverCoffee)
 			{
-				order[1] = sprites.SetCup(0, order[1]);
+				workingOrder[1] = sprites.SetCup(0, workingOrder[1]);
 			}
 			if (hoverMilk)
 			{
-				order[1] = sprites.SetCup(1, order[1]);
+				workingOrder[1] = sprites.SetCup(1, workingOrder[1]);
 			}
 			if (hoverVeganMilk)
 			{
-				order[1] = sprites.SetCup(2, order[1]);
+				workingOrder[1] = sprites.SetCup(2, workingOrder[1]);
 			}
 			if (trashHover)
 			{
-				order[1] = sprites.EmptyCup();
-				order[2] = sprites.ClearTopping();
+				workingOrder[1] = sprites.EmptyCup();
+				workingOrder[2] = sprites.ClearTopping();
 			}
 
 			// ~~ topping/addon choosing ~~
-			// if no addon exists yet, AND liquid is not empty, do addon shtuff
-			if (order[2] == 0 && order[1] != 0)
+			// if no addon exists yet, AND liquid is not empty, 
+			// AND cup is on the back view, do addon shtuff
+			if (workingOrder[2] == 0 && workingOrder[1] != 0 && CupGrab.InBack)
 			{
 				if (hoverWhippedCream)
 				{
-					order[2] = sprites.SetAddon(AddonType.WhippedCream);
+					workingOrder[2] = sprites.SetAddon(AddonType.WhippedCream);
 				}
 				if (hoverMayo)
 				{
-					order[2] = sprites.SetAddon(AddonType.Mayo);
+					workingOrder[2] = sprites.SetAddon(AddonType.Mayo);
 				}
 				if (hoverChocolate)
 				{
-					order[2] = sprites.SetAddon(AddonType.Chocolate);
+					workingOrder[2] = sprites.SetAddon(AddonType.Chocolate);
 				}
 				if (hoverCaramel)
 				{
-					order[2] = sprites.SetAddon(AddonType.Caramel);
+					workingOrder[2] = sprites.SetAddon(AddonType.Caramel);
 				}
 			}
 			
 			// ~~ food choosing ~~		
 			// if no addon exists yet,  consider food
-			if (order[0] != 0)
+			if (workingOrder[0] != 0)
 			{
 				if (hoverBleuCheese)
 				{
@@ -159,27 +187,76 @@ public partial class Node3D : Node
 			}
 		}
 
+			// ~~ cannon events ~~
 
-		// cannon fire event
-		if (Input.IsActionJustPressed("click") && cannonSelected)
-		{
-			int curScore = 0;
-			// if (currentCustomer != null && heldItem != null)
-			if (currentCustomer != null)
+			// cannon fire, button pressed
+			if (hoverCannonButon)
 			{
-				// launch customer
-				Vector3 customerDir = new(0, 0.2f, -1);
-				curScore = currentCustomer.Launch(40, customerDir);
-				InstantiateProjectile();
-				currentCustomer = null;
-				if (heldItem != null) {
-					items.Remove(heldItem);
-					heldItem.QueueFree();
-					heldItem = null;
+				GD.Print("button clicked");
+				int curScore = 0;
+
+				// if (currentCustomer != null && heldItem != null)
+				if (currentCustomer != null)
+				{
+					// launch customer
+					Vector3 customerDir = new(0, 0.2f, -1);
+					currentCustomer.Launch(40, customerDir);
+					InstantiateProjectile();
+
+					bool orderCorrect =
+						cannonContents[0] == currentCustomer.Order[0] &&
+						cannonContents[1] == currentCustomer.Order[1] &&
+						cannonContents[2] == currentCustomer.Order[2];
+
+					if (orderCorrect)
+					{
+						curScore += 100;
+						GD.Print("ORDER CORRECT!");
+					}
+					else
+					{
+						GD.Print("ORDER INCORRECT!");
+					}
+
+					CupGrab.Visible = true;
+					BowlGrab.Visible = true;
+					sprites.ResetCup();
+					ResetOrders();
+					currentCustomer = null;
+				}
+
+				score += curScore;
+
+			}
+
+			// cannon load event
+			if (cannonSelected && !hoverCannonButon)
+			{
+				// make cup invisible and put it back in
+				// initial position when loaded to cannon
+				if (CupGrab.IsGrabbed)
+				{
+					CupGrab.Visible = false;
+					CupGrab.Position = cupInitialPos;
+
+					// save cup info in cannon order
+					cannonContents[1] = workingOrder[1];
+					cannonContents[2] = workingOrder[2];
+				}
+
+				// make bowl invisible and put it back in 
+				// initial position when loaded to cannon
+				if (BowlGrab.IsGrabbed)
+				{
+					BowlGrab.Visible = false;
+					BowlGrab.Position = bowlInitialPos;
+
+					// save bowl info in cannon order
+					cannonContents[0] = workingOrder[0];
 				}
 			}
-			score += curScore;
 		}
+
 
 		// camera switch event
 		if (Input.IsActionJustPressed("Switch Camera"))
@@ -226,7 +303,6 @@ public partial class Node3D : Node
 			currentCamera.Current = true;
 		}
 	}
-
 
 	private void InstantiateProjectile()
 	{
@@ -275,6 +351,12 @@ public partial class Node3D : Node
 
 		// return created vector
 		return new Vector3(randX, 0, randZ) + customerSeekPos;
+	}
+
+	private void ResetOrders()
+	{
+		workingOrder = new int[3];
+		cannonContents = new int[3];
 	}
 
 	// ~~ drinks ~~
@@ -346,4 +428,8 @@ public partial class Node3D : Node
 	// for the specific area around machines
 	private void _on_work_area_mouse_entered() { hoverWork = true; }
 	private void _on_work_area_mouse_exited() { hoverWork = false; }
+
+	// for the button
+	private void _on_button_mouse_entered() { hoverCannonButon = true; }
+	private void _on_button_mouse_exited() { hoverCannonButon = false; }
 }
