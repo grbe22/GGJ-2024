@@ -1,8 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://c7mp1uudpl8mh"]
+[gd_scene load_steps=17 format=3 uid="uid://c7mp1uudpl8mh"]
 
 [ext_resource type="Script" path="res://scripts/CustomerController.cs" id="1_46n2i"]
 [ext_resource type="Script" path="res://scripts/HeadController.cs" id="2_4qhum"]
+[ext_resource type="Texture2D" uid="uid://b45q04yfs1aof" path="res://assets/tests/upperarm_left.png" id="4_j68ka"]
 [ext_resource type="Script" path="res://scripts/LimbController.cs" id="5_j6alb"]
+[ext_resource type="Texture2D" uid="uid://dqb6alme2w3sp" path="res://assets/tests/lowerarm_left.png" id="5_jbm0t"]
+[ext_resource type="Texture2D" uid="uid://dlivf8pgwwoa5" path="res://assets/tests/upperarm_right.png" id="6_73qpw"]
+[ext_resource type="Texture2D" uid="uid://baqhjv017dcfu" path="res://assets/tests/lowerarm_right.png" id="7_nxq1q"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hisrj"]
 size = Vector3(4.36, 4.24, 0.01)
@@ -156,6 +160,7 @@ script = ExtResource("5_j6alb")
 
 [node name="MESH-upperarm_left" type="Sprite3D" parent="leftArmJoint/armLeft/upperarmLeft"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.67597, -0.523323, 0)
+texture = ExtResource("4_j68ka")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="leftArmJoint/armLeft/upperarmLeft"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.67597, -0.523323, 0)
@@ -167,6 +172,7 @@ script = ExtResource("5_j6alb")
 
 [node name="MESH-lowerarm_left" type="Sprite3D" parent="leftArmJoint/armLeft/forearmLeft"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.61771, -0.4475, 0)
+texture = ExtResource("5_jbm0t")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="leftArmJoint/armLeft/forearmLeft"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.61771, -0.4475, 0)
@@ -188,6 +194,7 @@ script = ExtResource("5_j6alb")
 
 [node name="MESH-upperarm_right" type="Sprite3D" parent="rightArmJoint/armRight/upperarmRight"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.30898, -0.27808, 0)
+texture = ExtResource("6_73qpw")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rightArmJoint/armRight/upperarmRight"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.30898, -0.27808, 0)
@@ -199,6 +206,7 @@ script = ExtResource("5_j6alb")
 
 [node name="MESH-lowerarm_right" type="Sprite3D" parent="rightArmJoint/armRight/forearmRight"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25091, -0.313858, 0)
+texture = ExtResource("7_nxq1q")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rightArmJoint/armRight/forearmRight"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25091, -0.313858, 0)

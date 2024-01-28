@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bxxmbvcogekrw" path="res://assets/drinks/mayocontainer.png" id="4_fixmn"]
 [ext_resource type="Texture2D" uid="uid://btvt1txewf6jd" path="res://assets/drinks/caramelbottle.png" id="5_1dl1e"]
 [ext_resource type="Texture2D" uid="uid://4xopxhkuiy4" path="res://assets/WallTextures/customerBackWall.png" id="5_mvw2n"]
-[ext_resource type="Texture2D" uid="uid://bw33gke5fdox2" path="res://assets/drinks/veganmilkcarton.png" id="5_umk1q"]
+[ext_resource type="Texture2D" uid="uid://c7hxhoxgygyfp" path="res://assets/drinks/veganmilkcarton.png" id="5_umk1q"]
 [ext_resource type="Texture2D" uid="uid://cxsmvjvt2tsqu" path="res://assets/drinks/chocolatebottle.png" id="6_4uq5d"]
 [ext_resource type="Texture2D" uid="uid://5i0f8kytmvgt" path="res://assets/WallTextures/barWall.png" id="6_7uqjn"]
 [ext_resource type="Texture2D" uid="uid://cawqdebyk1vcl" path="res://assets/WallTextures/Counter.png" id="6_cp28g"]
@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://d6b0og7pfa8i" path="res://assets/drinks/milkcarton.png" id="7_14qxa"]
 [ext_resource type="Texture2D" uid="uid://d01wvlkvx13om" path="res://assets/drinks/empty.png" id="8_gnphm"]
 [ext_resource type="Texture2D" uid="uid://dobogechwcvxv" path="res://assets/crimmas.png" id="9_04f3w"]
-[ext_resource type="Texture2D" uid="uid://bnxdio4lpi1uk" path="res://assets/objects/cannon_full.png" id="9_i4qrw"]
+[ext_resource type="Texture2D" uid="uid://c0im6mnmk3sjq" path="res://assets/objects/cannon_full.png" id="9_i4qrw"]
 
 [sub_resource type="Environment" id="Environment_m0xu7"]
 fog_enabled = true
@@ -116,7 +116,7 @@ albedo_texture = ExtResource("6_cp28g")
 [sub_resource type="BoxMesh" id="BoxMesh_iajfa"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qeagc"]
-size = Vector3(7, 5, 1)
+size = Vector3(2, 2, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_xwbbe"]
 
@@ -364,7 +364,7 @@ mesh = SubResource("BoxMesh_xwbbe")
 surface_material_override/0 = SubResource("StandardMaterial3D_afkda")
 
 [node name="CANNON" type="StaticBody3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.557953, 0, 3.9543)
+transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, -0.284501, 0, 3.9543)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/CANNON"]
 shape = SubResource("BoxShape3D_qeagc")

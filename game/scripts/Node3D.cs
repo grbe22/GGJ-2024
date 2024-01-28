@@ -45,8 +45,10 @@ public partial class Node3D : Node
 	public override void _Ready()
 	{
 		// load Cup and start spriteHandler
-		cup = GetNode<Sprite3D>("Cup/Cup");
-		addon = GetNode<Sprite3D>("Cup/Addon");
+		// GetNode reaches from root/camera for some reason. we need to be at root/Node3D
+		// so keep the absolute path used here unless there's some issue on machines that aren't mine
+		cup = GetNode<Sprite3D>("../Node3D/Cup/Cup");
+		addon = GetNode<Sprite3D>("../Node3D/Cup/Addon");
 		sprites = new SpriteHandler(cup, cup, addon);
 
 		// starts an empty order
@@ -87,6 +89,7 @@ public partial class Node3D : Node
 			if (trashHover)
 			{
 				order[1] = sprites.EmptyCup();
+				order[0] = sprites.ClearTopping();
 			}
 
 			// ~~ topping/addon choosing ~~

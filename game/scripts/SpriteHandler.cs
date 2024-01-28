@@ -86,4 +86,9 @@ public partial class SpriteHandler : Node
 		cup.Texture = (Texture2D)GD.Load("res://assets/drinks/empty.png");
 		return 0;
 	}
+	
+	public int ClearTopping() {
+		addon.Texture = (Texture2D)GD.Load("res://assets/drinks/notopping.png");
+		return 0;
+	}
 }
