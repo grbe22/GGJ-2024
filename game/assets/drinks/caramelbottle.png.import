@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://l6sxofjyffsq"
-path="res://.godot/imported/bleucheese.png-b9f2da97612081baadb66fae596ebd23.ctex"
+uid="uid://btvt1txewf6jd"
+path="res://.godot/imported/caramelbottle.png-241f1d52da42d6653190dcc7538b8825.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/foods/bleucheese.png"
-dest_files=["res://.godot/imported/bleucheese.png-b9f2da97612081baadb66fae596ebd23.ctex"]
+source_file="res://assets/drinks/caramelbottle.png"
+dest_files=["res://.godot/imported/caramelbottle.png-241f1d52da42d6653190dcc7538b8825.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://l6sxofjyffsq"
-path="res://.godot/imported/bleucheese.png-b9f2da97612081baadb66fae596ebd23.ctex"
+uid="uid://bejqmxvaa6e8v"
+path="res://.godot/imported/fruitbowl.png-51867c54ca6f8df8aa8ea40e62e7562a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/foods/bleucheese.png"
-dest_files=["res://.godot/imported/bleucheese.png-b9f2da97612081baadb66fae596ebd23.ctex"]
+source_file="res://assets/foods/fruitbowl.png"
+dest_files=["res://.godot/imported/fruitbowl.png-51867c54ca6f8df8aa8ea40e62e7562a.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://l6sxofjyffsq"
-path="res://.godot/imported/bleucheese.png-b9f2da97612081baadb66fae596ebd23.ctex"
+uid="uid://biqdvb8jg5u7y"
+path="res://.godot/imported/potatosack.png-46afc6dc675c62a98cd70ee9835e5fc8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/foods/bleucheese.png"
-dest_files=["res://.godot/imported/bleucheese.png-b9f2da97612081baadb66fae596ebd23.ctex"]
+source_file="res://assets/foods/potatosack.png"
+dest_files=["res://.godot/imported/potatosack.png-46afc6dc675c62a98cd70ee9835e5fc8.ctex"]
 
 [params]
 

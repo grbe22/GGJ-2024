@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://l6sxofjyffsq"
-path="res://.godot/imported/bleucheese.png-b9f2da97612081baadb66fae596ebd23.ctex"
+uid="uid://cnr4ptp4pxpia"
+path="res://.godot/imported/whippedcreamcan.png-1809771d57cf6c24a281b329b901b684.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/foods/bleucheese.png"
-dest_files=["res://.godot/imported/bleucheese.png-b9f2da97612081baadb66fae596ebd23.ctex"]
+source_file="res://assets/drinks/whippedcreamcan.png"
+dest_files=["res://.godot/imported/whippedcreamcan.png-1809771d57cf6c24a281b329b901b684.ctex"]
 
 [params]
 
