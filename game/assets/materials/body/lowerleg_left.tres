@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cgrm88hjx0l60" path="res://assets/tests/lowerleg_left.png" id="1_qshs5"]
 
 [resource]
+resource_local_to_scene = true
 transparency = 1
 cull_mode = 2
 albedo_texture = ExtResource("1_qshs5")
