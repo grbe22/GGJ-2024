@@ -58,8 +58,8 @@ public partial class CustomerController : CharacterBody3D
 		if (EnableFloppy != floppyPrevState)
 		{
 			SetFloppy(EnableFloppy);
-			demandContainer.QueueFree();
-			demand.QueueFree();
+			demandContainer?.QueueFree();
+			demand?.QueueFree();
 		}
 
 		floppyPrevState = EnableFloppy;
