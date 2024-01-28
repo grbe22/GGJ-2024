@@ -2,7 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< HEAD
+uid="uid://ebbmoy8yxuud"
+=======
 uid="uid://ccpvvmfv86uix"
+>>>>>>> 77b7a8f72f9cf9e9f0ef837cbf2b8150c95d5e01
 path="res://.godot/imported/bleucheese_bottle.png-247f2a5deeee3494bb675b7e397b2787.ctex"
 metadata={
 "vram_texture": false

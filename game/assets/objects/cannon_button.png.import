@@ -2,7 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< HEAD
+uid="uid://celjca1xgel2c"
+=======
 uid="uid://i83puq4aat0d"
+>>>>>>> 77b7a8f72f9cf9e9f0ef837cbf2b8150c95d5e01
 path="res://.godot/imported/cannon_button.png-52bff70b0e1f1d63ac5472a2b8d98c81.ctex"
 metadata={
 "vram_texture": false
