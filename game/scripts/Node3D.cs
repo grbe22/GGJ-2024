@@ -7,6 +7,7 @@ public partial class Node3D : Node
 	private bool cannonSelected = false;
 	private bool hoverCup = false;
 	private bool hoverWork = false;
+	private bool hoverCoffee = false;
 	private Camera3D currentCamera;
 	private CustomerController currentCustomer;
 	private PackedScene projectile;
@@ -14,14 +15,23 @@ public partial class Node3D : Node
 
 	private Vector3 customerSeekPos = new(2.56f, 7.5f, -5.19f);
 
+	int[] order;
+
 	private PackedScene emptyCup;
 	Script scrpt = new CSharpScript();
 	private Node2D heldItem;
 	private List<Node2D> items = new List<Node2D>();
-
+	
+	private Sprite3D cup;
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		// load Cup
+		cup = GetNode<Sprite3D>("../Node3D/Cup/Cup");
+		
+		// starts an empty order
+		order = new int[3];
 		// load files
 		projectile = GD.Load<PackedScene>("res://scenes/Projectile.tscn");
 		customerScene = GD.Load<PackedScene>("res://scenes/customer.tscn");
@@ -37,6 +47,26 @@ public partial class Node3D : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		// checks if you click on coffee & updates drink
+		if (Input.IsActionJustPressed("click") && hoverCoffee) {
+			if (order[1] == 0) {
+				order[1] = 2;
+			}
+			if (order[1] == 1) {
+				order[1] = 3;
+			}
+			if (order[1] == 4) {
+				order[1] = 5;
+			}
+		}
+		
+		// updates sprite for the cup.
+		if (order[1] == 2	) {
+			Texture2D texture = (Texture2D)GD.Load("res://assets/drinks/milk.png");
+			// Ensure the material is not shared to avoid modifying a shared material
+			cup.Texture = texture;
+		}
+		
 		#region // Input updates
 
 		// cannon fire event
@@ -157,6 +187,13 @@ public partial class Node3D : Node
 		ProjectileController controller = inst as ProjectileController;
 		controller.Launch(projDir, 200);
 	}
+	private void _on_coffee_mouse_entered()
+	{
+		hoverCoffee = true;
+	}
+	private void _on_coffee_mouse_exited()
+	{
+		hoverCoffee = false;
 
 	private CustomerController SpawnCustomer()
 	{
@@ -188,3 +225,9 @@ public partial class Node3D : Node
 		return new Vector3(randX, 0, randZ) + customerSeekPos;
 	}
 }
+
+
+
+
+
+
