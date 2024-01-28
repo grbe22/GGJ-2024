@@ -2,11 +2,7 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<< HEAD
-uid="uid://c6hqpyy4hcpjs"
-=======
-uid="uid://d2uo1jcgkmer7"
->>>>>>> cf9e1a2700168860b3df613caf560afb92b1b905
+uid="uid://c7hxhoxgygyfp"
 path.s3tc="res://.godot/imported/veganmilkcarton.png-17b6db2c6a0ea16447f6d16185063a16.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
