@@ -6,12 +6,13 @@ public partial class Scoring : Node
 	public Scoring() {}
 	
 	private int GradeDrink(int request, int provided) {
+		// returns a plain constant for multiplication
 		if (request == provided) {
 			return 2;
 		}
 		if (request == 5 && (provided == 4 || provided == 2)) { return 1; }
 		if (request == 3 && (provided == 1 || provided == 2)) { return 1; }
-		return 0
+		return 0;
 	}
 	
 	public int Grade(int[] order, int[] provided) {
