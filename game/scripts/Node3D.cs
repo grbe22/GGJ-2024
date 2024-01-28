@@ -8,6 +8,8 @@ public partial class Node3D : Node
 	private bool hoverCup = false;
 	private bool hoverWork = false;
 	private bool hoverCoffee = false;
+	private bool hoverMilk = false;
+	private bool hoverVeganMilk = false;
 	private Camera3D currentCamera;
 	private CustomerController currentCustomer;
 	private PackedScene projectile;
@@ -54,7 +56,10 @@ public partial class Node3D : Node
 		// 0 is coffee, 1 is milk, 2 is veganmilk
 		// checks if you click on coffee & updates drink
 		if (Input.IsActionJustPressed("click") && hoverCoffee) {
-			sprites.SetCup(0, order[1]);
+			order[1] = sprites.SetCup(0, order[1]);
+		}
+		if (Input.IsActionJustPressed("click") && hoverMilk) {
+			order[1] = sprites.SetCup(1, order[1]);
 		}
 		
 		#region // Input updates
@@ -215,10 +220,12 @@ public partial class Node3D : Node
 		// return created vector
 		return new Vector3(randX, 0, randZ) + customerSeekPos;
 	}
+	private void _on_milk_mouse_entered()
+	{
+		hoverMilk = true;
+	}
+	private void _on_milk_mouse_exited()
+	{
+		hoverMilk = false;
+	}
 }
-
-
-
-
-
-

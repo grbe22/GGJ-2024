@@ -297,6 +297,8 @@ shape = SubResource("BoxShape3D_j3xxy")
 
 [connection signal="mouse_entered" from="Coffee" to="." method="_on_coffee_mouse_entered"]
 [connection signal="mouse_exited" from="Coffee" to="." method="_on_coffee_mouse_exited"]
+[connection signal="mouse_entered" from="Milk" to="." method="_on_milk_mouse_entered"]
+[connection signal="mouse_exited" from="Milk" to="." method="_on_milk_mouse_exited"]
 [connection signal="mouse_entered" from="Environment/BackCounter/CoffeeCup" to="." method="_on_coffee_cup_mouse_entered"]
 [connection signal="mouse_entered" from="Environment/CANNON" to="." method="_on_cannon_mouse_entered"]
 [connection signal="mouse_exited" from="Environment/CANNON" to="." method="_on_cannon_mouse_exited"]
