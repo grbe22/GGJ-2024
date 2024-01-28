@@ -12,7 +12,7 @@ public partial class Node3D : Node
 	private bool woman = true;
 
 	//scoring variable
-	int score;
+	public int score;
 	// values for hander
 	private bool cannonSelected = false;
 	private bool trashHover = false;
@@ -328,10 +328,9 @@ public partial class Node3D : Node
 		// END GAME IF TOO MANY WRONG ORDERS
 		if (incorrectOrders > MaxIncorrectOrders)
 		{
-			score = 0;
 			incorrectOrders = 0;
 			ResetOrders();
-			GD.Print("GAME OVER CONDITION");
+			GetTree().ChangeSceneToFile("res://scenes/lose.tscn");
 		}
 	}
 

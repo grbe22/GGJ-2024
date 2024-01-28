@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3 uid="uid://gk1kedj1pkqe"]
+
+[ext_resource type="Script" path="res://scripts/LaunchScreen.cs" id="1_iy1ta"]
+[ext_resource type="FontFile" uid="uid://btgl4d7a1mcbw" path="res://assets/RubikBubbles-Regular.ttf" id="2_pb7pr"]
+[ext_resource type="FontFile" uid="uid://dmqyhfhx8srkh" path="res://assets/Pangolin-Regular.ttf" id="3_qqwjj"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_iy1ta")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(1152, 648)
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.698039, 0.513726, 0.729412, 1)
+
+[node name="Label" type="Label" parent="ColorRect"]
+offset_left = 167.0
+offset_top = 76.0
+offset_right = 990.0
+offset_bottom = 171.0
+theme_override_fonts/font = ExtResource("2_pb7pr")
+theme_override_font_sizes/font_size = 80
+text = "Make Drinks n Stuff"
+
+[node name="Label2" type="Label" parent="ColorRect"]
+offset_left = 167.0
+offset_top = 167.0
+offset_right = 994.0
+offset_bottom = 262.0
+theme_override_fonts/font = ExtResource("2_pb7pr")
+theme_override_font_sizes/font_size = 60
+text = "Press space to flip camera"
+
+[node name="Label3" type="Label" parent="ColorRect"]
+offset_left = 221.0
+offset_top = 245.0
+offset_right = 1044.0
+offset_bottom = 340.0
+theme_override_fonts/font = ExtResource("2_pb7pr")
+theme_override_font_sizes/font_size = 40
+text = "Try to get a good score (..or don't)"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.007
+anchor_bottom = 0.012
+offset_left = 397.0
+offset_top = 381.0
+offset_right = 761.936
+offset_bottom = 523.116
+theme_override_fonts/font = ExtResource("3_qqwjj")
+theme_override_font_sizes/font_size = 60
+text = "Ok."
