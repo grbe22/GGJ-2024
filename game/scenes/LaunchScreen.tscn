@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bp0oq4rfntagl"]
+[gd_scene load_steps=8 format=3 uid="uid://bp0oq4rfntagl"]
 
 [ext_resource type="FontFile" uid="uid://btgl4d7a1mcbw" path="res://assets/RubikBubbles-Regular.ttf" id="1_i7ayd"]
 [ext_resource type="FontFile" uid="uid://dmqyhfhx8srkh" path="res://assets/Pangolin-Regular.ttf" id="1_lyd3v"]
 [ext_resource type="Script" path="res://scripts/LaunchScreen.cs" id="3_sqspy"]
+[ext_resource type="Texture2D" uid="uid://wcqjp6dgm126" path="res://assets/objects/title.png" id="4_n1rd0"]
 
 [sub_resource type="Theme" id="Theme_xpinm"]
 default_font = ExtResource("1_lyd3v")
@@ -15,6 +16,14 @@ Fonts/fonts/normal = ExtResource("1_lyd3v")
 Label/font_sizes/font_size = 100
 Label/fonts/font = ExtResource("1_i7ayd")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jllpj"]
+transparency = 1
+cull_mode = 2
+albedo_texture = ExtResource("4_n1rd0")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_tooeu"]
+material = SubResource("StandardMaterial3D_jllpj")
+
 [node name="LaunchScreen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -25,13 +34,10 @@ grow_vertical = 2
 theme = SubResource("Theme_xpinm")
 script = ExtResource("3_sqspy")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 657.0
-color = Color(0.419608, 0.439216, 0.360784, 1)
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+mesh = SubResource("PlaneMesh_tooeu")
 
-[node name="Button" type="Button" parent="ColorRect"]
+[node name="Button" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.007
@@ -42,12 +48,12 @@ offset_right = 769.936
 offset_bottom = 524.116
 text = "Play"
 
-[node name="Label" type="Label" parent="ColorRect"]
+[node name="Label" type="Label" parent="."]
 layout_mode = 0
 offset_left = 475.0
 offset_top = 159.0
-offset_right = 693.0
-offset_bottom = 270.0
+offset_right = 720.0
+offset_bottom = 278.0
 text = "Title"
 horizontal_alignment = 1
 vertical_alignment = 1
