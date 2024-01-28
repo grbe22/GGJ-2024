@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://b6a03254v5auy"]
+
+[ext_resource type="Script" path="res://scripts/LaunchScreen.cs" id="1_5y6ac"]
+[ext_resource type="FontFile" uid="uid://btgl4d7a1mcbw" path="res://assets/RubikBubbles-Regular.ttf" id="2_diacn"]
+[ext_resource type="FontFile" uid="uid://dmqyhfhx8srkh" path="res://assets/Pangolin-Regular.ttf" id="3_1ttuo"]
+[ext_resource type="Texture2D" uid="uid://kn33nj4ej0do" path="res://assets/tests/bodyparts.png" id="4_skwst"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5y6ac")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(1152, 648)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.541176, 0.6, 0.643137, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 357.0
+offset_top = 86.0
+offset_right = 788.0
+offset_bottom = 181.0
+theme_override_fonts/font = ExtResource("2_diacn")
+theme_override_font_sizes/font_size = 80
+text = "YOU LOSE."
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.007
+anchor_bottom = 0.012
+offset_left = 379.0
+offset_top = 228.0
+offset_right = 743.936
+offset_bottom = 370.116
+theme_override_fonts/font = ExtResource("3_1ttuo")
+theme_override_font_sizes/font_size = 60
+text = "Play Again."
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(566, 1223)
+texture = ExtResource("4_skwst")
