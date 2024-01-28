@@ -143,7 +143,6 @@ public partial class CustomerController : CharacterBody3D
 		if (node is MeshInstance3D mesh)
 		{
 			string fileName = GetFilenameFromMesh(mesh);
-			GD.Print("File name: " + fileName);
 			ApplyTexture(mesh, $"{personFolderPath}/{fileName}");
 		}
 
