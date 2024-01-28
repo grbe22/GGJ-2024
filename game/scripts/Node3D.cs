@@ -48,6 +48,7 @@ public partial class Node3D : Node
 	private Node2D heldItem;
 	private List<Node2D> items = new List<Node2D>();
 	private Label scoreboard;
+	private Label lastScore;
 
 	// for handling sprites
 	private SpriteHandler sprites;
@@ -98,6 +99,7 @@ public partial class Node3D : Node
 		woman = false;
 		GD.Print("Ayudar");
 		scoreboard = GetNode<Label>("../Node3D/Scoreboard");
+		lastScore = GetNode<Label>("../Node3D/AddOn");
 		GD.Print(scoreboard);
 		score = 0;
 		// load Cup and start spriteHandler
@@ -234,11 +236,14 @@ public partial class Node3D : Node
 
 					// launch customer
 					Vector3 customerDir = new(0, 0.2f, -1);
-					score += currentCustomer.Launch(40, customerDir);
+					int time = currentCustomer.Launch(40, customerDir);
+					score += time;
 					InstantiateProjectile();
 
 					Scoring scoreGen = new Scoring();
-					score += scoreGen.Grade(currentCustomer.Order, cannonContents);
+					int grade = scoreGen.Grade(currentCustomer.Order, cannonContents);
+					score += grade;
+					lastScore.Text = "\n+" + (grade + time); 
 
 					bool orderCorrect =
 						cannonContents[0] == currentCustomer.Order[0] &&

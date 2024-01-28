@@ -22,8 +22,8 @@ public enum AddonType {
 public enum FoodType {
 	None,
 	BleuCheese,
-	SmallFry,
-	Fruit
+	Fruit,
+	SmallFry
 }
 
 public partial class OrderScript : Node
@@ -37,7 +37,7 @@ public partial class OrderScript : Node
 	private static readonly string[] stringAddons = { "None", "whipped cream", "mayo", "chocolate", "caramel" };
 	// none, bleu cheese, fries 
 	private const int foods = 4;
-	private static readonly string[] stringFoods = { "None", "bleu cheese", "small fry", "fruit" };
+	private static readonly string[] stringFoods = { "None", "bleu cheese", "fruit", "small fry" };
 
 	public string PrintOrder(int[] deep) {
 		int drink = deep[1];

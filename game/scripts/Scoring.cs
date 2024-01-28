@@ -35,9 +35,11 @@ public partial class Scoring : Node
 			finalScore += x * 25;
 			
 		}
-		
 		if (order[0] == provided[0]) {
 			finalScore += 30;
+		}
+		if (order[0] == 0 && provided[0] == 0 && finalScore == 30) { 
+			finalScore += 70;
 		}
 		return finalScore;
 	}

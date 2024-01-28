@@ -64,6 +64,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label" type="Label" parent="Label"]
+layout_mode = 0
 offset_left = -1.0
 offset_top = 408.0
 offset_right = 638.0
