@@ -186,13 +186,7 @@ public partial class Node3D : Node
 					PlayAudioFx("bloop_mid");
 				}
 			}
-<<<<<<< HEAD
-			
-			
-			
-=======
 
->>>>>>> 3a69f5b12a7d8a1f2db6f56025b49a368a8eb2c8
 			// ~~ food choosing ~~		
 			// if no addon exists yet,  consider food
 			if (workingOrder[0] == 0)
@@ -200,30 +194,18 @@ public partial class Node3D : Node
 				GD.Print("WAH");
 				if (hoverBleuCheese)
 				{
-<<<<<<< HEAD
 					workingOrder[0] = sprites.SetBowl(0);
+					PlayAudioFx("bloop_mid");
 				}
 				if (hoverFruit)
 				{
 					workingOrder[0] = sprites.SetBowl(1);
+					PlayAudioFx("bloop_mid");
 				}
 				if (hoverPotato)
 				{
 					workingOrder[0] = sprites.SetBowl(2);
-=======
-					workingOrder[3] = sprites.SetBowl(0);
 					PlayAudioFx("bloop_mid");
-				}
-				if (hoverFruit)
-				{
-					workingOrder[3] = sprites.SetBowl(1);
-					PlayAudioFx("bloop_mid");
-				}
-				if (hoverPotato)
-				{
-					workingOrder[3] = sprites.SetBowl(2);
-					PlayAudioFx("bloop_mid");
->>>>>>> 3a69f5b12a7d8a1f2db6f56025b49a368a8eb2c8
 				}
 			}
 			GD.Print(workingOrder[0]);
