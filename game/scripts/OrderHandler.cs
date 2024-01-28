@@ -4,20 +4,27 @@ using System;
 public partial class OrderHandler : Node
 {
 	private OrderScript orderScript;
-	private int[] order;
 	private string speech;
+
+	/// <summary>
+	/// Current order of customer
+	/// </summary>
+	public int[] Order { get; private set; }
+
 	public OrderHandler()
 	{
 		orderScript = new OrderScript();
-		order = orderScript.GenerateOrder();
-		speech = orderScript.PrintOrder(order);
+		Order = orderScript.GenerateOrder();
+		speech = orderScript.PrintOrder(Order);
 	}
 
-	public string GetOrder() {
+	public string GetSpeech()
+	{
 		return speech;
 	}
-	
-	public void CreateSpeech(string phrase, Vector3 position) {
+
+	public void CreateSpeech(string phrase, Vector3 position)
+	{
 		return;
 	}
 }

@@ -7,9 +7,17 @@ public partial class CustomerController : CharacterBody3D
 	// fixes the initial double spawning and helps cull excess guys
 	public static int me = 0;
 	public int me2;
-	
+
 	public float Speed { get; set; } = 10f;
 	public bool EnableFloppy { get; set; } = false;
+	public int[] Order
+	{
+		get
+		{
+			return orders.Order;
+		}
+	}
+
 	private OrderHandler orders;
 	private bool floppyPrevState = false;
 	private int numImpulses = 0;
@@ -25,10 +33,11 @@ public partial class CustomerController : CharacterBody3D
 	public override void _Ready()
 	{
 		me2 = me;
-		if (me == 0) {
+		if (me == 0)
+		{
 			QueueFree();
 		}
-		me ++;
+		me++;
 		// makes the ragdolls ragdoll
 		SetFloppy(EnableFloppy);
 		SetTexturePerson(GetRandomSkinPath());
@@ -46,13 +55,14 @@ public partial class CustomerController : CharacterBody3D
 		demand.Position = pos;
 
 		// fills the text box
-		demand.Text = orders.GetOrder();
+		demand.Text = orders.GetSpeech();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (!IsInstanceValid(this)) {
+		if (!IsInstanceValid(this))
+		{
 			return;
 		}
 		if (demand != null && IsInstanceValid(demand))
@@ -74,7 +84,8 @@ public partial class CustomerController : CharacterBody3D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		if (me - 20 > me2) {
+		if (me - 20 > me2)
+		{
 			QueueFree();
 		}
 		// launching logic
@@ -107,10 +118,11 @@ public partial class CustomerController : CharacterBody3D
 	/// <param name="speedScalar">Scale of position offset</param>
 	public void SeekPosition(Vector3 position, float speedScalar)
 	{
-		if (!IsInstanceValid(this)) {
+		if (!IsInstanceValid(this))
+		{
 			return;
 		}
-		
+
 		Vector3 pos = this.Position;
 		float distSquared = position.DistanceSquaredTo(pos);
 		float threshold = 1f;
