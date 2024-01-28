@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://b02wijohukthu"]
+[gd_scene load_steps=35 format=3 uid="uid://b02wijohukthu"]
 
 [ext_resource type="Script" path="res://scripts/Node3D.cs" id="3_kdf04"]
 [ext_resource type="Texture2D" uid="uid://bj75jamcoytd3" path="res://assets/tests/arrowTests/arrow_test_base.png" id="4_wkbch"]
