@@ -463,23 +463,23 @@ transform = Transform3D(1, 0, 5.32907e-15, 0, 1, 0, -5.32907e-15, 0, 1, -7.17987
 omni_range = 28.566
 omni_attenuation = 0.01
 
-[node name="OmniLight3D3" type="OmniLight3D" parent="Environment"]
-transform = Transform3D(0.333333, 0, 1.77636e-15, 0, 0.333333, 0, -1.77636e-15, 0, 0.333333, 20.6533, 11.1962, -2.50704)
+[node name="Lightbulb" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(-4.37114e-08, -1, -5.71747e-21, -4.37114e-08, 1.91069e-15, -1, 1, -4.37114e-08, -4.37114e-08, 22.5878, 28.4449, -2.89878)
+mesh = SubResource("PlaneMesh_7h1qu")
+surface_material_override/0 = SubResource("StandardMaterial3D_6qqsk")
+
+[node name="LightLight" type="OmniLight3D" parent="Environment/Lightbulb"]
+transform = Transform3D(-4.37114e-08, -4.37114e-08, 1, -1, -4.37114e-08, -4.37114e-08, 4.37114e-08, -1, -4.37114e-08, 2.38419e-07, 1.40087, 14.1428)
 light_color = Color(0.988235, 0.972549, 0.870588, 1)
 light_energy = 4.119
 light_indirect_energy = 0.0
 light_volumetric_fog_energy = 0.0
 light_specular = 0.338
-omni_range = 40.0
-omni_attenuation = 0.01
-
-[node name="Lightbulb" type="MeshInstance3D" parent="Environment"]
-transform = Transform3D(-4.37114e-08, -1, -4.87044e-21, -4.37114e-08, 1.91069e-15, -1, 1, -4.37114e-08, -4.37114e-08, 22.5878, 31.79, -2.27338)
-mesh = SubResource("PlaneMesh_7h1qu")
-surface_material_override/0 = SubResource("StandardMaterial3D_6qqsk")
+omni_range = 57.439
+omni_attenuation = 0.259921
 
 [node name="Target" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.41067, 21.077, -80)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.41067, 21.077, -89.7065)
 
 [node name="Target" type="Sprite3D" parent="Target"]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
