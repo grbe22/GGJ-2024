@@ -23,9 +23,8 @@ public partial class SpriteHandler : Node
 				outp = 3;
 			}
 			if (curSprite == 4) {
-				// todo: replace with veganmmilkcoffee
-				texture = (Texture2D)GD.Load("res://assets/drinks/milk_coffee.png");
-				outp = 3;
+				texture = (Texture2D)GD.Load("res://assets/drinks/veganmilk_coffee.png");
+				outp = 5;
 			}
 		}
 		if (state == 1) {
@@ -40,17 +39,22 @@ public partial class SpriteHandler : Node
 		}
 		if (state == 2) {
 			if (curSprite == 0) {
-				// todo: replace with veganmilk
-				texture = (Texture2D)GD.Load("res://assets/drinks/milk.png");
-				outp = 1;
+				texture = (Texture2D)GD.Load("res://assets/drinks/veganmilk.png");
+				outp = 4;
 			}
 			if (curSprite == 2) {
 				// todo: replace with veganmilkcoffee
-				texture = (Texture2D)GD.Load("res://assets/drinks/milk_coffee.png");
-				outp = 3;
+				texture = (Texture2D)GD.Load("res://assets/drinks/veganmilk_coffee.png");
+				outp = 5;
 			}
 		}
 		cup.Texture = texture;
 		return outp;
+	}
+	
+	// only for clearing the cup
+	public int EmptyCup() {
+		cup.Texture = (Texture2D)GD.Load("res://assets/drinks/empty.png");
+		return 0;
 	}
 }

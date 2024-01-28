@@ -10,6 +10,7 @@ public partial class Node3D : Node
 	private bool hoverCoffee = false;
 	private bool hoverMilk = false;
 	private bool hoverVeganMilk = false;
+	private bool trashHover = false;
 	private Camera3D currentCamera;
 	private CustomerController currentCustomer;
 	private PackedScene projectile;
@@ -60,6 +61,12 @@ public partial class Node3D : Node
 		}
 		if (Input.IsActionJustPressed("click") && hoverMilk) {
 			order[1] = sprites.SetCup(1, order[1]);
+		}
+		if (Input.IsActionJustPressed("click") && hoverVeganMilk) {
+			order[1] = sprites.SetCup(2, order[1]);
+		}
+		if (Input.IsActionJustPressed("click") && trashHover) {
+			order[1] = sprites.EmptyCup();
 		}
 		
 		#region // Input updates
@@ -210,4 +217,21 @@ public partial class Node3D : Node
 	{
 		hoverMilk = false;
 	}
+	private void _on_vegan_milk_mouse_entered()
+	{
+		hoverVeganMilk = true;
+	}
+	private void _on_vegan_milk_mouse_exited()
+	{
+		hoverVeganMilk = false;
+	}
+	private void _on_trash_man_mouse_entered()
+	{
+		trashHover = true;
+	}
+	private void _on_trash_man_mouse_exited()
+	{
+		trashHover = false;
+	}
 }
+
