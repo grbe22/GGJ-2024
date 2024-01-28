@@ -191,7 +191,7 @@ public partial class Node3D : Node
 			// if no addon exists yet,  consider food
 			if (workingOrder[0] == 0)
 			{
-				GD.Print("WAH");
+				
 				if (hoverBleuCheese)
 				{
 					workingOrder[0] = sprites.SetBowl(0);
@@ -199,6 +199,7 @@ public partial class Node3D : Node
 				}
 				if (hoverFruit)
 				{
+					GD.Print("foot");
 					workingOrder[0] = sprites.SetBowl(1);
 					PlayAudioFx("bloop_mid");
 				}
@@ -223,23 +224,12 @@ public partial class Node3D : Node
 
 					// launch customer
 					Vector3 customerDir = new(0, 0.2f, -1);
-					currentCustomer.Launch(40, customerDir);
+					score += currentCustomer.Launch(40, customerDir);
 					InstantiateProjectile();
 
-					bool orderCorrect =
-						cannonContents[0] == currentCustomer.Order[0] &&
-						cannonContents[1] == currentCustomer.Order[1] &&
-						cannonContents[2] == currentCustomer.Order[2];
-
-					if (orderCorrect)
-					{
-						curScore += 100;
-						GD.Print("ORDER CORRECT!");
-					}
-					else
-					{
-						GD.Print("ORDER INCORRECT!");
-					}
+					Scoring scoreGen = new Scoring();
+					score += scoreGen.Grade(currentCustomer.Order, cannonContents);
+					
 
 					sprites.ResetCup();
 					sprites.EmptyBowl();
@@ -448,8 +438,8 @@ public partial class Node3D : Node
 	private void _on_bleu_cheese_mouse_exited() { hoverBleuCheese = false; }
 
 	// when selecting fruit
-	private void _on_fruit_mouse_entered() { hoverFruit = true; }
-	private void _on_fruit_mouse_exited() { hoverFruit = false; }
+	private void _on_fruitbowl_mouse_entered() { hoverFruit = true; }
+	private void _on_fruitbowl_mouse_exited() { hoverFruit = false; }
 
 	// when selecting potato
 	private void _on_potato_mouse_entered() { hoverPotato = true; }
