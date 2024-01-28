@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 public partial class Node3D : Node
 {
@@ -58,6 +59,9 @@ public partial class Node3D : Node
 
 	// audio
 	private AudioStreamPlayer fxPlayer;
+
+	private int incorrectOrders = 0;
+	private const int MaxIncorrectOrders = 3;
 
 	/// <summary>
 	/// Reference to cup static body's GrabStuff script
@@ -155,7 +159,9 @@ public partial class Node3D : Node
 			{
 				workingOrder[1] = sprites.EmptyCup();
 				workingOrder[2] = sprites.ClearTopping();
+				workingOrder[0] = sprites.EmptyBowl();
 				PlayAudioFx("bit_1");
+				ResetOrders();
 			}
 
 			// ~~ topping/addon choosing ~~
@@ -189,7 +195,7 @@ public partial class Node3D : Node
 			// if no addon exists yet,  consider food
 			if (workingOrder[0] == 0)
 			{
-				
+
 				if (hoverBleuCheese)
 				{
 					workingOrder[0] = sprites.SetBowl(0);
@@ -215,8 +221,13 @@ public partial class Node3D : Node
 			{
 				int curScore = 0;
 
+				bool cannonEmpty =
+					cannonContents[0] == 0 &&
+					cannonContents[1] == 0 &&
+					cannonContents[2] == 0;
+
 				// LAUNCHING
-				if (currentCustomer != null && currentCustomer.AtPosition)
+				if (currentCustomer != null && currentCustomer.AtPosition && !cannonEmpty)
 				{
 					PlayAudioFx("wet_clonk");
 
@@ -227,12 +238,20 @@ public partial class Node3D : Node
 
 					Scoring scoreGen = new Scoring();
 					score += scoreGen.Grade(currentCustomer.Order, cannonContents);
-					
 
-					CupGrab.Visible = true;
-					BowlGrab.Visible = true;
+					bool orderCorrect =
+						cannonContents[0] == currentCustomer.Order[0] &&
+						cannonContents[1] == currentCustomer.Order[1] &&
+						cannonContents[2] == currentCustomer.Order[2];
+
+					if (!orderCorrect)
+					{
+						incorrectOrders++;
+					}
+
 					sprites.ResetCup();
 					sprites.EmptyBowl();
+					sprites.EmptyCup();
 					ResetOrders();
 					currentCustomer = null;
 				}
@@ -303,6 +322,12 @@ public partial class Node3D : Node
 			{
 				PlayAudioFx("weedle_1");
 			}
+		}
+
+		// END GAME IF TOO MANY WRONG ORDERS
+		if (incorrectOrders > MaxIncorrectOrders)
+		{
+			GD.Print("GAME OVER CONDITION");
 		}
 	}
 
@@ -381,8 +406,12 @@ public partial class Node3D : Node
 	private void ResetOrders()
 	{
 		workingOrder = new int[3];
-		GD.Print("eep");
 		cannonContents = new int[3];
+		GD.Print("eep");
+		CupGrab.Position = cupInitialPos;
+		BowlGrab.Position = bowlInitialPos;
+		CupGrab.Visible = true;
+		BowlGrab.Visible = true;
 	}
 
 	private void PlayAudioFx(string effectName)
