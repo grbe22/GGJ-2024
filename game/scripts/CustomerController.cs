@@ -94,7 +94,8 @@ public partial class CustomerController : CharacterBody3D
 	/// over time, must be put in update loop
 	/// </summary>
 	/// <param name="position">Position to seek</param>
-	public void SeekPosition(Vector3 position)
+	/// <param name="speedScalar">Scale of position offset</param>
+	public void SeekPosition(Vector3 position, float speedScalar)
 	{
 		float distSquared = position.DistanceSquaredTo(this.Position);
 		float threshold = 1f;
@@ -103,7 +104,7 @@ public partial class CustomerController : CharacterBody3D
 		{
 			Vector3 diff = position - this.Position;
 			diff = diff.Normalized();
-			Position += diff * 0.5f;
+			Position += diff * speedScalar;
 		}
 	}
 
