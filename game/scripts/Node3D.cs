@@ -46,6 +46,7 @@ public partial class Node3D : Node
 	private Node2D heldItem;
 	private List<Node2D> items = new List<Node2D>();
 	private Label scoreboard;
+	private Label lastScore;
 
 	// for handling sprites
 	private SpriteHandler sprites;
@@ -93,6 +94,7 @@ public partial class Node3D : Node
 		woman = false;
 		GD.Print("Ayudar");
 		scoreboard = GetNode<Label>("../Node3D/Scoreboard");
+		lastScore = GetNode<Label>("../Node3D/AddOn");
 		GD.Print(scoreboard);
 		score = 0;
 		// load Cup and start spriteHandler
@@ -233,7 +235,9 @@ public partial class Node3D : Node
 					InstantiateProjectile();
 
 					Scoring scoreGen = new Scoring();
-					score += scoreGen.Grade(currentCustomer.Order, cannonContents);
+					int grade = scoreGen.Grade(currentCustomer.Order, cannonContents);
+					score += grade;
+					lastScore.Text = "\n+" + grade; 
 
 
 					sprites.ResetCup();
