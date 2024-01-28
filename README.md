@@ -1,30 +1,27 @@
 # We are going to lose
+# is there losing in a game jam?
 
-## Ideas
-- Muppet game...
-- Barista
-- Food launcher....
-  - 2D png's that get launched across the room when hit by the food launcher
-  - rigidbody png's
-- 2 camera states
-  - Forward (toward customer, food launcher)
-  - Backward (food prep)
-  - "Back arrow" on bottom of screen to switch view
-- Target on the back wall
-- Point and click interactions, no camera movement other than switching views
+## BARISTA SIMULATOR 2024
+How do you play this game?
+It's simple, really. Kinda intuitive. I bet you feel foolish for even asking. But here goes.
+- Press SPACE to switch between the customers & the backroom.
+- Click on the elements to add them to the meal
+- When done, click the green button to load the CANNON.
+- Click on the cannon whenever you're ready!
 
 ## Food Drink Items
-- Coffee
-  - You can add ingredients to this
+- Drinks
+  - Coffee
+  - Milk
+  - "Vegan" milk
 - Additions
   - Mayo
-  - Milk
-  - "VEGAN" Milk
   - Whipped Cream
   - Chocolate
   - Caramel
 - Bowl Items
   - Fruit
+  - Small Fry
   - Bleu Cheese
 
 ## Job management
@@ -34,8 +31,10 @@
   - Camera system
 - Sarah
   - UI/level design
+  - Click & Drag functionality
 - Nikki 
   - Physics interactions (CANNON)
+  - Creating customers
 - All
   - Coding (as needed)
 
