@@ -5,12 +5,17 @@ using System.Collections.Generic;
 public partial class Node3D : Node
 {
 	
+	// fuck this game engine
+	private static bool man = true;
+	private bool woman = true;
+	
 	//scoring variable
 	int score;
 	// values for hander
 	private bool cannonSelected = false;
 	private bool trashHover = false;
 	private bool hoverCup = false;
+	private bool hoverBowl = false;
 	private bool hoverWork = false;
 	private bool hoverCoffee = false;
 	private bool hoverMilk = false;
@@ -19,6 +24,9 @@ public partial class Node3D : Node
 	private bool hoverMayo = false;
 	private bool hoverChocolate = false;
 	private bool hoverCaramel = false;
+	private bool hoverBleuCheese = false;
+	private bool hoverFruit = false;
+	private bool hoverPotato = false;
 
 	// objects/instances
 	private Camera3D currentCamera;
@@ -37,6 +45,7 @@ public partial class Node3D : Node
 	Script scrpt = new CSharpScript();
 	private Node2D heldItem;
 	private List<Node2D> items = new List<Node2D>();
+	private Label scoreboard;
 
 	// for handling sprites
 	private SpriteHandler sprites;
@@ -47,13 +56,23 @@ public partial class Node3D : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		if (man) {
+			man = false;
+			GD.Print(man);
+			return;
+		}
+		woman = false;
+		GD.Print("Ayudar");
+		scoreboard = GetNode<Label>("../Node3D/Scoreboard");
+		GD.Print(scoreboard);
 		score = 0;
 		// load Cup and start spriteHandler
 		// GetNode reaches from root/camera for some reason. we need to be at root/Node3D
 		// so keep the absolute path used here unless there's some issue on machines that aren't mine
 		cup = GetNode<Sprite3D>("../Node3D/Cup/Cup");
+		bowl = GetNode<Sprite3D>("../Node3D/Bowl/Bowl");
 		addon = GetNode<Sprite3D>("../Node3D/Cup/Addon");
-		sprites = new SpriteHandler(cup, cup, addon);
+		sprites = new SpriteHandler(cup, bowl, addon);
 
 		// starts an empty order
 		order = new int[3];
@@ -70,7 +89,9 @@ public partial class Node3D : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		Label scoreboard = GetNode<Label>("../Node3D/Scoreboard");
+		if (woman) {
+			return;
+		}
 		scoreboard.Text = "" +score;
 		#region // Input updates
 		if (Input.IsActionJustPressed("click"))
@@ -119,13 +140,21 @@ public partial class Node3D : Node
 				}
 			}
 			
-			// ~~ food choosing ~~
+			// ~~ food choosing ~~		
 			// if no addon exists yet,  consider food
 			if (order[0] != 0)
 			{
-				if (hoverWhippedCream)
+				if (hoverBleuCheese)
 				{
-					order[0] = sprites.SetAddon(AddonType.WhippedCream);
+					order[3] = sprites.SetBowl(0);
+				}
+				if (hoverFruit)
+				{
+					order[3] = sprites.SetBowl(1);
+				}
+				if (hoverPotato)
+				{
+					order[3] = sprites.SetBowl(2);
 				}
 			}
 		}
@@ -280,6 +309,21 @@ public partial class Node3D : Node
 	// when selecting caramel
 	private void _on_caramel_mouse_entered() { hoverCaramel = true; }
 	private void _on_caramel_mouse_exited() { hoverCaramel = false; }
+	
+	
+	// ~~ foods ~~
+	
+	// when selecting bleu cheese
+	private void _on_bleu_cheese_mouse_entered() { hoverBleuCheese = true; }
+	private void _on_bleu_cheese_mouse_exited() { hoverBleuCheese = false; }
+	
+	// when selecting fruit
+	private void _on_fruit_mouse_entered() { hoverFruit = true; }
+	private void _on_fruit_mouse_exited() { hoverFruit = false; }
+	
+	// when selecting potato
+	private void _on_potato_mouse_entered() { hoverPotato = true; }
+	private void _on_potato_mouse_exited() { hoverPotato = false; }
 
 	// ~~ misc ~~ 
 
@@ -294,9 +338,12 @@ public partial class Node3D : Node
 	// for coffee cup
 	private void _on_coffee_cup_mouse_entered() { hoverCup = true; }
 	private void _on_coffee_cup_mouse_exited() { hoverCup = false; }
+	
+	// for bowl
+	private void _on_bowl_mouse_entered() { hoverBowl = true; }
+	private void _on_bowl_mouse_exited() { hoverBowl = false; }
 
 	// for the specific area around machines
 	private void _on_work_area_mouse_entered() { hoverWork = true; }
 	private void _on_work_area_mouse_exited() { hoverWork = false; }
 }
-

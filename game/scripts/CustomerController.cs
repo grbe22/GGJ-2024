@@ -5,7 +5,7 @@ using System.Diagnostics;
 public partial class CustomerController : CharacterBody3D
 {
 	// fixes the initial double spawning and helps cull excess guys
-	public static int me = 0;
+	public static int me = 1;
 	public int me2;
 	
 	private double timer;

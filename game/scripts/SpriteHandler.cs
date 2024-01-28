@@ -17,6 +17,7 @@ public partial class SpriteHandler : Node
 	{
 		Texture2D texture = cup.Texture;
 		int outp = curSprite;
+		// state is 0 for coffee, 1 for milk, 2 for veganmilk
 		if (state == 0)
 		{
 			if (curSprite == 0)
@@ -78,6 +79,27 @@ public partial class SpriteHandler : Node
 
 		// return enum parsed to int
 		return (int)type;
+	}
+	
+	public int SetBowl(int state)
+	{
+		Texture2D texture = bowl.Texture;
+		
+		// 0 for BleuCheese, 1 for Fruit, 2 for Fry
+		if (state == 0)
+		{
+			texture = (Texture2D)GD.Load("res://assets/foods/bleuCheese.png");
+		}
+		if (state == 1)
+		{
+			texture = (Texture2D)GD.Load("res://assets/foods/fruit.png");
+		}
+		if (state == 2)
+		{
+			texture = (Texture2D)GD.Load("res://assets/foods/fry.png");
+		}
+		
+		return state;
 	}
 
 	// only for clearing the cup

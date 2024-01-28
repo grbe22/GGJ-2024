@@ -261,7 +261,7 @@ script = ExtResource("3_83fym")
 transform = Transform3D(-4.37114e-08, 3.55271e-15, -1, 0, 1, 3.55271e-15, 1, 0, -4.37114e-08, 0, 0, 0)
 shape = SubResource("BoxShape3D_5ly6d")
 
-[node name="Cup" type="Sprite3D" parent="Bowl"]
+[node name="Bowl" type="Sprite3D" parent="Bowl"]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 pixel_size = 0.03
 texture = ExtResource("9_3sqi4")
@@ -512,6 +512,14 @@ font = ExtResource("22_ak3xu")
 [connection signal="mouse_exited" from="Caramel" to="." method="_on_caramel_mouse_exited"]
 [connection signal="mouse_entered" from="Chocolate" to="." method="_on_chocolate_mouse_entered"]
 [connection signal="mouse_exited" from="Chocolate" to="." method="_on_chocolate_mouse_exited"]
+[connection signal="mouse_entered" from="BleuCheese" to="." method="_on_bleu_cheese_mouse_entered"]
+[connection signal="mouse_exited" from="BleuCheese" to="." method="_on_bleu_cheese_mouse_exited"]
+[connection signal="mouse_entered" from="Fruitbowl" to="." method="_on_fruitbowl_mouse_entered"]
+[connection signal="mouse_exited" from="Fruitbowl" to="." method="_on_fruitbowl_mouse_exited"]
+[connection signal="mouse_entered" from="Potato" to="." method="_on_potato_mouse_entered"]
+[connection signal="mouse_exited" from="Potato" to="." method="_on_potato_mouse_exited"]
+[connection signal="mouse_entered" from="Bowl" to="." method="_on_bowl_mouse_entered"]
+[connection signal="mouse_exited" from="Bowl" to="." method="_on_bowl_mouse_exited"]
 [connection signal="mouse_entered" from="Cup" to="Cup" method="_on_self_mouse_entered"]
 [connection signal="mouse_exited" from="Cup" to="Cup" method="_on_self_mouse_exited"]
 [connection signal="mouse_entered" from="Milk" to="." method="_on_milk_mouse_entered"]
