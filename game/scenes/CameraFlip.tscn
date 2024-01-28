@@ -1,11 +1,10 @@
-[gd_scene load_steps=58 format=3 uid="uid://b02wijohukthu"]
+[gd_scene load_steps=56 format=3 uid="uid://b02wijohukthu"]
 
 [ext_resource type="Script" path="res://scripts/GrabStuff.cs" id="3_83fym"]
 [ext_resource type="Texture2D" uid="uid://cnr4ptp4pxpia" path="res://assets/drinks/whippedcreamcan.png" id="3_as7mc"]
 [ext_resource type="Script" path="res://scripts/Node3D.cs" id="3_kdf04"]
 [ext_resource type="Texture2D" uid="uid://bxxmbvcogekrw" path="res://assets/drinks/mayocontainer.png" id="4_fixmn"]
 [ext_resource type="Texture2D" uid="uid://btvt1txewf6jd" path="res://assets/drinks/caramelbottle.png" id="5_1dl1e"]
-[ext_resource type="Texture2D" uid="uid://4xopxhkuiy4" path="res://assets/WallTextures/customerBackWall.png" id="5_mvw2n"]
 [ext_resource type="Texture2D" uid="uid://c7hxhoxgygyfp" path="res://assets/drinks/veganmilkcarton.png" id="5_umk1q"]
 [ext_resource type="Texture2D" uid="uid://cxsmvjvt2tsqu" path="res://assets/drinks/chocolatebottle.png" id="6_4uq5d"]
 [ext_resource type="Texture2D" uid="uid://5i0f8kytmvgt" path="res://assets/WallTextures/barWall.png" id="6_7uqjn"]
@@ -15,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://d01wvlkvx13om" path="res://assets/drinks/empty.png" id="8_gnphm"]
 [ext_resource type="Texture2D" uid="uid://dobogechwcvxv" path="res://assets/crimmas.png" id="9_04f3w"]
 [ext_resource type="Texture2D" uid="uid://c0im6mnmk3sjq" path="res://assets/objects/cannon_full.png" id="9_i4qrw"]
+[ext_resource type="Texture2D" uid="uid://cx47ahlj5s1mb" path="res://assets/objects/target.png" id="16_gbgbv"]
 
 [sub_resource type="Environment" id="Environment_m0xu7"]
 fog_enabled = true
@@ -123,14 +123,8 @@ size = Vector3(2, 2, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_afkda"]
 albedo_texture = ExtResource("9_04f3w")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5sabg"]
-albedo_texture = ExtResource("5_mvw2n")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_q01bo"]
-size = Vector2(40, 60)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_nc2re"]
-size = Vector3(60, 40, 1)
+size = Vector3(60, 60, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_olcw7"]
 
@@ -395,13 +389,11 @@ omni_range = 28.566
 omni_attenuation = 0.01
 
 [node name="Target" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 3.55271e-15, 0, 1, 0, -3.55271e-15, 0, 1, 4.04897, 8, -80)
+transform = Transform3D(1, 0, 3.55271e-15, 0, 1, 0, -3.55271e-15, 0, 1, 4.04897, 22.0226, -80)
 
-[node name="Target" type="MeshInstance3D" parent="Target"]
-transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, -4.4465e-21, 4.37114e-08, 1, -4.37114e-08, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_5sabg")
-mesh = SubResource("PlaneMesh_q01bo")
-skeleton = NodePath("../../Environment")
+[node name="Target2" type="Sprite3D" parent="Target"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 0.94, 0, 0, 0)
+texture = ExtResource("16_gbgbv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Target"]
 shape = SubResource("BoxShape3D_nc2re")

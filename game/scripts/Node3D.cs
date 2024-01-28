@@ -123,8 +123,8 @@ public partial class Node3D : Node
 			if (currentCustomer != null)
 			{
 				// launch customer
-				Vector3 customerDir = new(0, 0.1f, -1);
-				currentCustomer.Launch(30, customerDir);
+				Vector3 customerDir = new(0, 0.2f, -1);
+				currentCustomer.Launch(40, customerDir);
 				InstantiateProjectile();
 				currentCustomer = null;
 				if (heldItem != null) {
