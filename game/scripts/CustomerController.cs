@@ -7,7 +7,9 @@ public partial class CustomerController : CharacterBody3D
 	// fixes the initial double spawning and helps cull excess guys
 	public static int me = 0;
 	public int me2;
-
+	
+	private double timer;
+	
 	public float Speed { get; set; } = 10f;
 	public bool EnableFloppy { get; set; } = false;
 	public int[] Order
@@ -32,6 +34,7 @@ public partial class CustomerController : CharacterBody3D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		timer = 100.0;
 		me2 = me;
 		if (me == 0)
 		{
@@ -51,18 +54,22 @@ public partial class CustomerController : CharacterBody3D
 		demand.Scale = new Vector3(5, 5, 5);
 		demandContainer.AddChild(demand);
 		Vector3 pos = Position;
-		pos[1] += 4;
+		pos[1] += 10;
 		demand.Position = pos;
 
 		// fills the text box
 		demand.Text = orders.GetSpeech();
+		demand.OutlineRenderPriority = 1;
+		demand.OutlineSize = 4;
+		demand.FontSize = 48;
+		demand.OutlineModulate = new Color(0f, 0f, 0f);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (!IsInstanceValid(this))
-		{
+		timer -= delta;
+		if (!IsInstanceValid(this)) {
 			return;
 		}
 		if (demand != null && IsInstanceValid(demand))
@@ -103,11 +110,12 @@ public partial class CustomerController : CharacterBody3D
 	/// </summary>
 	/// <param name="numImpulses">Number of iterations/impulses to apply</param>
 	/// <param name="direction">Direction to launch customer</param>
-	public void Launch(int numImpulses, Vector3 direction)
+	public int Launch(int numImpulses, Vector3 direction)
 	{
 		EnableFloppy = true;
 		this.numImpulses = numImpulses;
 		this.launchDir = direction;
+		return (int)timer;
 	}
 
 	/// <summary>
