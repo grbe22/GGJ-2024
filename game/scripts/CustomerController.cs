@@ -20,12 +20,7 @@ public partial class CustomerController : CharacterBody3D
 	{
 		// makes the ragdolls ragdoll
 		SetFloppy(EnableFloppy);
-<<<<<<< HEAD
 		SetTexturePerson("res://assets/sarah");
-=======
-		SetTexturePerson("res://assets/ophie");
-		
->>>>>>> 70e14e874f6b949bbb4d01f050b852d250a9064a
 		orders = new OrderHandler();
 		
 		// instantiates the text box 5m above the customer
