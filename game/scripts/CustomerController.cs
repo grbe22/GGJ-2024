@@ -16,7 +16,7 @@ public partial class CustomerController : CharacterBody3D
 	public override void _Ready()
 	{
 		SetFloppy(EnableFloppy);
-		SetTexturePerson("res://assets/ophie");
+		SetTexturePerson("res://assets/sarah");
 		orders = new OrderHandler();
 		demandContainer = new Control();
 		AddChild(demandContainer);
