@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://b02wijohukthu"]
+[gd_scene load_steps=45 format=3 uid="uid://b02wijohukthu"]
 
 [ext_resource type="Script" path="res://scripts/Node3D.cs" id="3_kdf04"]
 [ext_resource type="Texture2D" uid="uid://bj75jamcoytd3" path="res://assets/tests/arrowTests/arrow_test_base.png" id="4_wkbch"]
@@ -7,9 +7,36 @@
 [ext_resource type="Texture2D" uid="uid://dyk36jrwjsmbe" path="res://assets/tests/arrowTests/arrow_test_highlight.png" id="6_6xtfl"]
 [ext_resource type="Texture2D" uid="uid://5i0f8kytmvgt" path="res://assets/WallTextures/barWall.png" id="6_7uqjn"]
 [ext_resource type="Texture2D" uid="uid://cawqdebyk1vcl" path="res://assets/WallTextures/Counter.png" id="6_cp28g"]
+[ext_resource type="Texture2D" uid="uid://c7esqi1v2cegu" path="res://assets/drinks/groundcoffee.png" id="6_sgkiq"]
+[ext_resource type="Texture2D" uid="uid://d6b0og7pfa8i" path="res://assets/drinks/milkcarton.png" id="7_14qxa"]
+[ext_resource type="Texture2D" uid="uid://d01wvlkvx13om" path="res://assets/drinks/empty.png" id="8_gnphm"]
 [ext_resource type="Texture2D" uid="uid://dobogechwcvxv" path="res://assets/crimmas.png" id="9_04f3w"]
-[ext_resource type="PackedScene" path="res://scenes/Projectile.tscn" id="10_0psra"]
+[ext_resource type="PackedScene" uid="uid://bysned2a3rsh8" path="res://scenes/Projectile.tscn" id="10_0psra"]
 [ext_resource type="PackedScene" uid="uid://c7mp1uudpl8mh" path="res://scenes/customer.tscn" id="11_n44iu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u32yr"]
+size = Vector3(6, 0.01, 6)
+
+[sub_resource type="QuadMesh" id="QuadMesh_4jx0p"]
+size = Vector2(6, 6)
+orientation = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ubr6l"]
+transparency = 1
+albedo_texture = ExtResource("6_sgkiq")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5ly6d"]
+size = Vector3(4, 1, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fcxbe"]
+size = Vector3(5, 0.01, 6)
+
+[sub_resource type="QuadMesh" id="QuadMesh_k2kkf"]
+size = Vector2(5, 6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_amcwm"]
+transparency = 1
+albedo_texture = ExtResource("7_14qxa")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_2pryr"]
 
@@ -90,6 +117,42 @@ texture_pressed = ExtResource("5_yrllo")
 texture_hover = ExtResource("6_6xtfl")
 stretch_mode = 0
 
+[node name="Coffee" type="StaticBody3D" parent="."]
+transform = Transform3D(-8.51092e-15, -1.94707e-07, -1, 1, -4.37114e-08, 1.88908e-21, -4.37114e-08, -1, 1.94707e-07, 13.0762, 9.10297, 30.5422)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Coffee"]
+transform = Transform3D(-4.37114e-08, 3.55271e-15, -1, 0, 1, 3.55271e-15, 1, 0, -4.37114e-08, 0, 0, 0)
+shape = SubResource("BoxShape3D_u32yr")
+
+[node name="Mesh" type="MeshInstance3D" parent="Coffee"]
+transform = Transform3D(-4.37114e-08, 3.55271e-15, -1, 0, 1, 3.55271e-15, 1, 0, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_4jx0p")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_ubr6l")
+
+[node name="Cup" type="StaticBody3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 9.70722, -1.63332, 28.59)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cup"]
+transform = Transform3D(-4.37114e-08, 3.55271e-15, -1, 0, 1, 3.55271e-15, 1, 0, -4.37114e-08, 0, 0, 0)
+shape = SubResource("BoxShape3D_5ly6d")
+
+[node name="Cup" type="Sprite3D" parent="Cup"]
+pixel_size = 0.03
+texture = ExtResource("8_gnphm")
+
+[node name="Milk" type="StaticBody3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -3.06914, 9.0238, 30.5422)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Milk"]
+transform = Transform3D(-4.37114e-08, 3.55271e-15, -1, 0, 1, 3.55271e-15, 1, 0, -4.37114e-08, 0, 0, 0)
+shape = SubResource("BoxShape3D_fcxbe")
+
+[node name="Mesh" type="MeshInstance3D" parent="Milk"]
+mesh = SubResource("QuadMesh_k2kkf")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_amcwm")
+
 [node name="Environment" type="Node3D" parent="."]
 transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, 0, 0, 0)
 
@@ -113,6 +176,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_p5usa")
 
 [node name="miniFridge" type="MeshInstance3D" parent="Environment/BackCounter"]
 transform = Transform3D(0.344406, -6.35275e-21, 3.19744e-14, 1.05879e-19, 1.98493, 0, -2.84217e-14, -1.42109e-13, 0.999999, 0.284173, 0.959356, -0.433002)
+visible = false
 mesh = SubResource("BoxMesh_3cdov")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/BackCounter/miniFridge"]
@@ -122,12 +186,13 @@ layers = 0
 mesh = SubResource("BoxMesh_n8b13")
 
 [node name="Shelf" type="MeshInstance3D" parent="Environment/BackCounter"]
-transform = Transform3D(0.684236, 3.34181e-22, 2.66454e-15, -3.81165e-20, 0.0245924, 5.32907e-15, -2.27374e-13, -6.66134e-16, 1, -0.37479, 1.27306, -0.597847)
+transform = Transform3D(1, 2.88521e-21, 3.34843e-13, -3.04932e-20, 0.05, 1.95399e-14, -3.41061e-13, -4.44089e-16, 1, -0.231742, 1.25, -0.597999)
 material_override = SubResource("StandardMaterial3D_ebvd8")
 mesh = SubResource("BoxMesh_4syh6")
 
 [node name="EspressoMachine" type="MeshInstance3D" parent="Environment/BackCounter"]
 transform = Transform3D(0.136419, 1.03762e-20, 3.73035e-14, 1.46113e-20, 0.566531, 1.06581e-14, -7.10543e-14, -2.13163e-14, 0.818724, -0.530954, 0.506668, -0.836913)
+visible = false
 mesh = SubResource("CylinderMesh_44acr")
 
 [node name="Base" type="MeshInstance3D" parent="Environment/BackCounter/EspressoMachine"]
@@ -141,6 +206,7 @@ skeleton = NodePath("../Base")
 
 [node name="CoffeeCup" type="StaticBody3D" parent="Environment/BackCounter"]
 transform = Transform3D(0.0795593, 2.24993e-21, 1.24345e-14, 3.90694e-20, 0.225532, 6.21725e-15, -6.03961e-14, -5.32907e-15, 0.546832, -0.599106, 1.50583, -0.500428)
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/BackCounter/CoffeeCup"]
 mesh = SubResource("CylinderMesh_g01e1")
@@ -150,6 +216,7 @@ shape = SubResource("CylinderShape3D_cfiy0")
 
 [node name="FlavorStand" type="MeshInstance3D" parent="Environment/BackCounter"]
 transform = Transform3D(0.280793, 9.26442e-22, 8.88178e-16, -8.47033e-22, 0.291652, 5.32907e-15, -2.84217e-14, -4.44089e-14, 1, -0.310174, 0.0386893, -0.673188)
+visible = false
 mesh = SubResource("BoxMesh_512r5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/BackCounter/FlavorStand"]
@@ -166,6 +233,7 @@ mesh = SubResource("CylinderMesh_qh2e7")
 
 [node name="WorkArea" type="StaticBody3D" parent="Environment/BackCounter"]
 transform = Transform3D(1, 4.18223e-21, 8.34888e-14, -1.84653e-19, 0.0704755, 8.88178e-14, 0, 3.9968e-15, 2.01053, -0.120398, -0.0327483, -0.0446053)
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/BackCounter/WorkArea"]
 transform = Transform3D(1, 2.0117e-21, 8.88178e-16, 5.0822e-21, 1, 1.77636e-15, 0, 0, 1, 0, 0, 0)
@@ -248,6 +316,8 @@ shape = SubResource("BoxShape3D_j3xxy")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.35828, 2.9944, 0.816)
 
 [connection signal="pressed" from="CameraSystem/TextureButton" to="." method="switchView"]
+[connection signal="mouse_entered" from="Coffee" to="." method="_on_coffee_mouse_entered"]
+[connection signal="mouse_exited" from="Coffee" to="." method="_on_coffee_mouse_exited"]
 [connection signal="mouse_entered" from="Environment/BackCounter/CoffeeCup" to="." method="_on_coffee_cup_mouse_entered"]
 [connection signal="mouse_entered" from="Environment/CANNON" to="." method="_on_cannon_mouse_entered"]
 [connection signal="mouse_exited" from="Environment/CANNON" to="." method="_on_cannon_mouse_exited"]
