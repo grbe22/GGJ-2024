@@ -236,13 +236,14 @@ public partial class Node3D : Node
 
 					// launch customer
 					Vector3 customerDir = new(0, 0.2f, -1);
-					score += currentCustomer.Launch(40, customerDir);
+					int time = currentCustomer.Launch(40, customerDir);
+					score += time;
 					InstantiateProjectile();
 
 					Scoring scoreGen = new Scoring();
 					int grade = scoreGen.Grade(currentCustomer.Order, cannonContents);
 					score += grade;
-					lastScore.Text = "\n+" + grade; 
+					lastScore.Text = "\n+" + (grade + time); 
 
 					bool orderCorrect =
 						cannonContents[0] == currentCustomer.Order[0] &&
