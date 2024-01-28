@@ -2,13 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<< HEAD
-uid="uid://tjrt0qlxbyow"
+uid="uid://cx47ahlj5s1mb"
 path.s3tc="res://.godot/imported/target.png-9f2255941515138682c597598dc57b61.s3tc.ctex"
-=======
-uid="uid://cl88wc3y60fpd"
-path="res://.godot/imported/target.png-9f2255941515138682c597598dc57b61.ctex"
->>>>>>> 4076444bf9e637067759bb37c96273c1b746371c
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true

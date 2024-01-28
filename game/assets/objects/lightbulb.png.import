@@ -2,13 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<< HEAD
-uid="uid://ddsyrmaqogou8"
+uid="uid://drnkg0yh844rx"
 path.s3tc="res://.godot/imported/lightbulb.png-0ba791d7c0de286943364a86b882b1f4.s3tc.ctex"
-=======
-uid="uid://c8d6f3d5r43ks"
-path="res://.godot/imported/lightbulb.png-0ba791d7c0de286943364a86b882b1f4.ctex"
->>>>>>> 4076444bf9e637067759bb37c96273c1b746371c
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
