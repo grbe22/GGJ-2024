@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bp0oq4rfntagl"]
+[gd_scene load_steps=8 format=3 uid="uid://bp0oq4rfntagl"]
 
 [ext_resource type="FontFile" uid="uid://btgl4d7a1mcbw" path="res://assets/RubikBubbles-Regular.ttf" id="1_i7ayd"]
 [ext_resource type="FontFile" uid="uid://dmqyhfhx8srkh" path="res://assets/Pangolin-Regular.ttf" id="1_lyd3v"]
@@ -19,7 +19,14 @@ Label/fonts/font = ExtResource("1_i7ayd")
 [sub_resource type="LabelSettings" id="LabelSettings_larn2"]
 font = ExtResource("1_i7ayd")
 font_size = 70
-outline_size = 19
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_25gfh"]
+font = ExtResource("1_i7ayd")
+font_size = 24
+outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 0
 
@@ -53,6 +60,16 @@ offset_bottom = 304.0
 text = "Coffee Shop
 Simulator"
 label_settings = SubResource("LabelSettings_larn2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="Label"]
+offset_left = -1.0
+offset_top = 408.0
+offset_right = 638.0
+offset_bottom = 649.0
+text = "A game by Goose, Gabe, Nikki and Sarah"
+label_settings = SubResource("LabelSettings_25gfh")
 horizontal_alignment = 1
 vertical_alignment = 1
 
