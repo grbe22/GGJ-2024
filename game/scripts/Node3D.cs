@@ -115,7 +115,7 @@ public partial class Node3D : Node
 		}
 
 		// if not null, seek position
-		currentCustomer?.SeekPosition(customerSeekPos);
+		currentCustomer?.SeekPosition(customerSeekPos, 4f);
 	}
 
 	public void switchView()
@@ -176,7 +176,7 @@ public partial class Node3D : Node
 	/// </summary>
 	private Vector3 GetRandomStartPos()
 	{
-		float radius = 50f;
+		float radius = 400f;
 		float angleSpread = Mathf.Pi / 1.5f;
 
 		// calculate random angle centered forward (negative z)

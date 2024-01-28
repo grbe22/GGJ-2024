@@ -14,7 +14,17 @@
 [ext_resource type="Texture2D" uid="uid://d6b0og7pfa8i" path="res://assets/drinks/milkcarton.png" id="7_14qxa"]
 [ext_resource type="Texture2D" uid="uid://d01wvlkvx13om" path="res://assets/drinks/empty.png" id="8_gnphm"]
 [ext_resource type="Texture2D" uid="uid://dobogechwcvxv" path="res://assets/crimmas.png" id="9_04f3w"]
-[ext_resource type="Texture2D" uid="uid://c0im6mnmk3sjq" path="res://assets/objects/cannon_full.png" id="9_i4qrw"]
+[ext_resource type="Texture2D" uid="uid://bnxdio4lpi1uk" path="res://assets/objects/cannon_full.png" id="9_i4qrw"]
+
+[sub_resource type="Environment" id="Environment_m0xu7"]
+fog_enabled = true
+fog_light_color = Color(0.203922, 0.2, 0.223529, 1)
+fog_light_energy = 1.66
+fog_density = 0.006
+volumetric_fog_density = 0.0192
+volumetric_fog_length = 25.6
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_0xmhy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u32yr"]
 size = Vector3(6, 0.01, 6)
@@ -130,6 +140,10 @@ size = Vector3(200, 0.01, 200)
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.958147, 0, 0)
 script = ExtResource("3_kdf04")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_m0xu7")
+camera_attributes = SubResource("CameraAttributesPractical_0xmhy")
 
 [node name="CameraSystem" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.40755, 3.49453, 14.626)
@@ -395,7 +409,7 @@ shape = SubResource("BoxShape3D_nc2re")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -8, -67)
 
 [node name="Flour" type="MeshInstance3D" parent="Floor"]
-transform = Transform3D(107.476, 1.35525e-20, 5.45697e-12, 0, 8.439, 3.83055e-06, 8.6402e-12, -3.6888e-07, 87.633, 0, 0, 0)
+transform = Transform3D(1000, 3.51404e-21, -8.03919e-11, 0, 1, 4.37113e-05, 8.03919e-11, -4.37113e-08, 1000, 0, 0, 0)
 mesh = SubResource("PlaneMesh_2pryr")
 skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_olcw7")
