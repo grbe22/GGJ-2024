@@ -184,6 +184,7 @@ public partial class Node3D : Node
 	private void _on_coffee_mouse_exited()
 	{
 		hoverCoffee = false;
+	}
 
 	private CustomerController SpawnCustomer()
 	{

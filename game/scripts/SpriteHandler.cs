@@ -3,16 +3,16 @@ using System;
 
 public partial class SpriteHandler : Node
 {
-	private static Sprite2D cup;
-	private static Sprite2D bowl;
-	public SpriteHandler(Sprite2D cup, Sprite2D bowl) {
-		this.cup = cup;
-		this.bowl = bowl;
+	private static Sprite3D cup;
+	private static Sprite3D bowl;
+	public SpriteHandler(Sprite3D cuppa, Sprite3D bowlla) {
+		cup = cuppa;
+		bowl = bowlla;
 	}
 	
-	public void setCup(int state, int curSprite) {
+	public void SetCup(int state, int curSprite) {
 		// texture = (Texture2D)GD.Load("res://assets/drinks/none.png");
-		Texture2D texture;
+		Texture2D texture = cup.Texture;
 		if (state == 0) {
 			if (curSprite == 0) {
 				texture = (Texture2D)GD.Load("res://assets/drinks/coffee.png");
