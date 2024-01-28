@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 public partial class Node3D : Node
 {
@@ -58,6 +59,9 @@ public partial class Node3D : Node
 
 	// audio
 	private AudioStreamPlayer fxPlayer;
+
+	private int incorrectOrders = 0;
+	private const int MaxIncorrectOrders = 3;
 
 	/// <summary>
 	/// Reference to cup static body's GrabStuff script
@@ -235,6 +239,15 @@ public partial class Node3D : Node
 					Scoring scoreGen = new Scoring();
 					score += scoreGen.Grade(currentCustomer.Order, cannonContents);
 
+					bool orderCorrect =
+						cannonContents[0] == currentCustomer.Order[0] &&
+						cannonContents[1] == currentCustomer.Order[1] &&
+						cannonContents[2] == currentCustomer.Order[2];
+
+					if (!orderCorrect)
+					{
+						incorrectOrders++;
+					}
 
 					sprites.ResetCup();
 					sprites.EmptyBowl();
@@ -309,6 +322,12 @@ public partial class Node3D : Node
 			{
 				PlayAudioFx("weedle_1");
 			}
+		}
+
+		// END GAME IF TOO MANY WRONG ORDERS
+		if (incorrectOrders > MaxIncorrectOrders)
+		{
+			GD.Print("GAME OVER CONDITION");
 		}
 	}
 
