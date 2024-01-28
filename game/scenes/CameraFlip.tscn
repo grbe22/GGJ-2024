@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 [gd_scene load_steps=66 format=3 uid="uid://b02wijohukthu"]
+=======
+[gd_scene load_steps=58 format=3 uid="uid://b02wijohukthu"]
+>>>>>>> 4076444bf9e637067759bb37c96273c1b746371c
 
 [ext_resource type="Script" path="res://scripts/GrabStuff.cs" id="3_83fym"]
 [ext_resource type="Texture2D" uid="uid://cnr4ptp4pxpia" path="res://assets/drinks/whippedcreamcan.png" id="3_as7mc"]
@@ -18,9 +22,12 @@
 [ext_resource type="Texture2D" uid="uid://c38jj33gyebyp" path="res://assets/foods/empty.png" id="9_3sqi4"]
 [ext_resource type="Texture2D" uid="uid://dobogechwcvxv" path="res://assets/crimmas.png" id="9_04f3w"]
 [ext_resource type="Texture2D" uid="uid://c0im6mnmk3sjq" path="res://assets/objects/cannon_full.png" id="9_i4qrw"]
+<<<<<<< HEAD
 [ext_resource type="Texture2D" uid="uid://2tgqkpr8863x" path="res://assets/objects/trashcan.png" id="13_h2e4y"]
 [ext_resource type="Texture2D" uid="uid://tjrt0qlxbyow" path="res://assets/objects/target.png" id="19_00epc"]
 [ext_resource type="Texture2D" uid="uid://ddsyrmaqogou8" path="res://assets/objects/lightbulb.png" id="19_rcbj8"]
+=======
+>>>>>>> 4076444bf9e637067759bb37c96273c1b746371c
 
 [sub_resource type="Environment" id="Environment_m0xu7"]
 fog_enabled = true
