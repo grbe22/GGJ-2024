@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Reflection.Metadata;
 
 public partial class Node3D : Node
 {
@@ -327,6 +328,9 @@ public partial class Node3D : Node
 		// END GAME IF TOO MANY WRONG ORDERS
 		if (incorrectOrders > MaxIncorrectOrders)
 		{
+			score = 0;
+			incorrectOrders = 0;
+			ResetOrders();
 			GD.Print("GAME OVER CONDITION");
 		}
 	}
@@ -405,13 +409,20 @@ public partial class Node3D : Node
 
 	private void ResetOrders()
 	{
+		GD.Print("order reset");
+
 		workingOrder = new int[3];
 		cannonContents = new int[3];
-		GD.Print("eep");
+
 		CupGrab.Position = cupInitialPos;
 		BowlGrab.Position = bowlInitialPos;
+
 		CupGrab.Visible = true;
 		BowlGrab.Visible = true;
+		
+		sprites.EmptyBowl();
+		sprites.EmptyCup();
+		sprites.ClearTopping();
 	}
 
 	private void PlayAudioFx(string effectName)
