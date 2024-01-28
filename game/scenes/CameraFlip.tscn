@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://b02wijohukthu"]
+[gd_scene load_steps=65 format=3 uid="uid://b02wijohukthu"]
 
 [ext_resource type="Script" path="res://scripts/GrabStuff.cs" id="3_83fym"]
 [ext_resource type="Texture2D" uid="uid://cnr4ptp4pxpia" path="res://assets/drinks/whippedcreamcan.png" id="3_as7mc"]
@@ -149,9 +149,6 @@ albedo_texture = ExtResource("19_rcbj8")
 transparency = 1
 cull_mode = 2
 albedo_texture = ExtResource("19_00epc")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_q01bo"]
-size = Vector2(40, 60)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nc2re"]
 size = Vector3(60, 60, 1)
@@ -460,13 +457,13 @@ omni_range = 28.566
 omni_attenuation = 0.01
 
 [node name="OmniLight3D3" type="OmniLight3D" parent="Environment"]
-transform = Transform3D(0.333333, 0, 8.88178e-16, 0, 0.333333, 0, -8.88178e-16, 0, 0.333333, 20.3941, 12.9511, 1.11759)
+transform = Transform3D(1, 0, 2.66454e-15, 0, 1, 0, -2.66454e-15, 0, 1, 20.3941, 12.9511, 1.11759)
 light_color = Color(0.988235, 0.972549, 0.870588, 1)
 light_energy = 1.808
 light_indirect_energy = 0.0
 light_volumetric_fog_energy = 0.0
 light_specular = 0.338
-omni_range = 28.566
+omni_range = 40.0
 omni_attenuation = 0.01
 
 [node name="Lightbulb" type="MeshInstance3D" parent="Environment"]
@@ -475,13 +472,12 @@ mesh = SubResource("PlaneMesh_7h1qu")
 surface_material_override/0 = SubResource("StandardMaterial3D_6qqsk")
 
 [node name="Target" type="StaticBody3D" parent="."]
-transform = Transform3D(-4.37114e-08, 1.48666, 0, -1, -6.49839e-08, 0, 0, 0, 1, 4.04897, 21.077, -80)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.04897, 21.077, -80)
 
-[node name="Target" type="MeshInstance3D" parent="Target"]
-transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, -3.59947e-21, 4.37114e-08, 1, -4.37114e-08, 0, 0, 0)
+[node name="Target" type="Sprite3D" parent="Target"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_uhd7a")
-mesh = SubResource("PlaneMesh_q01bo")
-skeleton = NodePath("../../Environment")
+texture = ExtResource("19_00epc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Target"]
 shape = SubResource("BoxShape3D_nc2re")
