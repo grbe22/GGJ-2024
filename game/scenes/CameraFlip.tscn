@@ -1,28 +1,47 @@
+<<<<<<< HEAD
+[gd_scene load_steps=66 format=3 uid="uid://b02wijohukthu"]
+=======
 [gd_scene load_steps=58 format=3 uid="uid://b02wijohukthu"]
+>>>>>>> 4076444bf9e637067759bb37c96273c1b746371c
 
 [ext_resource type="Script" path="res://scripts/GrabStuff.cs" id="3_83fym"]
 [ext_resource type="Texture2D" uid="uid://cnr4ptp4pxpia" path="res://assets/drinks/whippedcreamcan.png" id="3_as7mc"]
 [ext_resource type="Script" path="res://scripts/Node3D.cs" id="3_kdf04"]
 [ext_resource type="Texture2D" uid="uid://bxxmbvcogekrw" path="res://assets/drinks/mayocontainer.png" id="4_fixmn"]
 [ext_resource type="Texture2D" uid="uid://btvt1txewf6jd" path="res://assets/drinks/caramelbottle.png" id="5_1dl1e"]
-[ext_resource type="Texture2D" uid="uid://4xopxhkuiy4" path="res://assets/WallTextures/customerBackWall.png" id="5_mvw2n"]
 [ext_resource type="Texture2D" uid="uid://c7hxhoxgygyfp" path="res://assets/drinks/veganmilkcarton.png" id="5_umk1q"]
 [ext_resource type="Texture2D" uid="uid://cxsmvjvt2tsqu" path="res://assets/drinks/chocolatebottle.png" id="6_4uq5d"]
 [ext_resource type="Texture2D" uid="uid://5i0f8kytmvgt" path="res://assets/WallTextures/barWall.png" id="6_7uqjn"]
 [ext_resource type="Texture2D" uid="uid://cawqdebyk1vcl" path="res://assets/WallTextures/Counter.png" id="6_cp28g"]
 [ext_resource type="Texture2D" uid="uid://c7esqi1v2cegu" path="res://assets/drinks/groundcoffee.png" id="6_sgkiq"]
 [ext_resource type="Texture2D" uid="uid://d6b0og7pfa8i" path="res://assets/drinks/milkcarton.png" id="7_14qxa"]
+[ext_resource type="Texture2D" uid="uid://dfhkk6jtmk2to" path="res://assets/foods/bleucheese_bottle.png" id="7_ixm2v"]
+[ext_resource type="Texture2D" uid="uid://bejqmxvaa6e8v" path="res://assets/foods/fruitbowl.png" id="7_xhaa3"]
+[ext_resource type="Texture2D" uid="uid://biqdvb8jg5u7y" path="res://assets/foods/potatosack.png" id="8_exgtc"]
 [ext_resource type="Texture2D" uid="uid://d01wvlkvx13om" path="res://assets/drinks/empty.png" id="8_gnphm"]
+[ext_resource type="Texture2D" uid="uid://c38jj33gyebyp" path="res://assets/foods/empty.png" id="9_3sqi4"]
 [ext_resource type="Texture2D" uid="uid://dobogechwcvxv" path="res://assets/crimmas.png" id="9_04f3w"]
 [ext_resource type="Texture2D" uid="uid://c0im6mnmk3sjq" path="res://assets/objects/cannon_full.png" id="9_i4qrw"]
+<<<<<<< HEAD
+[ext_resource type="Texture2D" uid="uid://2tgqkpr8863x" path="res://assets/objects/trashcan.png" id="13_h2e4y"]
+[ext_resource type="Texture2D" uid="uid://tjrt0qlxbyow" path="res://assets/objects/target.png" id="19_00epc"]
+[ext_resource type="Texture2D" uid="uid://ddsyrmaqogou8" path="res://assets/objects/lightbulb.png" id="19_rcbj8"]
+=======
+>>>>>>> 4076444bf9e637067759bb37c96273c1b746371c
 
 [sub_resource type="Environment" id="Environment_m0xu7"]
 fog_enabled = true
-fog_light_color = Color(0.203922, 0.2, 0.223529, 1)
+fog_light_color = Color(0.101961, 0.113725, 0.121569, 1)
 fog_light_energy = 1.66
 fog_density = 0.006
-volumetric_fog_density = 0.0192
-volumetric_fog_length = 25.6
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.205
+volumetric_fog_albedo = Color(0.298039, 0.27451, 0.196078, 1)
+volumetric_fog_gi_inject = 0.13
+volumetric_fog_anisotropy = -0.9
+volumetric_fog_length = 0.05
+volumetric_fog_detail_spread = 3.605
+volumetric_fog_ambient_inject = 1.65
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_0xmhy"]
 
@@ -81,6 +100,9 @@ size = Vector3(2.5, 2.5, 1)
 size = Vector2(2.5, 2.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k4myb"]
+transparency = 1
+cull_mode = 2
+albedo_texture = ExtResource("13_h2e4y")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_2pryr"]
 
@@ -123,8 +145,17 @@ size = Vector3(7, 5, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_afkda"]
 albedo_texture = ExtResource("9_04f3w")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5sabg"]
-albedo_texture = ExtResource("5_mvw2n")
+[sub_resource type="PlaneMesh" id="PlaneMesh_7h1qu"]
+size = Vector2(2.91, 30)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6qqsk"]
+transparency = 1
+albedo_texture = ExtResource("19_rcbj8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uhd7a"]
+transparency = 1
+cull_mode = 2
+albedo_texture = ExtResource("19_00epc")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_q01bo"]
 size = Vector2(40, 60)
@@ -155,7 +186,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 1, -1.5)
 
 [node name="Coffee" type="StaticBody3D" parent="."]
-transform = Transform3D(-8.51092e-15, -1.94707e-07, -1, 1, -4.37114e-08, 1.88908e-21, -4.37114e-08, -1, 1.94707e-07, 5.0762, 9.10297, 30.5422)
+transform = Transform3D(-8.51092e-15, -1.94707e-07, -1, 1, -4.37114e-08, 1.88908e-21, -4.37114e-08, -1, 1.94707e-07, 13.9026, 9.10297, 30.5422)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Coffee"]
 transform = Transform3D(-4.37114e-08, 3.55271e-15, -1, 0, 1, 3.55271e-15, 1, 0, -4.37114e-08, 0, 0, 0)
@@ -168,7 +199,7 @@ skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_ubr6l")
 
 [node name="WhippedCream" type="StaticBody3D" parent="."]
-transform = Transform3D(-8.51092e-15, -1.94707e-07, -1, 1, -4.37114e-08, 1.88908e-21, -4.37114e-08, -1, 1.94707e-07, -6, -2.63491, 29.6898)
+transform = Transform3D(-1.04568e-14, -1.94707e-07, -1, 1.22864, -4.37114e-08, 1.88908e-21, -5.37054e-08, -1, 1.94707e-07, -9.09328, -2.02958, 29.6898)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WhippedCream"]
 transform = Transform3D(-4.37114e-08, 3.55271e-15, -1, 0, 1, 3.55271e-15, 1, 0, -4.37114e-08, 0, 0, 0)
@@ -181,7 +212,7 @@ skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_v8cta")
 
 [node name="Mayo" type="StaticBody3D" parent="."]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -8.96923, -3.58739, 30)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -12.0625, -3.37057, 30)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Mayo"]
 transform = Transform3D(-4.37114e-08, 3.55271e-15, -1, 0, 1, 3.55271e-15, 1, 0, -4.37114e-08, 0, 0, 0)
@@ -191,7 +222,7 @@ shape = SubResource("BoxShape3D_rc6dl")
 texture = ExtResource("4_fixmn")
 
 [node name="Caramel" type="StaticBody3D" parent="."]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -11.3944, -3, 30)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -14.4877, -3, 30)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Caramel"]
 transform = Transform3D(-4.37114e-08, 3.55271e-15, -1, 0, 1, 3.55271e-15, 1, 0, -4.37114e-08, 0, 0, 0)
@@ -201,7 +232,7 @@ shape = SubResource("BoxShape3D_rc6dl")
 texture = ExtResource("5_1dl1e")
 
 [node name="Chocolate" type="StaticBody3D" parent="."]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -13.3105, -3, 30)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -16.4038, -3, 30)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Chocolate"]
 transform = Transform3D(-4.37114e-08, 3.55271e-15, -1, 0, 1, 3.55271e-15, 1, 0, -4.37114e-08, 0, 0, 0)
@@ -209,6 +240,52 @@ shape = SubResource("BoxShape3D_rc6dl")
 
 [node name="Sprite3D" type="Sprite3D" parent="Chocolate"]
 texture = ExtResource("6_4uq5d")
+
+[node name="BleuCheese" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -18.432, -2.88534, 30.046)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BleuCheese"]
+transform = Transform3D(-4.37114e-08, 3.55271e-15, -1, 0, 1, 3.55271e-15, 1, 0, -4.37114e-08, 0, 0, 0)
+shape = SubResource("BoxShape3D_rc6dl")
+
+[node name="Sprite3D" type="Sprite3D" parent="BleuCheese"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+texture = ExtResource("7_ixm2v")
+
+[node name="Fruitbowl" type="StaticBody3D" parent="."]
+transform = Transform3D(3, 0, -5.24537e-07, 0, 3, 0, 5.24537e-07, 0, 3, -2.2187, -1.67979, 31.6951)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Fruitbowl"]
+transform = Transform3D(-4.37114e-08, 3.55271e-15, -1, 0, 1, 3.55271e-15, 1, 0, -4.37114e-08, 0, 0, 0)
+shape = SubResource("BoxShape3D_rc6dl")
+
+[node name="Sprite3D" type="Sprite3D" parent="Fruitbowl"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+texture = ExtResource("7_xhaa3")
+
+[node name="Potato" type="StaticBody3D" parent="."]
+transform = Transform3D(2, 0, -6.99382e-07, 0, 2, 0, 6.99382e-07, 0, 2, -6.36641, 9.5659, 30.7204)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Potato"]
+transform = Transform3D(-4.37114e-08, 3.55271e-15, -1, 0, 1, 3.55271e-15, 1, 0, -4.37114e-08, 0, 0, 0)
+shape = SubResource("BoxShape3D_rc6dl")
+
+[node name="Sprite3D" type="Sprite3D" parent="Potato"]
+texture = ExtResource("8_exgtc")
+
+[node name="Bowl" type="StaticBody3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 3.44209, -1.633, 28.59)
+script = ExtResource("3_83fym")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bowl"]
+transform = Transform3D(-4.37114e-08, 3.55271e-15, -1, 0, 1, 3.55271e-15, 1, 0, -4.37114e-08, 0, 0, 0)
+shape = SubResource("BoxShape3D_5ly6d")
+
+[node name="Cup" type="Sprite3D" parent="Bowl"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, -0.658792, -0.59753)
+pixel_size = 0.03
+texture = ExtResource("9_3sqi4")
 
 [node name="Cup" type="StaticBody3D" parent="."]
 unique_name_in_owner = true
@@ -224,7 +301,7 @@ pixel_size = 0.03
 texture = ExtResource("8_gnphm")
 
 [node name="Milk" type="StaticBody3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -3.06914, 9.0238, 30.5422)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6.4713, 9.0238, 30.5422)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Milk"]
 transform = Transform3D(-4.37114e-08, 3.55271e-15, -1, 0, 1, 3.55271e-15, 1, 0, -4.37114e-08, 0, 0, 0)
@@ -237,7 +314,7 @@ skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_amcwm")
 
 [node name="VeganMilk" type="StaticBody3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 13.5457, 9.0238, 30.5422)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.07114, 9.0238, 30.5422)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VeganMilk"]
 transform = Transform3D(-4.37114e-08, 3.55271e-15, -1, 0, 1, 3.55271e-15, 1, 0, -4.37114e-08, 0, 0, 0)
@@ -250,13 +327,13 @@ skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_hpyk3")
 
 [node name="TrashMan" type="StaticBody3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 11.5182, -3.16873, 26.4858)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 11.5182, -3.16873, 26.4858)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TrashMan"]
 shape = SubResource("BoxShape3D_kp3lr")
 
 [node name="Mesh" type="MeshInstance3D" parent="TrashMan"]
-transform = Transform3D(1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 0, 0, 0)
+transform = Transform3D(0.865731, 0, -5.68434e-14, 0, 1, 0, 4.9738e-14, 0, 1, 0, 0, 0)
 mesh = SubResource("QuadMesh_3dm8k")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_k4myb")
@@ -313,7 +390,7 @@ mesh = SubResource("CylinderMesh_iihsf")
 skeleton = NodePath("../Base")
 
 [node name="CoffeeCup" type="StaticBody3D" parent="Environment/BackCounter"]
-transform = Transform3D(0.0795593, 2.24993e-21, 1.24345e-14, 3.90694e-20, 0.225532, 6.21725e-15, -6.03961e-14, -5.32907e-15, 0.546832, -0.599106, 1.50583, -0.500428)
+transform = Transform3D(0.0795593, 2.99109e-21, 1.42109e-14, 3.90694e-20, 0.225532, 6.21725e-15, -6.03961e-14, -3.55271e-15, 0.546832, -0.599106, 1.50583, -0.500428)
 visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/BackCounter/CoffeeCup"]
@@ -361,7 +438,7 @@ mesh = SubResource("BoxMesh_xwbbe")
 surface_material_override/0 = SubResource("StandardMaterial3D_afkda")
 
 [node name="CANNON" type="StaticBody3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.557953, 0, 3.9543)
+transform = Transform3D(1, 0, 7.10543e-15, 0, 1, 0, -7.10543e-15, 0, 1, -0.569871, 1.40884, 2.40097)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/CANNON"]
 shape = SubResource("BoxShape3D_qeagc")
@@ -381,22 +458,32 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.18784, 2.13246, 9.94261)
 omni_range = 28.566
 omni_attenuation = 0.01
 
-[node name="OmniLight3D3" type="OmniLight3D" parent="Environment"]
-transform = Transform3D(0.333333, 0, 1.77636e-15, 0, 0.333333, 0, -1.77636e-15, 0, 0.333333, 24.667, 2.13246, 1.11759)
-omni_range = 28.566
-omni_attenuation = 0.01
-
 [node name="OmniLight3D4" type="OmniLight3D" parent="Environment"]
 transform = Transform3D(1, 0, 5.32907e-15, 0, 1, 0, -5.32907e-15, 0, 1, -7.17987, 3.20767, -0.897853)
 omni_range = 28.566
 omni_attenuation = 0.01
 
+[node name="OmniLight3D3" type="OmniLight3D" parent="Environment"]
+transform = Transform3D(0.333333, 0, 8.88178e-16, 0, 0.333333, 0, -8.88178e-16, 0, 0.333333, 20.3941, 12.9511, 1.11759)
+light_color = Color(0.988235, 0.972549, 0.870588, 1)
+light_energy = 1.808
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+light_specular = 0.338
+omni_range = 28.566
+omni_attenuation = 0.01
+
+[node name="Lightbulb" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(-4.37114e-08, -1, -4.65868e-21, -4.37114e-08, 1.91069e-15, -1, 1, -4.37114e-08, -4.37114e-08, 23.0853, 30.4409, 1.35125)
+mesh = SubResource("PlaneMesh_7h1qu")
+surface_material_override/0 = SubResource("StandardMaterial3D_6qqsk")
+
 [node name="Target" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 3.55271e-15, 0, 1, 0, -3.55271e-15, 0, 1, 4.04897, 8, -80)
+transform = Transform3D(-4.37114e-08, 1.48666, 0, -1, -6.49839e-08, 0, 0, 0, 1, 4.04897, 21.077, -80)
 
 [node name="Target" type="MeshInstance3D" parent="Target"]
-transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, -4.4465e-21, 4.37114e-08, 1, -4.37114e-08, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_5sabg")
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, -3.59947e-21, 4.37114e-08, 1, -4.37114e-08, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_uhd7a")
 mesh = SubResource("PlaneMesh_q01bo")
 skeleton = NodePath("../../Environment")
 
@@ -427,6 +514,14 @@ shape = SubResource("BoxShape3D_j3xxy")
 [connection signal="mouse_exited" from="Caramel" to="." method="_on_coffee_mouse_exited"]
 [connection signal="mouse_entered" from="Chocolate" to="." method="_on_coffee_mouse_entered"]
 [connection signal="mouse_exited" from="Chocolate" to="." method="_on_coffee_mouse_exited"]
+[connection signal="mouse_entered" from="BleuCheese" to="." method="_on_coffee_mouse_entered"]
+[connection signal="mouse_exited" from="BleuCheese" to="." method="_on_coffee_mouse_exited"]
+[connection signal="mouse_entered" from="Fruitbowl" to="." method="_on_coffee_mouse_entered"]
+[connection signal="mouse_exited" from="Fruitbowl" to="." method="_on_coffee_mouse_exited"]
+[connection signal="mouse_entered" from="Potato" to="." method="_on_coffee_mouse_entered"]
+[connection signal="mouse_exited" from="Potato" to="." method="_on_coffee_mouse_exited"]
+[connection signal="mouse_entered" from="Bowl" to="Bowl" method="_on_self_mouse_entered"]
+[connection signal="mouse_exited" from="Bowl" to="Bowl" method="_on_self_mouse_exited"]
 [connection signal="mouse_entered" from="Cup" to="Cup" method="_on_self_mouse_entered"]
 [connection signal="mouse_exited" from="Cup" to="Cup" method="_on_self_mouse_exited"]
 [connection signal="mouse_entered" from="Milk" to="." method="_on_milk_mouse_entered"]
