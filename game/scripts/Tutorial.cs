@@ -13,7 +13,7 @@ public partial class Tutorial : Control
 
 	private void ButtonPressed()
 	{
-		GetTree().ChangeSceneToFile("res://scenes/Tutorial.tscn");
+		GetTree().ChangeSceneToFile("res://scenes/tutorial.tscn");
 	}
 	
 }

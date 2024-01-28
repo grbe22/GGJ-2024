@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://dmqyhfhx8srkh" path="res://assets/Pangolin-Regular.ttf" id="3_1ttuo"]
 [ext_resource type="Texture2D" uid="uid://kn33nj4ej0do" path="res://assets/tests/bodyparts.png" id="4_skwst"]
 
-[node name="Control" type="Control"]
+[node name="EndScreen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -30,6 +30,17 @@ offset_bottom = 181.0
 theme_override_fonts/font = ExtResource("2_diacn")
 theme_override_font_sizes/font_size = 80
 text = "YOU LOSE."
+
+[node name="ScoreCard" type="Label" parent="."]
+layout_mode = 0
+offset_left = 356.0
+offset_top = 171.0
+offset_right = 787.0
+offset_bottom = 266.0
+theme_override_fonts/font = ExtResource("2_diacn")
+theme_override_font_sizes/font_size = 40
+text = "NULL STRIGN"
+horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 1

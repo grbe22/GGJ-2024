@@ -9,6 +9,10 @@ public partial class LaunchScreen : Control
 	{
 		playButton = GetNode<Button>("Button");
 		playButton.Pressed += ButtonPressed;
+		if (this.Name == "EndScreen") {
+			Label lab = GetNode<Label>("../EndScreen/ScoreCard");
+			lab.Text = "Score: " + Global.GetInstance().score;
+		}
 	}
 
 	private void ButtonPressed()
