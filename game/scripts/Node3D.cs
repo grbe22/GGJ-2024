@@ -50,8 +50,6 @@ public partial class Node3D : Node
 
 		// set up view and order system
 		switchView();
-
-		currentCustomer = SpawnCustomer();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -143,33 +141,6 @@ public partial class Node3D : Node
 		}
 	}
 
-	private void _on_cannon_mouse_entered()
-	{
-		cannonSelected = true;
-		// Replace with function body.
-	}
-	private void _on_cannon_mouse_exited()
-	{
-		cannonSelected = false;
-		// Replace with function body.
-	}
-	private void _on_coffee_cup_mouse_entered()
-	{
-		hoverCup = true;
-	}
-	private void _on_coffee_cup_mouse_exited()
-	{
-		hoverCup = false;
-	}
-	private void _on_work_area_mouse_entered()
-	{
-		hoverWork = true;
-	}
-	private void _on_work_area_mouse_exited()
-	{
-		hoverWork = false;
-	}
-
 
 	private void InstantiateProjectile()
 	{
@@ -188,21 +159,13 @@ public partial class Node3D : Node
 		ProjectileController controller = inst as ProjectileController;
 		controller.Launch(projDir, 200);
 	}
-	private void _on_coffee_mouse_entered()
-	{
-		hoverCoffee = true;
-	}
-	private void _on_coffee_mouse_exited()
-	{
-		hoverCoffee = false;
-	}
 
 	private CustomerController SpawnCustomer()
 	{
 		Node root = this.GetParent();
 		CustomerController instance = customerScene.Instantiate() as CustomerController;
-		root.AddChild(instance);
-		// root.CallDeferred("add_child", instance);
+		// root.AddChild(instance);
+		root.CallDeferred("add_child", instance);
 		instance.Position = GetRandomStartPos();
 		return instance;
 	}
@@ -227,29 +190,33 @@ public partial class Node3D : Node
 		// return created vector
 		return new Vector3(randX, 0, randZ) + customerSeekPos;
 	}
-	private void _on_milk_mouse_entered()
-	{
-		hoverMilk = true;
-	}
-	private void _on_milk_mouse_exited()
-	{
-		hoverMilk = false;
-	}
-	private void _on_vegan_milk_mouse_entered()
-	{
-		hoverVeganMilk = true;
-	}
-	private void _on_vegan_milk_mouse_exited()
-	{
-		hoverVeganMilk = false;
-	}
-	private void _on_trash_man_mouse_entered()
-	{
-		trashHover = true;
-	}
-	private void _on_trash_man_mouse_exited()
-	{
-		trashHover = false;
-	}
+	
+	// when selecting coffee
+	private void _on_coffee_mouse_entered() { hoverCoffee = true; }
+	private void _on_coffee_mouse_exited() { hoverCoffee = false; }
+	
+	// when selecting normal milk
+	private void _on_milk_mouse_entered() { hoverMilk = true; }
+	private void _on_milk_mouse_exited() { hoverMilk = false; }
+	
+	// when selecting veganmilk
+	private void _on_vegan_milk_mouse_entered() { hoverVeganMilk = true; }
+	private void _on_vegan_milk_mouse_exited() { hoverVeganMilk = false; }
+	
+	// for disposing of drinks
+	private void _on_trash_man_mouse_entered() { trashHover = true; }
+	private void _on_trash_man_mouse_exited() { trashHover = false; }
+	
+	// for cannons
+	private void _on_cannon_mouse_entered()	{ cannonSelected = true; }
+	private void _on_cannon_mouse_exited() { cannonSelected = false; }
+	
+	// for coffee cup
+	private void _on_coffee_cup_mouse_entered() { hoverCup = true; }
+	private void _on_coffee_cup_mouse_exited() { hoverCup = false; }
+	
+	// for the specific area around machines
+	private void _on_work_area_mouse_entered() { hoverWork = true; }
+	private void _on_work_area_mouse_exited() { hoverWork = false; }
 }
 
