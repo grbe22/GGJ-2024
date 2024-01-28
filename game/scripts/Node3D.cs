@@ -27,6 +27,7 @@ public partial class Node3D : Node
 	private bool hoverBleuCheese = false;
 	private bool hoverFruit = false;
 	private bool hoverPotato = false;
+	private bool hoverCannonButon = false;
 
 	// objects/instances
 	private Camera3D currentCamera;
@@ -174,18 +175,17 @@ public partial class Node3D : Node
 			{
 				if (hoverBleuCheese)
 				{
-					order[3] = sprites.SetBowl(0);
+					workingOrder[3] = sprites.SetBowl(0);
 				}
 				if (hoverFruit)
 				{
-					order[3] = sprites.SetBowl(1);
+					workingOrder[3] = sprites.SetBowl(1);
 				}
 				if (hoverPotato)
 				{
-					order[3] = sprites.SetBowl(2);
+					workingOrder[3] = sprites.SetBowl(2);
 				}
 			}
-		}
 
 			// ~~ cannon events ~~
 
