@@ -36,6 +36,7 @@ namespace GGJloserteam.scripts
 
 		public int UpdateSprite(int[] order, SpriteHandler sprites, Boolean addon)
 		{
+			bool addonBoolean = (order[2] == 0 && order[1] != 0 && addon);
 			switch (selected)
 			{
 				// drinks
@@ -70,28 +71,16 @@ namespace GGJloserteam.scripts
 
 				// drinkAddons
 				case Hovered.WhippedCream:
-					if (order[2] == 0 && order[1] == 0 && addon)
-					{
-						order[2] = sprites.SetAddon(AddonType.WhippedCream);
-					}
+					if (addonBoolean) { order[2] = sprites.SetAddon(AddonType.WhippedCream); }
 					break;
 				case Hovered.Mayo:
-					if (order[2] == 0 && order[1] == 0 && addon)
-					{
-						order[2] = sprites.SetAddon(AddonType.Mayo);
-					}
+					if (addonBoolean) { order[2] = sprites.SetAddon(AddonType.Mayo); }
 					break;
 				case Hovered.Chocolate:
-					if (order[2] == 0 && order[1] == 0 && addon)
-					{
-						order[2] = sprites.SetAddon(AddonType.Chocolate);
-					}
+					if (addonBoolean) { order[2] = sprites.SetAddon(AddonType.Chocolate); }
 					break;
 				case Hovered.Caramel:
-					if (order[2] == 0 && order[1] == 0 && addon)
-					{
-						order[2] = sprites.SetAddon(AddonType.Caramel);
-					}
+					if (addonBoolean) { order[2] = sprites.SetAddon(AddonType.Caramel); }
 					break;
 
 				default:
