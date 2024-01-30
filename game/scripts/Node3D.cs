@@ -7,13 +7,7 @@ using System.Reflection.Metadata;
 
 public partial class Node3D : Node
 {
-
-	// fuck this game engine
-	private static bool man = true;
-	private bool woman = true;
-
-	// values for hander
-	// todo: it would be a *lot* easier to understand if we used an enum for the currently hovered object.
+	// values for detecting what's selected & click handling
 	private MouseLocator mouseHandler;
 
 	// objects/instances
@@ -77,12 +71,6 @@ public partial class Node3D : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		if (man)
-		{
-			man = false;
-			return;
-		}
-		woman = false;
 		mouseHandler = new MouseLocator();
 		scoreboard = GetNode<Label>("../Node3D/Scoreboard");
 		lastScore = GetNode<Label>("../Node3D/AddOn");
@@ -116,10 +104,6 @@ public partial class Node3D : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (woman)
-		{
-			return;
-		}
 		scoreboard.Text = "" + Global.GetInstance().score;
 		#region // Input updates
 		if (Input.IsActionJustPressed("click") && mouseHandler.selected != MouseLocator.Hovered.None) 
