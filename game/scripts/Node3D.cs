@@ -365,4 +365,14 @@ public partial class Node3D : Node
 		fxPlayer.Stream = effect;
 		fxPlayer.Play();
 	}
+	
+	// passes a value to mouseHandler for onClick
+	private void OnSelect(int k) {
+		mouseHandler.Select(k);
+	}
+
+	// passes a value to mouseHandler for onClick
+	private void OnDeselect(int k) {
+		mouseHandler.Deselect(k);
+	}
 }
