@@ -1,3 +1,4 @@
+using GGJloserteam.scripts;
 using Godot;
 using System;
 using System.Collections.Generic;
@@ -12,20 +13,8 @@ public partial class Node3D : Node
 	private bool woman = true;
 
 	// values for hander
-	private bool cannonSelected = false;
-	private bool trashHover = false;
-	private bool hoverWork = false;
-	private bool hoverCoffee = false;
-	private bool hoverMilk = false;
-	private bool hoverVeganMilk = false;
-	private bool hoverWhippedCream = false;
-	private bool hoverMayo = false;
-	private bool hoverChocolate = false;
-	private bool hoverCaramel = false;
-	private bool hoverBleuCheese = false;
-	private bool hoverFruit = false;
-	private bool hoverPotato = false;
-	private bool hoverCannonButon = false;
+	// todo: it would be a *lot* easier to understand if we used an enum for the currently hovered object.
+	private MouseLocator mouseHandler;
 
 	// objects/instances
 	private Camera3D currentCamera;
@@ -94,6 +83,7 @@ public partial class Node3D : Node
 			return;
 		}
 		woman = false;
+		mouseHandler = new MouseLocator();
 		scoreboard = GetNode<Label>("../Node3D/Scoreboard");
 		lastScore = GetNode<Label>("../Node3D/AddOn");
 		Global.GetInstance().score = 0;
@@ -132,89 +122,14 @@ public partial class Node3D : Node
 		}
 		scoreboard.Text = "" + Global.GetInstance().score;
 		#region // Input updates
-		if (Input.IsActionJustPressed("click"))
+		if (Input.IsActionJustPressed("click") && mouseHandler.selected != MouseLocator.Hovered.None) 
 		{
-			// ~~ main drink choosing ~~
 
-			// 0 is coffee, 1 is milk, 2 is veganmilk
-			// checks if you click on coffee & updates drink
-			if (hoverCoffee)
-			{
-				workingOrder[1] = sprites.SetCup(0, workingOrder[1]);
-				PlayAudioFx("bloop_mid");
-			}
-			if (hoverMilk)
-			{
-				workingOrder[1] = sprites.SetCup(1, workingOrder[1]);
-				PlayAudioFx("bloop_mid");
-			}
-			if (hoverVeganMilk)
-			{
-				workingOrder[1] = sprites.SetCup(2, workingOrder[1]);
-				PlayAudioFx("bloop_mid");
-			}
-			if (trashHover)
-			{
-				workingOrder[1] = sprites.EmptyCup();
-				workingOrder[2] = sprites.ClearTopping();
-				workingOrder[0] = sprites.EmptyBowl();
-				PlayAudioFx("bit_1");
-				ResetOrders();
-			}
-
-			// ~~ topping/addon choosing ~~
-			// if no addon exists yet, AND liquid is not empty, 
-			// AND cup is on the back view, do addon shtuff
-			if (workingOrder[2] == 0 && workingOrder[1] != 0 && CupGrab.InBack)
-			{
-				if (hoverWhippedCream)
-				{
-					workingOrder[2] = sprites.SetAddon(AddonType.WhippedCream);
-					PlayAudioFx("bloop_mid");
-				}
-				if (hoverMayo)
-				{
-					workingOrder[2] = sprites.SetAddon(AddonType.Mayo);
-					PlayAudioFx("bloop_mid");
-				}
-				if (hoverChocolate)
-				{
-					workingOrder[2] = sprites.SetAddon(AddonType.Chocolate);
-					PlayAudioFx("bloop_mid");
-				}
-				if (hoverCaramel)
-				{
-					workingOrder[2] = sprites.SetAddon(AddonType.Caramel);
-					PlayAudioFx("bloop_mid");
-				}
-			}
-
-			// ~~ food choosing ~~		
-			// if no addon exists yet,  consider food
-			if (workingOrder[0] == 0)
-			{
-
-				if (hoverBleuCheese)
-				{
-					workingOrder[0] = sprites.SetBowl(0);
-					PlayAudioFx("bloop_mid");
-				}
-				if (hoverFruit)
-				{
-					workingOrder[0] = sprites.SetBowl(1);
-					PlayAudioFx("bloop_mid");
-				}
-				if (hoverPotato)
-				{
-					workingOrder[0] = sprites.SetBowl(2);
-					PlayAudioFx("bloop_mid");
-				}
-			}
-			
 			// ~~ cannon events ~~
 
 			// cannon fire, button pressed
-			if (hoverCannonButon)
+
+			if (mouseHandler.selected == MouseLocator.Hovered.CannonButton)
 			{
 				int curScore = 0;
 
@@ -237,7 +152,7 @@ public partial class Node3D : Node
 					Scoring scoreGen = new Scoring();
 					int grade = scoreGen.Grade(currentCustomer.Order, cannonContents);
 					Global.GetInstance().score += grade;
-					lastScore.Text = "\n+" + (grade + time); 
+					lastScore.Text = "\n+" + (grade + time);
 
 					bool orderCorrect =
 						cannonContents[0] == currentCustomer.Order[0] &&
@@ -261,7 +176,7 @@ public partial class Node3D : Node
 			}
 
 			// cannon load event
-			if (cannonSelected && !hoverCannonButon)
+			else if (mouseHandler.selected == MouseLocator.Hovered.Cannon)
 			{
 				// make cup invisible and put it back in
 				// initial position when loaded to cannon
@@ -290,6 +205,28 @@ public partial class Node3D : Node
 					PlayAudioFx("clonk");
 				}
 			}
+
+			else
+			{
+				// ~~ main drink choosing ~~
+
+				// 0 is coffee, 1 is milk, 2 is veganmilk
+				// checks if you click on coffee & updates drink
+				int handlerOut = mouseHandler.UpdateSprite(workingOrder, sprites, CupGrab.InBack);
+				if (handlerOut == 0)
+				{
+					PlayAudioFx("bloop_mid");
+				}
+				if (handlerOut == 1) { 
+					ResetOrders();
+					PlayAudioFx("bit_1");
+				}
+
+			}
+			
+			
+
+			
 		}
 
 
@@ -428,70 +365,4 @@ public partial class Node3D : Node
 		fxPlayer.Stream = effect;
 		fxPlayer.Play();
 	}
-
-	// ~~ drinks ~~
-
-	// when selecting coffee
-	private void _on_coffee_mouse_entered() { hoverCoffee = true; }
-	private void _on_coffee_mouse_exited() { hoverCoffee = false; }
-
-	// when selecting normal milk
-	private void _on_milk_mouse_entered() { hoverMilk = true; }
-	private void _on_milk_mouse_exited() { hoverMilk = false; }
-
-	// when selecting veganmilk
-	private void _on_vegan_milk_mouse_entered() { hoverVeganMilk = true; }
-	private void _on_vegan_milk_mouse_exited() { hoverVeganMilk = false; }
-
-
-	// ~~ toppings ~~
-
-	// when selecting whipped cream
-	private void _on_whipped_cream_mouse_entered() { hoverWhippedCream = true; }
-	private void _on_whipped_cream_mouse_exited() { hoverWhippedCream = false; }
-
-	// when selecting mayo 
-	private void _on_mayo_mouse_entered() { hoverMayo = true; }
-	private void _on_mayo_mouse_exited() { hoverMayo = false; }
-
-	// when selecting chocolate
-	private void _on_chocolate_mouse_entered() { hoverChocolate = true; }
-	private void _on_chocolate_mouse_exited() { hoverChocolate = false; }
-
-	// when selecting caramel
-	private void _on_caramel_mouse_entered() { hoverCaramel = true; }
-	private void _on_caramel_mouse_exited() { hoverCaramel = false; }
-
-
-	// ~~ foods ~~
-
-	// when selecting bleu cheese
-	private void _on_bleu_cheese_mouse_entered() { hoverBleuCheese = true; }
-	private void _on_bleu_cheese_mouse_exited() { hoverBleuCheese = false; }
-
-	// when selecting fruit
-	private void _on_fruitbowl_mouse_entered() { hoverFruit = true; }
-	private void _on_fruitbowl_mouse_exited() { hoverFruit = false; }
-
-	// when selecting potato
-	private void _on_potato_mouse_entered() { hoverPotato = true; }
-	private void _on_potato_mouse_exited() { hoverPotato = false; }
-
-	// ~~ misc ~~ 
-
-	// for disposing of drinks
-	private void _on_trash_man_mouse_entered() { trashHover = true; }
-	private void _on_trash_man_mouse_exited() { trashHover = false; }
-
-	// for cannons
-	private void _on_cannon_mouse_entered() { cannonSelected = true; }
-	private void _on_cannon_mouse_exited() { cannonSelected = false; }
-
-	// for the specific area around machines
-	private void _on_work_area_mouse_entered() { hoverWork = true; }
-	private void _on_work_area_mouse_exited() { hoverWork = false; }
-
-	// for the button
-	private void _on_button_mouse_entered() { hoverCannonButon = true; }
-	private void _on_button_mouse_exited() { hoverCannonButon = false; }
 }
