@@ -108,9 +108,11 @@ public partial class Node3D : Node
 	{
 		scoreboard.Text = "" + Global.GetInstance().score;
 		#region // Input updates
+		if (Input.IsActionJustPressed("click")) {
+			GD.Print( GetViewport().GetMousePosition() );
+		}
 		if (Input.IsActionJustPressed("click") && mouseHandler.selected != MouseLocator.Hovered.None) 
 		{
-
 			// ~~ cannon events ~~
 
 			// cannon fire, button pressed

@@ -66,25 +66,24 @@ public partial class GrabStuff : StaticBody3D
 		}
 		else if (IsGrabbed)
 		{
+			Vector2 mousePos = GetViewport().GetMousePosition();
+			mousePos.Y = (mousePos.Y / 648f) * 24.5f;
+			mousePos.X = (mousePos.X / 1152f) * 39f;
+			Vector3 newVector;
 			if (InBack)
 			{
-				Vector2 mousePos = GetViewport().GetMousePosition();
-				mousePos.Y /= 60f;
-				mousePos.X /= 30f;
-				mousePos *= -1f;
-				Vector3 newVector = new Vector3(mousePos.X + 18, mousePos.Y + 8, heldItem.Position.Z);
-
+				// the object should stay exactly 30 z away from the camera.
+				// for this, 30z is 30.
+				// every 31.6 mouse pixels is 1 y pixel.
+				newVector = new Vector3(18f - mousePos.X, 16f - mousePos.Y, 30f);
 				heldItem.Position = newVector;
 			}
 			else
 			{
-				Vector2 mousePos = GetViewport().GetMousePosition();
-				mousePos.Y /= -50f;
-				mousePos.X /= 30f;
-				Vector3 newVector = new Vector3(mousePos.X - 23, mousePos.Y + 8, heldItem.Position.Z);
-
-				heldItem.Position = newVector;
+				// 30z in this is instead 28.5
+				newVector = new Vector3(-1 * (22f - mousePos.X), 18f - mousePos.Y, 0f);
 			}
+			heldItem.Position = newVector;
 		}
 	}
 
