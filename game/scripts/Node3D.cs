@@ -71,6 +71,8 @@ public partial class Node3D : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		Label failedOrders = GetNode<Label>("../Node3D/Lives");
+		failedOrders.Text = "0/" + (MaxIncorrectOrders + 1);
 		mouseHandler = new MouseLocator();
 		scoreboard = GetNode<Label>("../Node3D/Scoreboard");
 		lastScore = GetNode<Label>("../Node3D/AddOn");
@@ -146,6 +148,8 @@ public partial class Node3D : Node
 					if (!orderCorrect)
 					{
 						incorrectOrders++;
+						Label failedOrders = GetNode<Label>("../Node3D/Lives");
+						failedOrders.Text = incorrectOrders + " /" + (MaxIncorrectOrders + 1);
 					}
 
 					sprites.ResetCup();
